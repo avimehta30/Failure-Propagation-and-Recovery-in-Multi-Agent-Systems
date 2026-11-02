@@ -73,7 +73,7 @@ A simple, widely used pipeline: **researcher → planner → executor**, acting 
   - Tools: none. It works only from what it is given, so its output depends on the researcher's output.
 - **Executor**
   - Input: the ticket plus the plan.
-  - Job: carry out the plan, making **one logged edit per file**, each tied to its plan step. For ops tickets (T09–T12), it also writes a script in `scripts/` and runs it.
+  - Job: carry out the plan, making **one logged edit per file**, each tied to its plan step. For ops tickets (T09–T11), it also writes a script in `scripts/` and runs it.
   - Tools: `read_file`, `list_dir`, `write_file` (workspace only), `run_script` (ops tickets only). `run_visible_tests` is OFF by default and can be enabled by config, because self-testing lets the executor self-correct and can hide propagation.
 
 Agent rules:
@@ -109,10 +109,10 @@ The environment is a sandbox the agents work in. It exists so that we control ex
 
 #### 3. Tasks: `env/tasks/`
 
-The 12 tickets are defined in `design.md` Section 5 (Tier 1: T01–T03, Tier 2: T04–T08, Tier 3: T09–T12). Each task folder contains:
+The 8 tickets are defined in `design.md` Section 5 (Tier 1: T01–T03, Tier 2: T04–T05, Tier 3: T09–T11). The original design had 12; T06, T07, T08 and T12 were dropped because each overlapped with a kept task (see `design.md` Section 5). The kept tasks keep their original IDs. Each task folder contains:
 - `prompt.txt`: the ticket, written like a real issue.
 - `starter.json`: which Lifeline commit (in `env/lifeline/`'s own Git repo) and which seed data the workspace starts from.
-- `hidden_tests/` (code tasks T01–T08) or `expected_state/` (ops tasks T09–T12). Agents never see these.
+- `hidden_tests/` (code tasks T01–T05) or `expected_state/` (ops tasks T09–T11). Agents never see these.
 - `reference_solution/`: a known-correct solution.
 - `meta.json`: the facts the task depends on, **which file each fact affects**, and the tier.
 
@@ -198,7 +198,7 @@ multiagent-recovery/
 │       └── T01/
 │           ├── prompt.txt
 │           ├── starter.json
-│           ├── hidden_tests/        # or expected_state/ for T09–T12
+│           ├── hidden_tests/        # or expected_state/ for T09–T11
 │           ├── reference_solution/
 │           └── meta.json
 ├── tracing/
@@ -249,7 +249,7 @@ multiagent-recovery/
 ### Phase 1 "done" checklist (validation contract)
 
 - [ ] Lifeline matches `design.md`: module boundaries hold, and its own tests pass.
-- [ ] `facts.json` covers every fact, and each fact appears in exactly one place in the code.
+- [ ] `facts.json` covers every fact, and each fact appears in exactly one place in the code. (F3 is used by no task since T07 was dropped; it stays in Lifeline.)
 - [ ] Lifeline's Git history contains the planned old versions for stale-output faults, recorded in `facts.json`.
 - [ ] Every household ID in the seed data passes the F5 check digit, except the mistyped legacy IDs in the T09 duplicate pairs (one per pair), which are listed per seed in `facts.json` (`F5.seed_exceptions`).
 - [ ] Every task's reference solution passes, and a solution built on each wrong fact it depends on fails.

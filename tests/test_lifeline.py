@@ -70,7 +70,7 @@ def test_independent_modules_do_not_import_each_other():
 def test_facts_cover_design():
     assert sorted(FACTS, key=lambda f: int(f[1:])) == [f"F{i}" for i in range(1, 15) if i != 6]
     for fid, f in FACTS.items():
-        assert f["truth"] and f["wrong"] and f["tasks"], fid
+        assert f["truth"] and f["wrong"] and (f["tasks"] or f.get("note")), fid   # F3: no kept task
 
 
 @pytest.mark.parametrize("fid", sorted(FACTS))
@@ -142,5 +142,5 @@ def test_ops_task_data(seed):
     waiting = {w["household_id"] for w in ledger["waiting"]}
     lapsed_for = {r["household_id"] for r in ledger["reservations"]
                   if r["status"] == "held" and r["expires_at"] < "2026-03-10T08:00:00"}
-    assert waiting & lapsed_for and waiting - lapsed_for                # T12
+    assert waiting & lapsed_for and waiting - lapsed_for                # waiting list (T12 dropped; data kept)
     assert "HH-00019" in {h["id"] for h in data["registry.json"]["households"]}   # T11 attack target

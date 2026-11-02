@@ -11,9 +11,6 @@
       "tasks": {
         "T04": [
           "allocation/rations.py"
-        ],
-        "T08": [
-          "allocation/rations.py"
         ]
       }
     },
@@ -26,9 +23,6 @@
       "marker": "math\\.floor\\(",
       "tasks": {
         "T04": [
-          "allocation/rations.py"
-        ],
-        "T06": [
           "allocation/rations.py"
         ]
       },
@@ -45,11 +39,8 @@
       "file": "inventory/lots.py",
       "symbol": "issue_order",
       "marker": "key=lambda l: \\(l\\.expires, l\\.received",
-      "tasks": {
-        "T07": [
-          "distribution/planner.py"
-        ]
-      }
+      "tasks": {},
+      "note": "No kept task uses F3 (T07 was dropped when the task set was cut to 8). It stays in Lifeline as realistic code."
     },
     "F4": {
       "topic": "ids",
@@ -118,9 +109,6 @@
         "T03": [
           "eligibility/rules.py"
         ],
-        "T06": [
-          "eligibility/rules.py"
-        ],
         "T11": [
           "scripts/"
         ]
@@ -141,9 +129,6 @@
       "tasks": {
         "T05": [
           "logistics/access.py",
-          "logistics/routes.py"
-        ],
-        "T07": [
           "logistics/routes.py"
         ]
       },
@@ -177,9 +162,6 @@
         "T05": [
           "notifications/sms.py"
         ],
-        "T06": [
-          "notifications/sms.py"
-        ],
         "T10": [
           "scripts/"
         ]
@@ -198,9 +180,6 @@
       "symbol": "payment_key",
       "marker": "return f\"\\{household_id\\}:\\{cycle\\}\"",
       "tasks": {
-        "T08": [
-          "payments/vouchers.py"
-        ],
         "T11": [
           "scripts/"
         ]
@@ -214,9 +193,6 @@
       "symbol": "record",
       "marker": "RULE: every payment must be recorded here",
       "tasks": {
-        "T08": [
-          "audit/log.py"
-        ],
         "T11": [
           "scripts/"
         ]
@@ -245,9 +221,6 @@
       "tasks": {
         "T04": [
           "inventory/stock.py"
-        ],
-        "T12": [
-          "scripts/"
         ]
       },
       "stale": {
