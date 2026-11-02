@@ -1,7 +1,7 @@
 # Failure-Propagation-and-Recovery-in-Multi-Agent-Systems
 Measuring how faults spread through a researcher → planner → executor agent team working on a codebase, and how the team can recover without redoing all its work.
 
-**Status: Phase 1, building the environment.** See `CLAUDE.md` for how the experiment is built and `design.md` for the environment and tasks.
+**Status: Phase 1. Environment and tasks T01–T03 built; agents not yet.** See `CLAUDE.md` for how the experiment is built and `design.md` for the environment and tasks.
 
 ## Layout
 
@@ -10,9 +10,12 @@ Measuring how faults spread through a researcher → planner → executor agent 
 | `env/lifeline/` | **Lifeline**, a fictional disaster-relief codebase the agents work on (about 20 small Python files, its own tests, seed data in `data/`). It is its own Git repo ([avimehta30/lifeline](https://github.com/avimehta30/lifeline)), included here as a submodule; its history holds the old file versions used by stale-output faults. |
 | `env/facts.json` | Ground truth for the 13 hidden rules ("facts") in Lifeline, with the wrong version of each. Harness-only: agents never read it. |
 | `env/seed_data.py` | Builds Lifeline's `data/` folder for a given seed. Harness-only. |
+| `env/tasks/T01..T03/` | Tickets: `prompt.txt`, `starter.json` (Lifeline commit + seed), `meta.json`, `hidden_tests/`, `reference_solution/`, `wrong_fact_solutions/<fact>/`. Harness-only answer keys. |
+| `harness/tasks.py`, `harness/grading.py` | Build a workspace from `starter.json`; grade it with the hidden tests (per-test results). |
+| `tests/test_tasks.py` | Task sanity checks: starting code fails, reference passes, each wrong-fact solution fails (seeds 0–2). |
 | `tests/test_lifeline.py` | Checks on the environment: Lifeline's own tests pass, module boundaries hold, each fact lives in exactly one file, seed data is reproducible. |
 
-Still to build (see `CLAUDE.md`, "Build order"): tasks T01–T12, sandboxed tools, tracing, agents, fault-injection harness, recovery baselines, analysis.
+Still to build (see `CLAUDE.md`, "Build order"): tasks T04–T12, sandboxed tools, tracing, agents, fault-injection harness, recovery baselines, analysis.
 
 ## Setup
 

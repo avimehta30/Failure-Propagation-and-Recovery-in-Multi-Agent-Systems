@@ -1,0 +1,11 @@
+LIFE-157: Stock reserved from a warehouse that doesn't exist
+
+A logistics officer reserved 40 food kits from "WH7". There is no such warehouse, but
+the system accepted it, and the kits never shipped.
+
+Ask: make reserve_stock (inventory/stock.py) reject any reservation whose warehouse code
+is not in the correct format. Raise a ValueError (or a subclass of it) and do not record
+anything in the ledger when a code is rejected.
+
+Done when: malformed warehouse codes are rejected with an error, and reservations with
+correct codes still work as before.
