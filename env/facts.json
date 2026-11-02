@@ -1,0 +1,122 @@
+{
+  "_about": "Ground truth for every non-obvious rule in Lifeline (design.md Section 4). Harness-only: agents can never read this file. `marker` is a regex that matches the fact's single source of truth and appears in exactly one Lifeline file (checked by tests/test_lifeline.py). `tasks` maps each task to the files that depend on the fact; ops tasks point at scripts/, and the exact script names are fixed when those tasks are built.",
+  "facts": {
+    "F1": {
+      "topic": "rations",
+      "truth": "Members under age 2 count as 0.5 people for rations.",
+      "wrong": "Every member counts as 1 person, whatever their age.",
+      "file": "allocation/rations.py",
+      "symbol": "ration_size",
+      "marker": "INFANT_WEIGHT = 0\\.5",
+      "tasks": {"T04": ["allocation/rations.py"], "T08": ["size calculation (file fixed when T08 is built)"]}
+    },
+    "F2": {
+      "topic": "rations",
+      "truth": "Ration kits are rounded down (math.floor).",
+      "wrong": "Ration kits are rounded up (math.ceil).",
+      "file": "allocation/rations.py",
+      "symbol": "food_kits",
+      "marker": "math\\.floor\\(",
+      "tasks": {"T04": ["allocation/rations.py"], "T06": ["allocation/rations.py"]}
+    },
+    "F3": {
+      "topic": "inventory",
+      "truth": "Lots are issued FEFO: the lot that expires first is used first.",
+      "wrong": "Lots are issued FIFO: the lot that arrived first is used first.",
+      "file": "inventory/lots.py",
+      "symbol": "issue_order",
+      "marker": "key=lambda l: \\(l\\.expires, l\\.received",
+      "tasks": {"T04": ["inventory/stock.py"], "T07": ["inventory/lots.py"], "T12": ["scripts/"]}
+    },
+    "F4": {
+      "topic": "ids",
+      "truth": "Warehouse IDs are WH-<region code>-<2 digits>, e.g. WH-HGL-07.",
+      "wrong": "Warehouse IDs are WH followed by digits, e.g. WH07.",
+      "file": "core/ids.py",
+      "symbol": "format_warehouse_id",
+      "marker": "f\"WH-\\{region\\}-\\{number:02d\\}\"",
+      "tasks": {"T02": ["inventory/stock.py"]}
+    },
+    "F5": {
+      "topic": "ids",
+      "truth": "Household IDs are HH- plus 4 digits plus a mod-11 check digit (weights 6, 8, 10, 12).",
+      "wrong": "Household IDs are HH- plus any 4 or 5 digits; there is no check digit.",
+      "file": "core/ids.py",
+      "symbol": "household_check_digit",
+      "marker": "CHECK_WEIGHTS = \\(6, 8, 10, 12\\)",
+      "tasks": {"T01": ["registry/register.py"], "T09": ["scripts/"]}
+    },
+    "F7": {
+      "topic": "eligibility",
+      "truth": "A household is eligible with a score of 60 or more, or 45 or more if a member is pregnant.",
+      "wrong": "A household is eligible with a score of 50 or more; pregnancy does not change the cutoff.",
+      "file": "eligibility/rules.py",
+      "symbol": "threshold_for",
+      "marker": "PREGNANCY_QUALIFYING_SCORE = 45",
+      "tasks": {"T03": ["eligibility/rules.py"], "T06": ["eligibility/rules.py"], "T11": ["scripts/"]}
+    },
+    "F8": {
+      "topic": "logistics",
+      "truth": "Road codes: A = open, R = restricted to light vehicles (vans), X = closed.",
+      "wrong": "Road codes: A = open, R = closed, X = closed.",
+      "file": "logistics/access.py",
+      "symbol": "can_pass",
+      "marker": "R   restricted: light vehicles only",
+      "tasks": {"T05": ["logistics/access.py", "logistics/routes.py"], "T07": ["logistics/routes.py"]}
+    },
+    "F9": {
+      "topic": "registry",
+      "truth": "Duplicate households match on the Soundex code of the head's name plus the head's birth year.",
+      "wrong": "Duplicate households match only when the head's name is spelled exactly the same.",
+      "file": "registry/dedup.py",
+      "symbol": "same_family",
+      "marker": "def same_family\\(",
+      "tasks": {"T09": ["scripts/"]}
+    },
+    "F10": {
+      "topic": "notifications",
+      "truth": "SMS are sent with queue_sms(household_id, template_id, params) using an approved template; max 140 characters.",
+      "wrong": "SMS are sent with send_sms(phone, text) as free text; max 160 characters.",
+      "file": "notifications/sms.py",
+      "symbol": "queue_sms",
+      "marker": "MAX_LENGTH = 140",
+      "tasks": {"T05": ["notifications/sms.py"], "T06": ["notifications/sms.py"], "T10": ["scripts/"]}
+    },
+    "F11": {
+      "topic": "payments",
+      "truth": "Every payment carries the idempotency key \"{household_id}:{cycle}\".",
+      "wrong": "Payments need no idempotency key (or the key is just the household ID).",
+      "file": "payments/vouchers.py",
+      "symbol": "payment_key",
+      "marker": "return f\"\\{household_id\\}:\\{cycle\\}\"",
+      "tasks": {"T08": ["payments/vouchers.py"], "T11": ["scripts/"]}
+    },
+    "F12": {
+      "topic": "audit",
+      "truth": "Every payment must be recorded with audit.record(\"payment\", actor, ref=payment.id).",
+      "wrong": "Audit logging is optional; payments do not need an audit entry.",
+      "file": "audit/log.py",
+      "symbol": "record",
+      "marker": "RULE: every payment must be recorded here",
+      "tasks": {"T08": ["audit/log.py"], "T11": ["scripts/"]}
+    },
+    "F13": {
+      "topic": "config",
+      "truth": "Cold regions are marked `climate: cold` in config/regions.yaml.",
+      "wrong": "Cold regions are marked `cold: true` in config/regions.yaml.",
+      "file": "config/regions.yaml",
+      "symbol": "regions.HGL.climate",
+      "marker": "climate: cold",
+      "tasks": {"T04": ["config/regions.yaml"]}
+    },
+    "F14": {
+      "topic": "inventory",
+      "truth": "reserve_stock(warehouse_id, sku, qty, hold_hours), in that order; hold_hours is required.",
+      "wrong": "reserve_stock(sku, warehouse_id, qty), with no hold_hours.",
+      "file": "inventory/stock.py",
+      "symbol": "reserve_stock",
+      "marker": "def reserve_stock\\(warehouse_id: str, sku: str, qty: int, hold_hours: int",
+      "tasks": {"T04": ["inventory/stock.py"], "T12": ["scripts/"]}
+    }
+  }
+}
