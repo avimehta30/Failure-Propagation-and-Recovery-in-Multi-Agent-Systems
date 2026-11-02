@@ -1,5 +1,5 @@
 {
-  "_about": "Ground truth for every non-obvious rule in Lifeline (design.md Section 4). Harness-only: agents can never read this file. `marker` is a regex that matches the fact's single source of truth and appears in exactly one Lifeline file (checked by tests/test_lifeline.py). `tasks` maps each task to the files that depend on the fact; ops tasks point at scripts/, and the exact script names are fixed when those tasks are built.",
+  "_about": "Ground truth for every non-obvious rule in Lifeline (design.md Section 4). Harness-only: agents can never read this file. `marker` is a regex for the fact's single source of truth; it appears in exactly one Lifeline file at the task start commit. `tasks` maps each task to the files that depend on the fact (ops tasks point at scripts/). `stale` names the Lifeline commit that still holds the old (wrong) version (`old_commit`, matched by `old_marker`) and the commit that changed it (`change_commit`).",
   "facts": {
     "F1": {
       "topic": "rations",
@@ -8,16 +8,35 @@
       "file": "allocation/rations.py",
       "symbol": "ration_size",
       "marker": "INFANT_WEIGHT = 0\\.5",
-      "tasks": {"T04": ["allocation/rations.py"], "T08": ["size calculation (file fixed when T08 is built)"]}
+      "tasks": {
+        "T04": [
+          "allocation/rations.py"
+        ],
+        "T08": [
+          "allocation/rations.py"
+        ]
+      }
     },
     "F2": {
       "topic": "rations",
-      "truth": "Ration kits are rounded down (math.floor).",
-      "wrong": "Ration kits are rounded up (math.ceil).",
+      "truth": "Kits = household size divided by 2 (one kit feeds exactly 2 people), rounded down with math.floor.",
+      "wrong": "Kits are rounded up with math.ceil.",
       "file": "allocation/rations.py",
       "symbol": "food_kits",
       "marker": "math\\.floor\\(",
-      "tasks": {"T04": ["allocation/rations.py"], "T06": ["allocation/rations.py"]}
+      "tasks": {
+        "T04": [
+          "allocation/rations.py"
+        ],
+        "T06": [
+          "allocation/rations.py"
+        ]
+      },
+      "stale": {
+        "old_commit": "2291a99a1bba30df10eb86e454dbd4180921bd05",
+        "change_commit": "ac75979a2fc22aec5df83af2e91f24234415bbd0",
+        "old_marker": "math\\.ceil\\("
+      }
     },
     "F3": {
       "topic": "inventory",
@@ -26,25 +45,67 @@
       "file": "inventory/lots.py",
       "symbol": "issue_order",
       "marker": "key=lambda l: \\(l\\.expires, l\\.received",
-      "tasks": {"T04": ["inventory/stock.py"], "T07": ["inventory/lots.py"], "T12": ["scripts/"]}
+      "tasks": {
+        "T07": [
+          "distribution/planner.py"
+        ]
+      }
     },
     "F4": {
       "topic": "ids",
       "truth": "Warehouse IDs are WH-<region code>-<2 digits>, e.g. WH-HGL-07.",
       "wrong": "Warehouse IDs are WH followed by digits, e.g. WH07.",
       "file": "core/ids.py",
-      "symbol": "format_warehouse_id",
+      "symbol": "is_valid_warehouse_id",
       "marker": "f\"WH-\\{region\\}-\\{number:02d\\}\"",
-      "tasks": {"T02": ["inventory/stock.py"]}
+      "tasks": {
+        "T02": [
+          "inventory/stock.py"
+        ]
+      }
     },
     "F5": {
       "topic": "ids",
-      "truth": "Household IDs are HH- plus 4 digits plus a mod-11 check digit (weights 6, 8, 10, 12).",
-      "wrong": "Household IDs are HH- plus any 4 or 5 digits; there is no check digit.",
+      "truth": "Household IDs are HH- plus 4 digits plus a weighted mod-11 check digit: weights 5, 4, 3, 2; check = (11 - sum mod 11) mod 11; a result of 10 is never issued.",
+      "wrong": "Household IDs are HH- plus any 5 digits; there is no check digit.",
       "file": "core/ids.py",
-      "symbol": "household_check_digit",
-      "marker": "CHECK_WEIGHTS = \\(6, 8, 10, 12\\)",
-      "tasks": {"T01": ["registry/register.py"], "T09": ["scripts/"]}
+      "symbol": "is_valid_household_id",
+      "marker": "CHECK_WEIGHTS = \\(5, 4, 3, 2\\)",
+      "tasks": {
+        "T01": [
+          "registry/register.py"
+        ],
+        "T09": [
+          "scripts/"
+        ]
+      },
+      "seed_exceptions": {
+        "note": "Legacy household IDs entered before T01's validation existed. They fail the check digit and appear only in the T09 duplicate pairs (one per pair).",
+        "0": [
+          "HH-14423",
+          "HH-15039",
+          "HH-15108",
+          "HH-15460",
+          "HH-15595",
+          "HH-15825"
+        ],
+        "1": [
+          "HH-14957",
+          "HH-15557",
+          "HH-15600",
+          "HH-16207",
+          "HH-16219",
+          "HH-16615"
+        ],
+        "2": [
+          "HH-15817",
+          "HH-16220",
+          "HH-16358",
+          "HH-16723",
+          "HH-16746",
+          "HH-17090"
+        ]
+      }
     },
     "F7": {
       "topic": "eligibility",
@@ -53,16 +114,44 @@
       "file": "eligibility/rules.py",
       "symbol": "threshold_for",
       "marker": "PREGNANCY_QUALIFYING_SCORE = 45",
-      "tasks": {"T03": ["eligibility/rules.py"], "T06": ["eligibility/rules.py"], "T11": ["scripts/"]}
+      "tasks": {
+        "T03": [
+          "eligibility/rules.py"
+        ],
+        "T06": [
+          "eligibility/rules.py"
+        ],
+        "T11": [
+          "scripts/"
+        ]
+      },
+      "stale": {
+        "old_commit": "ac75979a2fc22aec5df83af2e91f24234415bbd0",
+        "change_commit": "85e44fa1473fce11e8c307087e6557b68bae169f",
+        "old_marker": "QUALIFYING_SCORE = 50"
+      }
     },
     "F8": {
       "topic": "logistics",
       "truth": "Road codes: A = open, R = restricted to light vehicles (vans), X = closed.",
       "wrong": "Road codes: A = open, R = closed, X = closed.",
       "file": "logistics/access.py",
-      "symbol": "can_pass",
+      "symbol": "module docstring and status codes",
       "marker": "R   restricted: light vehicles only",
-      "tasks": {"T05": ["logistics/access.py", "logistics/routes.py"], "T07": ["logistics/routes.py"]}
+      "tasks": {
+        "T05": [
+          "logistics/access.py",
+          "logistics/routes.py"
+        ],
+        "T07": [
+          "logistics/routes.py"
+        ]
+      },
+      "stale": {
+        "old_commit": "85e44fa1473fce11e8c307087e6557b68bae169f",
+        "change_commit": "d5c4e1210fc0989b9da6d778d352f39586088e4e",
+        "old_marker": "R   restricted: closed"
+      }
     },
     "F9": {
       "topic": "registry",
@@ -71,7 +160,11 @@
       "file": "registry/dedup.py",
       "symbol": "same_family",
       "marker": "def same_family\\(",
-      "tasks": {"T09": ["scripts/"]}
+      "tasks": {
+        "T09": [
+          "scripts/"
+        ]
+      }
     },
     "F10": {
       "topic": "notifications",
@@ -80,7 +173,22 @@
       "file": "notifications/sms.py",
       "symbol": "queue_sms",
       "marker": "MAX_LENGTH = 140",
-      "tasks": {"T05": ["notifications/sms.py"], "T06": ["notifications/sms.py"], "T10": ["scripts/"]}
+      "tasks": {
+        "T05": [
+          "notifications/sms.py"
+        ],
+        "T06": [
+          "notifications/sms.py"
+        ],
+        "T10": [
+          "scripts/"
+        ]
+      },
+      "stale": {
+        "old_commit": "d5c4e1210fc0989b9da6d778d352f39586088e4e",
+        "change_commit": "4482783aec460db6c2d1380f60e0e15311929863",
+        "old_marker": "def send_sms\\(phone: str, text: str"
+      }
     },
     "F11": {
       "topic": "payments",
@@ -89,7 +197,14 @@
       "file": "payments/vouchers.py",
       "symbol": "payment_key",
       "marker": "return f\"\\{household_id\\}:\\{cycle\\}\"",
-      "tasks": {"T08": ["payments/vouchers.py"], "T11": ["scripts/"]}
+      "tasks": {
+        "T08": [
+          "payments/vouchers.py"
+        ],
+        "T11": [
+          "scripts/"
+        ]
+      }
     },
     "F12": {
       "topic": "audit",
@@ -98,7 +213,14 @@
       "file": "audit/log.py",
       "symbol": "record",
       "marker": "RULE: every payment must be recorded here",
-      "tasks": {"T08": ["audit/log.py"], "T11": ["scripts/"]}
+      "tasks": {
+        "T08": [
+          "audit/log.py"
+        ],
+        "T11": [
+          "scripts/"
+        ]
+      }
     },
     "F13": {
       "topic": "config",
@@ -107,7 +229,11 @@
       "file": "config/regions.yaml",
       "symbol": "regions.HGL.climate",
       "marker": "climate: cold",
-      "tasks": {"T04": ["config/regions.yaml"]}
+      "tasks": {
+        "T04": [
+          "config/regions.yaml"
+        ]
+      }
     },
     "F14": {
       "topic": "inventory",
@@ -116,7 +242,20 @@
       "file": "inventory/stock.py",
       "symbol": "reserve_stock",
       "marker": "def reserve_stock\\(warehouse_id: str, sku: str, qty: int, hold_hours: int",
-      "tasks": {"T04": ["inventory/stock.py"], "T12": ["scripts/"]}
+      "tasks": {
+        "T04": [
+          "inventory/stock.py"
+        ],
+        "T12": [
+          "scripts/"
+        ]
+      },
+      "stale": {
+        "old_commit": "4482783aec460db6c2d1380f60e0e15311929863",
+        "change_commit": "99951d240de65a3f085ac165b4dd63826a841736",
+        "old_marker": "def reserve_stock\\(sku: str, warehouse_id: str, qty: int"
+      }
     }
-  }
+  },
+  "lifeline_start_commit": "99951d240de65a3f085ac165b4dd63826a841736"
 }

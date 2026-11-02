@@ -7,7 +7,7 @@ Measuring how faults spread through a researcher → planner → executor agent 
 
 | Path | What it is |
 |---|---|
-| `env/lifeline/` | **Lifeline**, a fictional disaster-relief codebase the agents work on (about 20 small Python files, its own tests, seed data in `data/`). |
+| `env/lifeline/` | **Lifeline**, a fictional disaster-relief codebase the agents work on (about 20 small Python files, its own tests, seed data in `data/`). It is its own Git repo ([avimehta30/lifeline](https://github.com/avimehta30/lifeline)), included here as a submodule; its history holds the old file versions used by stale-output faults. |
 | `env/facts.json` | Ground truth for the 13 hidden rules ("facts") in Lifeline, with the wrong version of each. Harness-only: agents never read it. |
 | `env/seed_data.py` | Builds Lifeline's `data/` folder for a given seed. Harness-only. |
 | `tests/test_lifeline.py` | Checks on the environment: Lifeline's own tests pass, module boundaries hold, each fact lives in exactly one file, seed data is reproducible. |
@@ -17,6 +17,8 @@ Still to build (see `CLAUDE.md`, "Build order"): tasks T01–T12, sandboxed tool
 ## Setup
 
 ```bash
+git clone --recurse-submodules https://github.com/avimehta30/Failure-Propagation-and-Recovery-in-Multi-Agent-Systems.git
+# already cloned?  git submodule update --init
 pip install -r requirements.txt
 ```
 

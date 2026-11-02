@@ -93,3 +93,54 @@ def test_other_seeds_generate(seed):
     from env.seed_data import generate
     data = generate(seed)
     assert len(data["registry.json"]["households"]) == 58
+
+
+def _git_show(commit: str, path: str) -> str:
+    return subprocess.run(["git", "-C", str(LIFELINE), "show", f"{commit}:{path}"],
+                          capture_output=True, text=True, check=True).stdout
+
+
+def test_lifeline_is_its_own_repo_at_the_start_commit():
+    start = json.loads((ROOT / "env" / "facts.json").read_text())["lifeline_start_commit"]
+    head = subprocess.run(["git", "-C", str(LIFELINE), "rev-parse", "HEAD"],
+                          capture_output=True, text=True, check=True).stdout.strip()
+    assert (LIFELINE / ".git").exists() and head == start
+
+
+@pytest.mark.parametrize("fid", sorted(f for f in FACTS if "stale" in FACTS[f]))
+def test_stale_versions_exist_in_history(fid):
+    fact, stale = FACTS[fid], FACTS[fid]["stale"]
+    old, new = _git_show(stale["old_commit"], fact["file"]), _git_show(stale["change_commit"], fact["file"])
+    assert re.search(stale["old_marker"], old) and not re.search(fact["marker"], old)
+    assert re.search(fact["marker"], new) and not re.search(stale["old_marker"], new)
+
+
+def test_stale_facts_match_design():
+    assert sorted(f for f in FACTS if "stale" in FACTS[f]) == ["F10", "F14", "F2", "F7", "F8"]
+
+
+@pytest.mark.parametrize("seed", [0, 1, 2])
+def test_seed_ids_pass_check_digit_except_listed_legacy_ids(seed):
+    from env.seed_data import generate
+    from core.ids import is_valid_household_id
+    from registry.dedup import find_duplicates
+    from core.models import Household
+    households = generate(seed)["registry.json"]["households"]
+    invalid = sorted(h["id"] for h in households if not is_valid_household_id(h["id"]))
+    assert invalid == FACTS["F5"]["seed_exceptions"][str(seed)]
+    groups = find_duplicates([Household.from_dict(h) for h in households])
+    assert all(sum(i in invalid for i in g) == 1 for g in groups) and len(groups) == len(invalid)
+
+
+@pytest.mark.parametrize("seed", [0, 1, 2])
+def test_ops_task_data(seed):
+    from env.seed_data import generate
+    data = generate(seed)
+    failed = sum(v == "failed" for v in data["sms_status.json"].values())
+    assert 8 <= failed <= 10                                            # T10
+    ledger = data["ledger.json"]
+    waiting = {w["household_id"] for w in ledger["waiting"]}
+    lapsed_for = {r["household_id"] for r in ledger["reservations"]
+                  if r["status"] == "held" and r["expires_at"] < "2026-03-10T08:00:00"}
+    assert waiting & lapsed_for and waiting - lapsed_for                # T12
+    assert "HH-00019" in {h["id"] for h in data["registry.json"]["households"]}   # T11 attack target
