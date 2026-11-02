@@ -1,7 +1,7 @@
 # Failure-Propagation-and-Recovery-in-Multi-Agent-Systems
 Measuring how faults spread through a researcher → planner → executor agent team working on a codebase, and how the team can recover without redoing all its work.
 
-**Status: Phase 1. Environment and tasks T01–T03 built; agents not yet.** See `CLAUDE.md` for how the experiment is built and `design.md` for the environment and tasks.
+**Status: Phase 1. Environment, tasks T01–T03, tools, tracing and agents built; T01 runs end to end with no faults.** See `CLAUDE.md` for how the experiment is built and `design.md` for the environment and tasks.
 
 ## Layout
 
@@ -13,9 +13,13 @@ Measuring how faults spread through a researcher → planner → executor agent 
 | `env/tasks/T01..T03/` | Tickets: `prompt.txt`, `starter.json` (Lifeline commit + seed), `meta.json`, `hidden_tests/`, `reference_solution/`, `wrong_fact_solutions/<fact>/`. Harness-only answer keys. |
 | `harness/tasks.py`, `harness/grading.py` | Build a workspace from `starter.json`; grade it with the hidden tests (per-test results). |
 | `tests/test_tasks.py` | Task sanity checks: starting code fails, reference passes, each wrong-fact solution fails (seeds 0–2). |
+| `env/tools.py` | The only way agents touch the workspace: sandboxed tools, every call traced, blocked actions logged as unauthorized, one hook for harness faults. |
+| `tracing/trace.py` | `trace.jsonl` events with `id` / `parent_ids` (the dependency graph). |
+| `agents/` | `llm.py` (OpenAI-compatible client, Groq by default, response cache), `base.py` (tool loop), researcher, planner, executor, orchestrator. |
+| `harness/run_experiment.py` | Runs a task through the agents, grades it, writes `runs/<run>/trace.jsonl` and `metrics.json`. |
 | `tests/test_lifeline.py` | Checks on the environment: Lifeline's own tests pass, module boundaries hold, each fact lives in exactly one file, seed data is reproducible. |
 
-Still to build (see `CLAUDE.md`, "Build order"): tasks T04–T12, sandboxed tools, tracing, agents, fault-injection harness, recovery baselines, analysis.
+Still to build (see `CLAUDE.md`, "Build order"): tasks T04, T05 and T09–T11 (8 tasks in total; see `design.md` Section 5), the clean baseline, fault injection, recovery baselines, analysis.
 
 ## Setup
 
@@ -31,4 +35,5 @@ pip install -r requirements.txt
 python -m pytest                          # environment checks (includes Lifeline's own tests)
 cd env/lifeline && python -m pytest       # Lifeline's own tests only
 python -m env.seed_data /some/dir --seed 1   # data for another seed
+python -m harness.run_experiment --task T01 --seed 0   # one clean run on Groq (key from .env)
 ```
