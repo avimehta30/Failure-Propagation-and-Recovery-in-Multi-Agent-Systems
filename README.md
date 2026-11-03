@@ -19,6 +19,8 @@ We built exactly this setup with AI agents:
 
 The project has two phases. **Phase 1 is finished.** Phase 2 (a smarter way to recover) has not started yet.
 
+**Which AI model?** All three agents (and the double-checker) are the same model: **GLM-5.3 Flash** (`api-glm-5.3-flash`), used through UCSD's TritonAI service. We picked it after a trial against the larger GLM-5.3: both solved the trial job correctly, but Flash was about 14 times faster and a tenth of the cost. Every setting is fixed so runs repeat exactly (for example, "temperature 0", meaning the model always gives its most likely answer). All of Phase 1 cost about $2.40 in AI usage.
+
 - **With nothing going wrong, the team finished 20 of 24 jobs correctly.**
 - **Wrong information reached the final result in about 1 run in 3** (20 of 69). The rest of the time, the team happened not to use it, which is not the same as catching it.
 - **When a mistake spread, it stayed in the part of the code that used it.** Our records pointed to exactly where the damage was.
@@ -85,7 +87,7 @@ You only need a key to ask the AI something *new*: a new experiment, a changed p
 
 **Never commit `.env` or share your key in an issue or pull request.** Git already ignores `.env`.
 
-**Using a different AI provider?** Any provider with an "OpenAI-compatible" API works. Set `OPENAI_BASE_URL` in `.env` to the provider's address, and pick the model with `--model <name>`, or set `model:` in `harness/configs/phase1.yaml`. A new model can't reuse the saved answers, so it costs real money, and its results shouldn't be mixed with ours. Use `--runs-dir runs/<new-folder>` to keep them apart.
+**Using a different AI provider?** Any provider with an "OpenAI-compatible" API works. Set `OPENAI_BASE_URL` in `.env` to the provider's address, and pick the model with `--model <name>`, or set `model:` in `harness/configs/phase1.yaml`. A new model can't reuse the saved answers, so it costs real money, and its results shouldn't be mixed with ours (all our results are for `api-glm-5.3-flash`). Use `--runs-dir runs/<new-folder>` to keep them apart.
 
 ## What's in each folder
 
