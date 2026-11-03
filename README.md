@@ -50,7 +50,7 @@ cat runs/T01__clean__s0/metrics.json                      # grade, tokens, laten
 head -5 runs/T01__clean__s0/trace.jsonl                   # events with id and parent_ids
 ```
 
-**Rebuild all results.** These replay from the cache too. Only runs whose settings changed call the model.
+**Rebuild all results.** These replay from the cache too: a fresh clone with no key reproduces every table in `results/` exactly, except the latency columns, which measure the replay (about a second) rather than the original model time. Only runs whose prompts or settings changed call the model. Keep runs inside the repo's `runs/` folder; the cache matches prompts by their paths relative to the repo.
 
 ```bash
 python -m harness.run_grid clean      # 24 clean runs        -> runs/baseline/
