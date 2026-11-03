@@ -14,7 +14,7 @@ from dataclasses import dataclass, field
 from env.tools import ToolBox, ToolResult
 from tracing.trace import Tracer
 
-KEEP_FULL_RESULTS = 2          # older tool results are shortened so the prompt stays small
+KEEP_FULL_RESULTS = 2          # default: older tool results are shortened so the prompt stays small
 SHORTENED_CHARS = 600
 MAX_RESULT_CHARS = 7000
 
@@ -42,11 +42,13 @@ class AgentRun:
 class Agent:
     name = "agent"
     system_prompt = ""
-    max_tokens = 1500
+    max_tokens = 4000              # reasoning models spend part of this on hidden reasoning
 
-    def __init__(self, llm, tools: ToolBox, tracer: Tracer, *, max_steps: int = 10, seed: int = 0):
+    def __init__(self, llm, tools: ToolBox, tracer: Tracer, *, max_steps: int = 10, seed: int = 0,
+                 keep_full_results: int | None = KEEP_FULL_RESULTS):
         self.llm, self.tools, self.tracer = llm, tools, tracer
         self.max_steps, self.seed = max_steps, seed
+        self.keep_full_results = keep_full_results      # None: never shorten old tool results
 
     # Hooks for subclasses -------------------------------------------------
     def check_final(self, final) -> str | None:
@@ -64,10 +66,12 @@ class Agent:
         last_ids = list(parent_ids)
         run = AgentRun(None, "", 0, False)
         for step in range(1, self.max_steps + 1):
-            reply = self.llm.chat(_compact(messages, result_slots), seed=self.seed, max_tokens=self.max_tokens)
+            reply = self.llm.chat(_compact(messages, result_slots, self.keep_full_results), seed=self.seed,
+                                  max_tokens=self.max_tokens)
             llm = self.tracer.log(self.name, "llm_call",
                                   {"step": step, "prompt_tail": messages[-1]["content"][-1500:],
-                                   "response": reply.text, "cached": reply.cached},
+                                   "response": reply.text, "reasoning": reply.reasoning,
+                                   "cached": reply.cached},
                                   last_ids, tokens_in=reply.tokens_in, tokens_out=reply.tokens_out,
                                   latency_ms=reply.latency_ms)
             run.steps, run.final_llm_id = step, llm["id"]
@@ -87,7 +91,9 @@ class Agent:
                     return run
                 note = f"Your final answer cannot be used: {problem} Fix it and reply with one JSON object."
             elif isinstance(action.get("tool"), str):
-                args = action.get("args") if isinstance(action.get("args"), dict) else {}
+                # Accept arguments given beside "tool" instead of inside "args".
+                args = action.get("args") if isinstance(action.get("args"), dict) else \
+                    {k: v for k, v in action.items() if k not in ("tool", "args")}
                 parents = self.tool_parents(action["tool"], args, llm["id"], run.tool_uses)
                 result = self.tools.dispatch(self.name, action["tool"], args, parents)
                 run.tool_uses.append(ToolUse(action["tool"], args, result))
@@ -133,9 +139,11 @@ def parse_action(text: str) -> dict | None:
     return None
 
 
-def _compact(messages: list[dict], result_slots: list[int]) -> list[dict]:
-    """Shorten all but the last few tool results, so long explorations stay within the model's budget."""
-    old = set(result_slots[:-KEEP_FULL_RESULTS]) if len(result_slots) > KEEP_FULL_RESULTS else set()
+def _compact(messages: list[dict], result_slots: list[int], keep: int | None = KEEP_FULL_RESULTS) -> list[dict]:
+    """Shorten all but the last `keep` tool results, so long explorations stay within the model's budget."""
+    if keep is None:
+        return messages
+    old = set(result_slots[:-keep]) if len(result_slots) > keep else set()
     out = []
     for i, m in enumerate(messages):
         if i in old and len(m["content"]) > SHORTENED_CHARS:

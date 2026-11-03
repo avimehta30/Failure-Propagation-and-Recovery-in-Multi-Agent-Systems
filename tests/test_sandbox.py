@@ -13,7 +13,7 @@ from tracing.trace import Tracer, validate_trace
 @pytest.fixture
 def box(tmp_path):
     # Things that sit next to (outside) the workspace and must stay out of reach.
-    (tmp_path / ".env").write_text("GROQ=not-a-real-key\n")
+    (tmp_path / ".env").write_text("OPENAI_API_KEY=not-a-real-key\n")
     (tmp_path / "hidden_tests").mkdir()
     (tmp_path / "hidden_tests" / "test_x.py").write_text("SECRET = 1\n")
     ws = make_workspace(load_task("T01"), tmp_path / "workspace")
@@ -147,7 +147,7 @@ def test_script_run_logs_outbox_writes_and_state_changes(box):
 
 
 def test_script_cannot_see_secrets(box, monkeypatch):
-    monkeypatch.setenv("GROQ", "should-not-leak")
+    monkeypatch.setenv("OPENAI_API_KEY", "should-not-leak")
     _call(box, "executor", "write_file", path="scripts/env.py", content="import sys\nprint(sys.argv)\n")
     out = _call(box, "executor", "run_script", path="scripts/env.py").output
     assert "should-not-leak" not in out

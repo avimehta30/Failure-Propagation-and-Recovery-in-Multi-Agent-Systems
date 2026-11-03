@@ -68,3 +68,11 @@ def finding_sources(finding: dict, uses: list[ToolUse]) -> list[str]:
                 u.tool == "search_code" and f"{cited}:" in u.result.output):
             ids.append(u.result.result_id)
     return ids
+
+
+def redo_message(ticket: str, finding: dict, reason: str) -> str:
+    """Always-verify baseline: ask for one rejected finding to be re-checked."""
+    return (f"Ticket:\n{ticket.strip()}\n\nYour finding {finding['id']} ({finding.get('file', '')}): "
+            f"\"{finding.get('statement', '')}\" was rejected by the verifier: {reason}\n"
+            f"Re-check the code and report the corrected finding, with id {finding['id']}. "
+            "Reply with one JSON object.")

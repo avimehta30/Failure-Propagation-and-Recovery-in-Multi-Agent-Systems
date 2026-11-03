@@ -32,6 +32,7 @@ PERMISSIONS = {
     "researcher": {"search_code", "read_function", "read_file", "list_dir"},
     "planner": set(),
     "executor": {"read_file", "list_dir", "write_file", "run_script", "run_visible_tests"},
+    "verifier": {"search_code", "read_function", "read_file", "list_dir"},     # always-verify baseline only
 }
 
 # Never readable or writable by agents, wherever they appear in a path.
@@ -73,6 +74,9 @@ class ToolBox:
         self.workspace = Path(workspace).resolve()
         self.tracer = tracer
         self.injector = injector
+        # Optional review gate (always-verify baseline): gate(agent, tool, args, call_id) -> rejection
+        # reason or None. A rejected write is not applied; the agent is told why.
+        self.gate = None
         self.permissions = {a: set(t) for a, t in (permissions or PERMISSIONS).items()}
         if not allow_run_script:
             self.permissions["executor"].discard("run_script")
@@ -88,7 +92,10 @@ class ToolBox:
         try:
             self._check(agent, tool, args)
             run = lambda: getattr(self, f"_{tool}")(agent, args, call["id"])  # noqa: E731
-            if self.injector is not None:
+            rejected = self.gate(agent, tool, args, call["id"]) if self.gate is not None else None
+            if rejected:
+                output = f"ERROR: the verifier rejected this {tool}; nothing was changed. Reason: {rejected}"
+            elif self.injector is not None:
                 output, fault = self.injector.intercept_tool(agent, tool, args, run)
             else:
                 output = run()

@@ -15,7 +15,7 @@ Measuring how faults spread through a researcher → planner → executor agent 
 | `tests/test_tasks.py` | Task sanity checks: starting code fails, reference passes, each wrong-fact solution fails (seeds 0–2). |
 | `env/tools.py` | The only way agents touch the workspace: sandboxed tools, every call traced, blocked actions logged as unauthorized, one hook for harness faults. |
 | `tracing/trace.py` | `trace.jsonl` events with `id` / `parent_ids` (the dependency graph). |
-| `agents/` | `llm.py` (OpenAI-compatible client, Groq by default, response cache), `base.py` (tool loop), researcher, planner, executor, orchestrator. |
+| `agents/` | `llm.py` (OpenAI-compatible client, UCSD TritonAI gateway by default, response cache), `base.py` (tool loop), researcher, planner, executor, orchestrator. |
 | `harness/run_experiment.py` | Runs a task through the agents, grades it, writes `runs/<run>/trace.jsonl` and `metrics.json`. |
 | `tests/test_lifeline.py` | Checks on the environment: Lifeline's own tests pass, module boundaries hold, each fact lives in exactly one file, seed data is reproducible. |
 
@@ -35,5 +35,5 @@ pip install -r requirements.txt
 python -m pytest                          # environment checks (includes Lifeline's own tests)
 cd env/lifeline && python -m pytest       # Lifeline's own tests only
 python -m env.seed_data /some/dir --seed 1   # data for another seed
-python -m harness.run_experiment --task T01 --seed 0   # one clean run on Groq (key from .env)
+python -m harness.run_experiment --task T01 --seed 0   # one clean run (OPENAI_BASE_URL and OPENAI_API_KEY from .env)
 ```

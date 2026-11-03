@@ -1,11 +1,12 @@
-"""Model calls through any OpenAI-compatible API (Groq by default), with a response cache.
+"""Model calls through any OpenAI-compatible API (the UCSD TritonAI gateway by default), with a response cache.
 
 The cache key is (model, messages, seed, temperature, max_tokens). A cache hit returns the
 original reply together with its original token counts and latency, so rerunning an
 experiment costs nothing and reports the same cost as the first run.
 
-The API key comes from an environment variable or the project's .env file. It is never
-logged, cached or printed.
+The API key and base URL come from environment variables or the project's .env file. The key
+is never logged, cached or printed. Reasoning models' hidden reasoning text is kept separately
+from the answer, cached, and logged to the trace.
 """
 
 from __future__ import annotations
@@ -35,9 +36,11 @@ class LLMReply:
     tokens_out: int
     latency_ms: float
     cached: bool = False
+    reasoning: str = ""
 
 
-def load_api_key(names=("GROQ_API_KEY", "GROQ"), env_file: Path = ROOT / ".env") -> str:
+def load_env(names, env_file: Path = ROOT / ".env") -> str:
+    """The first of `names` that is set in the environment or in .env."""
     for name in names:
         if os.environ.get(name):
             return os.environ[name].strip()
@@ -46,15 +49,20 @@ def load_api_key(names=("GROQ_API_KEY", "GROQ"), env_file: Path = ROOT / ".env")
             m = re.match(r"\s*(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*?)\s*$", line)
             if m and m.group(1) in names and m.group(2):
                 return m.group(2).strip().strip("'\"")
-    raise RuntimeError(f"no API key: set one of {names} in the environment or in .env")
+    raise RuntimeError(f"not set: one of {names} in the environment or in .env")
+
+
+def load_api_key(names=("OPENAI_API_KEY",), env_file: Path = ROOT / ".env") -> str:
+    return load_env(names, env_file)
 
 
 class LLM:
-    def __init__(self, model: str = "qwen/qwen3.8-27b", base_url: str = "https://api.groq.com/openai/v1",
-                 api_key_env=("GROQ_API_KEY", "GROQ"), temperature: float = 0.0, max_tokens: int = 2000,
-                 json_mode: bool = True, cache_dir: Path | str | None = DEFAULT_CACHE, timeout_s: int = 180,
-                 max_wait_s: int = 900):
-        self.model, self.base_url = model, base_url.rstrip("/")
+    def __init__(self, model: str = "api-glm-5.3-flash", base_url: str | None = None,
+                 base_url_env=("OPENAI_BASE_URL",), api_key_env=("OPENAI_API_KEY",), temperature: float = 0.0,
+                 max_tokens: int = 4000, json_mode: bool = True, cache_dir: Path | str | None = DEFAULT_CACHE,
+                 timeout_s: int = 180, max_wait_s: int = 900):
+        self.model = model
+        self.base_url = (base_url or load_env(tuple(base_url_env))).rstrip("/")
         self.api_key_env = tuple(api_key_env)
         self.temperature, self.max_tokens, self.json_mode = temperature, max_tokens, json_mode
         self.cache_dir = Path(cache_dir) if cache_dir else None
@@ -67,7 +75,8 @@ class LLM:
                                         sort_keys=True).encode()).hexdigest()
         cached = self._cache_get(key)
         if cached:
-            return LLMReply(cached["text"], cached["tokens_in"], cached["tokens_out"], cached["latency_ms"], True)
+            return LLMReply(cached["text"], cached["tokens_in"], cached["tokens_out"], cached["latency_ms"], True,
+                            cached.get("reasoning", ""))
         reply = self._call(messages, seed, max_tokens)
         self._cache_put(key, reply)
         return reply
@@ -92,9 +101,11 @@ class LLM:
                     data = json.load(r)
                 latency = (time.perf_counter() - start) * 1000
                 usage = data.get("usage", {})
-                text = data["choices"][0]["message"].get("content") or ""
+                msg = data["choices"][0]["message"]
+                text = msg.get("content") or ""
+                reasoning = msg.get("reasoning_content") or msg.get("reasoning") or ""
                 return LLMReply(_strip_thinking(text), usage.get("prompt_tokens", 0),
-                                usage.get("completion_tokens", 0), latency)
+                                usage.get("completion_tokens", 0), latency, reasoning=reasoning)
             except urllib.error.HTTPError as e:
                 detail = e.read().decode(errors="replace")
                 if e.code == 400 and "failed_generation" in detail:
@@ -129,7 +140,8 @@ class LLM:
         p = self.cache_dir / key[:2] / f"{key}.json"
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(json.dumps({"model": self.model, "text": reply.text, "tokens_in": reply.tokens_in,
-                                 "tokens_out": reply.tokens_out, "latency_ms": round(reply.latency_ms, 1)}))
+                                 "tokens_out": reply.tokens_out, "latency_ms": round(reply.latency_ms, 1),
+                                 "reasoning": reply.reasoning}))
 
 
 class ScriptedLLM:
