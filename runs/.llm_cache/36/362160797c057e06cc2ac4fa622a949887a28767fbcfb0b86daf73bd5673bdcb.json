@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"next_number\"}}", "tokens_in": 477, "tokens_out": 28, "latency_ms": 506.1, "reasoning": ""}

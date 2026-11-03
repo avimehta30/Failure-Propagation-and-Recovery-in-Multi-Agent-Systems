@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"household_check_digit\"}}", "tokens_in": 1505, "tokens_out": 54, "latency_ms": 682.0, "reasoning": "Need full household_check_digit and make_household_id, and the ID format validation. Read core/ids.py fully."}

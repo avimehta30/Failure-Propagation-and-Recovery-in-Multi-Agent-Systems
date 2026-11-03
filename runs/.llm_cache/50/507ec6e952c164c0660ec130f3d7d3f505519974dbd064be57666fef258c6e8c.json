@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"SKUS\"}}", "tokens_in": 1943, "tokens_out": 27, "latency_ms": 467.5, "reasoning": "Verify SKUS in config/settings.py."}

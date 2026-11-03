@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"household_check_digit\"}}", "tokens_in": 684, "tokens_out": 62, "latency_ms": 630.1, "reasoning": "Need to verify household_check_digit and is_valid_household_id, and the test claim make_household_id(1042) == \"HH-10421\"."}

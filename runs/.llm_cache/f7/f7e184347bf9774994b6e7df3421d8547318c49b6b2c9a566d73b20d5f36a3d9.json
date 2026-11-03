@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def reserve\"}}", "tokens_in": 1796, "tokens_out": 19, "latency_ms": 436.7, "reasoning": ""}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\", \"start_line\": 1}}", "tokens_in": 962, "tokens_out": 35, "latency_ms": 411.0, "reasoning": "Verify R5 and R6 quickly."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \"registry\"}}", "tokens_in": 876, "tokens_out": 54, "latency_ms": 514.0, "reasoning": "I need to understand the registry module's API: load_households, find_duplicates, is_valid_household_id, set_status, save_households. Let me read registry files."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def sent_payments\"}}", "tokens_in": 670, "tokens_out": 55, "latency_ms": 520.2, "reasoning": "The file matches the claim exactly. Verify sent_payments exists in payments/vouchers.py? The claim says \"all reading sent_payments() from the payments outbox.\" Quick check."}

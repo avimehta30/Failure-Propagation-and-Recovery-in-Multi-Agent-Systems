@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"food_kits\"}}", "tokens_in": 1832, "tokens_out": 42, "latency_ms": 566.8, "reasoning": "read_function keeps timing out. Try read_file again, or search_code with more specific queries to extract content."}

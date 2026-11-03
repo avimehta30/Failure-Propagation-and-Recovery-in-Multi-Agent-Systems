@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"_now\"}}", "tokens_in": 1275, "tokens_out": 32, "latency_ms": 700.2, "reasoning": "Check _now in sms.py \u2014 does it use config.settings.now()?"}

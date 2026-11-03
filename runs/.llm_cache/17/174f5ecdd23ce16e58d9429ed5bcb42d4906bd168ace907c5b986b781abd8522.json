@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"register_household\"}}", "tokens_in": 1092, "tokens_out": 33, "latency_ms": 526.5, "reasoning": "Check tests/test_core.py claims and callers of register_household."}

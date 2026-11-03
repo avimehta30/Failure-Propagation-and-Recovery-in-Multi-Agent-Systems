@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \"tests\"}}", "tokens_in": 2430, "tokens_out": 26, "latency_ms": 600.3, "reasoning": "Check tests for eligibility to see conventions."}

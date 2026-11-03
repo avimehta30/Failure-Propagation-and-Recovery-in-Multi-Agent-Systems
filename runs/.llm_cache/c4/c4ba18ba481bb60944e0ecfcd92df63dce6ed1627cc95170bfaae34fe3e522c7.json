@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \"notifications\"}}", "tokens_in": 3249, "tokens_out": 47, "latency_ms": 1213.2, "reasoning": "Check notifications for SMS rules, and core/models Payment. Also check config/settings for cash_enabled feature. Let me look at notifications dir and config."}

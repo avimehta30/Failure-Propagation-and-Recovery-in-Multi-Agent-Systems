@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"region(household\"}}", "tokens_in": 4576, "tokens_out": 62, "latency_ms": 1015.7, "reasoning": "I have enough. Maybe check how other modules use region settings for kit types (e.g., hygiene kits) to see pattern. Quick search for \"hygiene\" or how region settings drive extra kits."}

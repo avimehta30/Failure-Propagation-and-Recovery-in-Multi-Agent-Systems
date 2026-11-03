@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/models.py\"}}", "tokens_in": 484, "tokens_out": 33, "latency_ms": 616.6, "reasoning": "Verify the finding about core/models.py Household. Read the file."}

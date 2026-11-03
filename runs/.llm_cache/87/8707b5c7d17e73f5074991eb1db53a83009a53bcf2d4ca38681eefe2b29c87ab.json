@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 6169, "tokens_out": 49, "latency_ms": 789.5, "reasoning": "I need to know how households' active status and collection site are stored. get_household comes from registry.register. Let me read that file."}

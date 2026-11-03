@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def queue_sms\"}}", "tokens_in": 1322, "tokens_out": 43, "latency_ms": 528.4, "reasoning": "The SmsMessage fields match the finding. Now verify the claim about queue_sms rendering text from template_id and params."}

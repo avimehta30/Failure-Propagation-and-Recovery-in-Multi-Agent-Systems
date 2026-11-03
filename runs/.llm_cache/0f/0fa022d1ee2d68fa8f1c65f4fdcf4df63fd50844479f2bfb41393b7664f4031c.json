@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"load_regions\"}}", "tokens_in": 3157, "tokens_out": 50, "latency_ms": 768.1, "reasoning": "Check how other modules read region settings, e.g. search \"load_regions\" usage. Also check Member.age_on. Let me search \"load_regions\"."}

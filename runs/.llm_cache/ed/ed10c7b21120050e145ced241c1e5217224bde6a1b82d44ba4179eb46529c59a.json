@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"tests/test_eligibility.py\"}}", "tokens_in": 538, "tokens_out": 37, "latency_ms": 414.3, "reasoning": "Need to check tests/test_eligibility.py and eligibility/rules.py."}

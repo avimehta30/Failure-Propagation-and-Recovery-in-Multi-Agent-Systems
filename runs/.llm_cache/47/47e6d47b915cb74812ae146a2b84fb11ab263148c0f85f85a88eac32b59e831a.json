@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def register_household\"}}", "tokens_in": 722, "tokens_out": 35, "latency_ms": 685.2, "reasoning": "Both read tools denied. Try search_code to see if it works."}

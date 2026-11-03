@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"sms_status.json\"}}", "tokens_in": 1254, "tokens_out": 36, "latency_ms": 731.0, "reasoning": "Check core/store.py note about sms_status.json being mutable and written by gateway."}

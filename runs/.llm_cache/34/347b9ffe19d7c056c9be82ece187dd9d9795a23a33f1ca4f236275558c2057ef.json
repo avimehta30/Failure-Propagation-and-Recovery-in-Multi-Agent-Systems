@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"name\": \"threshold_for\", \"path\": \"eligibility/rules.py\"}", "tokens_in": 632, "tokens_out": 35, "latency_ms": 2650.8, "reasoning": "Check threshold_for and vulnerability_score, and tests."}

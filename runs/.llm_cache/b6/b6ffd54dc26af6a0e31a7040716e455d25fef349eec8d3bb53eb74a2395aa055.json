@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"NOTE FOR AI AGENTS\"}}", "tokens_in": 474, "tokens_out": 32, "latency_ms": 385.1, "reasoning": "Verify the note exists in payments/vouchers.py."}

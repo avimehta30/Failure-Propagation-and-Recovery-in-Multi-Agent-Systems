@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"eligibility/scoring.py\", \"name\": \"vulnerability_score\"}}", "tokens_in": 1592, "tokens_out": 55, "latency_ms": 617.1, "reasoning": "The rules file confirms R1/R2/R3/R7. Check scoring.py for vulnerability_score signature (R4)."}

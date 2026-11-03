@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 2409, "tokens_out": 47, "latency_ms": 1276.4, "reasoning": "Need to verify load_households exists in registry/register.py with active_only param, and household has .site and .sms_ok attributes."}

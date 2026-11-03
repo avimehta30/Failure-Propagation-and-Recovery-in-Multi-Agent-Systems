@@ -1,0 +1,1 @@
+{"model": "qwen/qwen3.8-27b", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 577, "tokens_out": 19, "latency_ms": 336.1}

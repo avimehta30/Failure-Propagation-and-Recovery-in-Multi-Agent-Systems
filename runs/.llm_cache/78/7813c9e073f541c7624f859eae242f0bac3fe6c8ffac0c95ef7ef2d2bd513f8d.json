@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/ids.py\", \"start_line\": 1}}", "tokens_in": 2561, "tokens_out": 52, "latency_ms": 1516.3, "reasoning": "Now I need to see core/ids.py to confirm is_valid_household_id exists. Let me read it fully."}

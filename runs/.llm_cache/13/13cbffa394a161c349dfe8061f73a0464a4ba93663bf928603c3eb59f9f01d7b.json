@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"data/outbox/sms.jsonl\"}}", "tokens_in": 4237, "tokens_out": 79, "latency_ms": 1492.3, "reasoning": "10 failed ids: SMS-00001, 04, 05, 06, 09, 10, 12, 18, 19, 20 \u2014 all re-sent exactly once. 11 delivered untouched. Verify outbox lines match originals."}

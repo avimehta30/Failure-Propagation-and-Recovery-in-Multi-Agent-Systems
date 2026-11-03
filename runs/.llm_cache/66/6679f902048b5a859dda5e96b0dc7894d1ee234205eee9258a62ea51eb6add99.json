@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"format_sms_id(next_number\"}}", "tokens_in": 748, "tokens_out": 46, "latency_ms": 801.0, "reasoning": "Now verify sent_messages() exists and how ids are made. Check search for \"format_sms_id(next_number\" usage."}

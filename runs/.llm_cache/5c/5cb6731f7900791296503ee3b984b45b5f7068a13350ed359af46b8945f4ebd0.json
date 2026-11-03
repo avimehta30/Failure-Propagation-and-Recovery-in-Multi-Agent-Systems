@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"queue_sms\"}}", "tokens_in": 1318, "tokens_out": 60, "latency_ms": 2348.6, "reasoning": "The finding claims: sms_ok field exists (true, confirmed). Tests confirm opted-out households must get no SMS (queue_sms raises for them). Need to verify queue_sms behavior. Search for queue_sms."}

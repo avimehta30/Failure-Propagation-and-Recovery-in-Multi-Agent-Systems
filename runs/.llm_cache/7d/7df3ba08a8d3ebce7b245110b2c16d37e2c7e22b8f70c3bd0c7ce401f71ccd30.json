@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"name\": \"format_payment_id\", \"path\": \"core/ids.py\"}}", "tokens_in": 1130, "tokens_out": 42, "latency_ms": 408.7, "reasoning": "Check format_payment_id and next_number in core/ids.py."}

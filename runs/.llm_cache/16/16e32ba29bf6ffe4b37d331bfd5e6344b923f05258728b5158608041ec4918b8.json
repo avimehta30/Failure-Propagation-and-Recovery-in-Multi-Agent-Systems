@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \"data\"}}", "tokens_in": 4241, "tokens_out": 55, "latency_ms": 1232.7, "reasoning": "Check the data files: sms_status.json and outbox/sms.jsonl to see actual failed messages. Also check registry/register.py get_household. Let me look at data dir."}

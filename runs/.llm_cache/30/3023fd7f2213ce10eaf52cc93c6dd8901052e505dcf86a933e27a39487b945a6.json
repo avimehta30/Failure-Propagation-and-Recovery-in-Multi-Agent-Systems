@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/ids.py\"}}", "tokens_in": 2142, "tokens_out": 53, "latency_ms": 1350.2, "reasoning": "Need is_valid_household_id \u2014 check core/ids.py. Also check Household model for fields. Let me read core/ids.py and core/models.py."}

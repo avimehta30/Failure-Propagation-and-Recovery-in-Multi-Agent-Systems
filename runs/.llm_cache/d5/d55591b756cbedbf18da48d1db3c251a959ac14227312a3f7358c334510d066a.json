@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"is_valid_household_id\"}}", "tokens_in": 2202, "tokens_out": 51, "latency_ms": 846.9, "reasoning": "The plan matches the code. Check core/ids.py to confirm is_valid_household_id exists."}

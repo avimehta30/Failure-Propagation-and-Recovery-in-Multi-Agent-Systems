@@ -1,0 +1,1 @@
+{"model": "qwen/qwen3.8-27b", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"make_household_id\"}}", "tokens_in": 1724, "tokens_out": 29, "latency_ms": 384.9}

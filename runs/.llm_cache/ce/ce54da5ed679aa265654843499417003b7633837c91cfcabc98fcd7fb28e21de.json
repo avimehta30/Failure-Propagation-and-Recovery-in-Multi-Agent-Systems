@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def same_family\"}}", "tokens_in": 996, "tokens_out": 20, "latency_ms": 535.9, "reasoning": ""}

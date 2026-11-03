@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"eligible\"}}", "tokens_in": 1855, "tokens_out": 33, "latency_ms": 520.0, "reasoning": "Repeated timeouts on eligibility/rules.py. Try search_code to get snippets instead."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"make_household_id(1009)\"}}", "tokens_in": 659, "tokens_out": 49, "latency_ms": 622.0, "reasoning": "Verify the claim about tests: make_household_id(1009) raises ValueError. Check household_check_digit and tests."}

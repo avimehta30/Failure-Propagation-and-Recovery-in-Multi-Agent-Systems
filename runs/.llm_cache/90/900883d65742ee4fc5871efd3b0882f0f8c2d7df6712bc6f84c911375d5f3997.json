@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 2401, "tokens_out": 49, "latency_ms": 854.4, "reasoning": "Check registry.register.load_households and core.models Household (id attribute). Also check existing ops-script conventions maybe. Let me read registry/register.py."}

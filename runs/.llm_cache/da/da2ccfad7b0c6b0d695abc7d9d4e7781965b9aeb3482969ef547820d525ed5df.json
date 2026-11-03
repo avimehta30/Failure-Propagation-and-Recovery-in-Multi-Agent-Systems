@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"is_valid_warehouse_id\"}}", "tokens_in": 2453, "tokens_out": 44, "latency_ms": 763.0, "reasoning": "There's a validator in core/ids.py. Read it."}

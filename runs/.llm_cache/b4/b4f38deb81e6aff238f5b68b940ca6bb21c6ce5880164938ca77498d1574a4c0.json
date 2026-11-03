@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 1703, "tokens_out": 61, "latency_ms": 602.0, "reasoning": "Need to check registry/register.py: load_households, set_status signature (merged_into kwarg), and core/ids.py is_valid_household_id. Also check whether set_status saves the whole list."}

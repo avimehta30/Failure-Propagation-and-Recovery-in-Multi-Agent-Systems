@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"load_regions\"}}", "tokens_in": 3883, "tokens_out": 53, "latency_ms": 1794.0, "reasoning": "I have enough. Maybe check how other modules read region settings for patterns (e.g., eligibility uses region settings?). Quick check: search for \"load_regions\" usage."}

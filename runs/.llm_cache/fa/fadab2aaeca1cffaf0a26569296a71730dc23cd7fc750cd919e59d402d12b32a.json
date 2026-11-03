@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/ids.py\", \"start_line\": 1}}", "tokens_in": 1024, "tokens_out": 61, "latency_ms": 615.8, "reasoning": "I should check CHECK_WEIGHTS and maybe register_household to see if it already validates. Let me read the top of core/ids.py and register_household."}

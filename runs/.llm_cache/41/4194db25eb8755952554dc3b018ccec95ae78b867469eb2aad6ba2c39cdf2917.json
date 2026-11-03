@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 3149, "tokens_out": 39, "latency_ms": 520.7, "reasoning": "Check registry.register.load_households(active_only=True) exists and scripts/stock_report.py conventions."}

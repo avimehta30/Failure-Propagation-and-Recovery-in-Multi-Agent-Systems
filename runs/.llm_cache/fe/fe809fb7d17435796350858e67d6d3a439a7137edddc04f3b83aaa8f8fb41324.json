@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def \"}}", "tokens_in": 866, "tokens_out": 39, "latency_ms": 529.1, "reasoning": "Both read tools denied. Only list_dir and search_code work. Use search_code to extract facts."}

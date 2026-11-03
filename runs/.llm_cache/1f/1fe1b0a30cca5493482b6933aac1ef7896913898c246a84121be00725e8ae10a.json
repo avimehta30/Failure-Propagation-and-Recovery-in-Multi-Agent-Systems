@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"threshold\"}}", "tokens_in": 1095, "tokens_out": 41, "latency_ms": 554.1, "reasoning": "read_function keeps timing out. Try search_code for more context, e.g. \"threshold\" or \"active\"."}

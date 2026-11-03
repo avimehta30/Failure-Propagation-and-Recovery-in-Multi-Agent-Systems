@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \"notifications\"}}", "tokens_in": 1548, "tokens_out": 37, "latency_ms": 508.8, "reasoning": "I need to find the SMS module: notifications/ likely. Let me list notifications and scripts."}

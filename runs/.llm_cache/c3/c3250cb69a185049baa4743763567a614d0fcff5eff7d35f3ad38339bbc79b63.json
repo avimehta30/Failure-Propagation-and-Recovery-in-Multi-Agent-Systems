@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"config/settings.py\"}}", "tokens_in": 900, "tokens_out": 39, "latency_ms": 694.3, "reasoning": "Verify data_dir overridable via LIFELINE_DATA_DIR \u2014 check config/settings.py."}

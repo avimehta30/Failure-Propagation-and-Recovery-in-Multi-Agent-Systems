@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 2768, "tokens_out": 40, "latency_ms": 790.6, "reasoning": "I need to check registry/register.py for active-only filtering (R10). Let me read it."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"vulnerability_score\"}}", "tokens_in": 1917, "tokens_out": 21, "latency_ms": 588.0, "reasoning": ""}

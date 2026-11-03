@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"tests/test_core.py\"}}", "tokens_in": 1068, "tokens_out": 65, "latency_ms": 683.9, "reasoning": "The finding claims tests/test_core.py asserts is_valid_household_id('HH-10421') is True and 'HH-10471' is False. Need to check tests/test_core.py and core/ids.py."}

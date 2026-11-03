@@ -1,39 +1,106 @@
-# Failure-Propagation-and-Recovery-in-Multi-Agent-Systems
-Measuring how faults spread through a researcher → planner → executor agent team working on a codebase, and how the team can recover without redoing all its work.
+# Failure Propagation and Recovery in Multi-Agent Systems
 
-**Status: Phase 1. Environment, tasks T01–T03, tools, tracing and agents built; T01 runs end to end with no faults.** See `CLAUDE.md` for how the experiment is built and `design.md` for the environment and tasks.
+How does one agent's mistake spread through an AI team, and how can the team recover without redoing everything?
 
-## Layout
+A three-agent team (**researcher → planner → executor**) works on tickets in **Lifeline**, a small made-up codebase for a fictional disaster-relief organization. We feed the team bad information at controlled points (fault injection), record every action together with what it was built from (a dependency graph), and measure how far the fault spreads and what recovery costs.
 
-| Path | What it is |
+**Read first:** the report, [`report/main.pdf`](report/main.pdf) (18 pages, written for a general reader). Then [`CLAUDE.md`](CLAUDE.md) (how the experiment is built, and the rules) and [`design.md`](design.md) (Lifeline, its facts, and the tasks).
+
+## Status
+
+| Phase | State |
 |---|---|
-| `env/lifeline/` | **Lifeline**, a fictional disaster-relief codebase the agents work on (about 20 small Python files, its own tests, seed data in `data/`). It is its own Git repo ([avimehta30/lifeline](https://github.com/avimehta30/lifeline)), included here as a submodule; its history holds the old file versions used by stale-output faults. |
-| `env/facts.json` | Ground truth for the 13 hidden rules ("facts") in Lifeline, with the wrong version of each. Harness-only: agents never read it. |
-| `env/seed_data.py` | Builds Lifeline's `data/` folder for a given seed. Harness-only. |
-| `env/tasks/T01..T03/` | Tickets: `prompt.txt`, `starter.json` (Lifeline commit + seed), `meta.json`, `hidden_tests/`, `reference_solution/`, `wrong_fact_solutions/<fact>/`. Harness-only answer keys. |
-| `harness/tasks.py`, `harness/grading.py` | Build a workspace from `starter.json`; grade it with the hidden tests (per-test results). |
-| `tests/test_tasks.py` | Task sanity checks: starting code fails, reference passes, each wrong-fact solution fails (seeds 0–2). |
-| `env/tools.py` | The only way agents touch the workspace: sandboxed tools, every call traced, blocked actions logged as unauthorized, one hook for harness faults. |
-| `tracing/trace.py` | `trace.jsonl` events with `id` / `parent_ids` (the dependency graph). |
-| `agents/` | `llm.py` (OpenAI-compatible client, UCSD TritonAI gateway by default, response cache), `base.py` (tool loop), researcher, planner, executor, orchestrator. |
-| `harness/run_experiment.py` | Runs a task through the agents, grades it, writes `runs/<run>/trace.jsonl` and `metrics.json`. |
-| `tests/test_lifeline.py` | Checks on the environment: Lifeline's own tests pass, module boundaries hold, each fact lives in exactly one file, seed data is reproducible. |
+| **Phase 1**: clean baseline, fault injection, propagation, full-restart and always-verify baselines | **Done.** All runs complete; results below and in [`results/`](results/) |
+| **Phase 2**: selective recovery (rerun only what the fault touched) | **Not started.** Do not build until the team agrees to begin |
 
-Still to build (see `CLAUDE.md`, "Build order"): tasks T04, T05 and T09–T11 (8 tasks in total; see `design.md` Section 5), the clean baseline, fault injection, recovery baselines, analysis.
+Headline results (one model, `api-glm-5.3-flash`; 8 tasks × 3 seeds):
 
-## Setup
+| | Result |
+|---|---|
+| Clean baseline | 20/24 runs pass; 0 unauthorized actions; about 57K tokens per run |
+| Fault spread (accidental) | 20 of 69 runs: incorrect result 12/30, stale output 5/15, timeout 3/24 |
+| Fault spread (adversarial) | 0 of 12: plainly worded planted instructions were never followed |
+| Full restart | 53/69 tasks recovered, but texts and payments sent by mistake rose from 22 to **76** (a restart repeats them) |
+| Always-verify | 53/69 recovered, **0** bad sends, but 2.3× the tokens and 16 false alarms |
+
+Full tables: [`results/summary.md`](results/summary.md) (CSV versions alongside).
+
+**Known open issues** (good first discussions):
+- T11 fails even with no fault: the audit rule lives only in `audit/log.py` and no agent finds it.
+- The adversarial tests use only blunt comments; disguised instructions and a compromised planner → executor message are untested.
+- Fact F3 is used by no task (its task was dropped when we cut from 12 to 8).
+
+## Quickstart (5 minutes, no API key needed)
 
 ```bash
 git clone --recurse-submodules https://github.com/avimehta30/Failure-Propagation-and-Recovery-in-Multi-Agent-Systems.git
-# already cloned?  git submodule update --init
+cd Failure-Propagation-and-Recovery-in-Multi-Agent-Systems
+python3.11 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest     # 169 checks, no model calls
 ```
 
-## Running the checks
+Both repositories are private: you need access to this one **and** to [avimehta30/lifeline](https://github.com/avimehta30/lifeline) (the submodule), or the clone stops partway. Already cloned without the submodule? Run `git submodule update --init`.
+
+**Replay a real run for free.** Every model reply is cached in `runs/.llm_cache/` (tracked in git), so rerunning an experiment with the same settings replays the same replies, with no key, no cost and identical results:
 
 ```bash
-python -m pytest                          # environment checks (includes Lifeline's own tests)
-cd env/lifeline && python -m pytest       # Lifeline's own tests only
-python -m env.seed_data /some/dir --seed 1   # data for another seed
-python -m harness.run_experiment --task T01 --seed 0   # one clean run (OPENAI_BASE_URL and OPENAI_API_KEY from .env)
+python -m harness.run_experiment --task T01 --seed 0    # replays from the cache in seconds
+cat runs/T01__clean__s0/metrics.json                      # grade, tokens, latency
+head -5 runs/T01__clean__s0/trace.jsonl                   # events with id and parent_ids
 ```
+
+**Rebuild all results.** These replay from the cache too. Only runs whose settings changed call the model.
+
+```bash
+python -m harness.run_grid clean      # 24 clean runs        -> runs/baseline/
+python -m harness.run_grid faults     # 81 fault runs        -> runs/faults/
+python -m harness.run_grid restart    # full restart         -> runs/recovery/
+python -m harness.run_grid verify     # always-verify        -> runs/recovery/
+python -m analysis.summarize          # tables               -> results/
+```
+
+The original traces and metrics of every run are attached to the [GitHub release](https://github.com/avimehta30/Failure-Propagation-and-Recovery-in-Multi-Agent-Systems/releases) as a zip, if you want to read them without rerunning.
+
+**New model calls** (new runs, changed prompts) need a key: `cp .env.example .env` and add your own UCSD TritonAI key. Each person uses their own key. Never commit `.env`.
+
+## How a run works
+
+1. The harness builds a fresh copy of Lifeline in `runs/<run>/workspace/` at the task's starting commit and seed.
+2. The **researcher** reads the code (read-only tools) and reports separate findings (`R1`, `R2`, ...).
+3. The **planner** (no tools) writes one step per file, citing the findings it uses (`P1: ... uses R1, R2`).
+4. The **executor** edits files, or writes and runs a script for operations tasks, one traced edit per plan step.
+5. If configured, the harness injects a fault on the way (it changes only what an agent *sees*, never files on disk).
+6. The harness grades the result with hidden tests (code tasks) or an expected final state (operations tasks), then writes `trace.jsonl` and `metrics.json`.
+
+## Repository map
+
+| Path | What it is |
+|---|---|
+| `report/` | The Phase 1 report (`main.tex`, `main.pdf`). Build with `tectonic main.tex` |
+| `results/` | Summary tables from `analysis/summarize.py` |
+| `env/lifeline/` | **Lifeline** (submodule, its own repo). 19 Python files, its own tests, seed data. Its Git history holds the old versions used by stale-output faults |
+| `env/facts.json` | The 13 hidden rules ("facts") and their plausible wrong versions. Harness only |
+| `env/tasks/T01..T11/` | 8 tickets: `prompt.txt` (all the agents see), `starter.json`, `meta.json`, and answer keys (`hidden_tests/` or `expected_state/`, `reference_solution/`, `wrong_fact_solutions/`) |
+| `env/tools.py` | The only way agents touch the workspace: sandboxed tools, every call traced, forbidden actions blocked and logged, one hook for faults |
+| `env/seed_data.py` | Builds Lifeline's data for a seed |
+| `agents/` | `llm.py` (OpenAI-compatible client and cache), `base.py` (tool loop), researcher, planner, executor, verifier, orchestrator |
+| `tracing/trace.py` | `trace.jsonl` events with `id` and `parent_ids` (the dependency graph) |
+| `harness/` | `run_experiment.py` (one run), `run_grid.py` (batches), `faults.py`, `propagation.py`, `recovery.py`, `ops.py` (operations-task grading), `configs/phase1.yaml` |
+| `analysis/summarize.py` | Aggregates `runs/` into `results/` |
+| `tests/` | 169 model-free checks: environment, answer keys, sandbox, tracing, pipeline, faults, recovery |
+| `runs/` | Run output (gitignored), except `runs/.llm_cache/`, which is tracked |
+
+## Rules for contributors
+
+The full list is in [`CLAUDE.md`](CLAUDE.md) under "Hard rules". The ones that matter most day to day:
+
+- **Never change the answer keys or tests to make a run pass.** Agents are not allowed to add or edit tests either; the evaluation must stay fixed.
+- **Agents touch the environment only through `env/tools.py`**, and can never read answer keys or `facts.json`.
+- **Agent code contains no fault logic.** Faults come only from `harness/faults.py`, and never modify files on disk.
+- **Everything is traced** with `id` and `parent_ids`; do not merge findings, plan steps or edits into one item.
+- **Runs must be reproducible:** temperature 0, fixed seeds, config-driven, cached replies. If you change a prompt, the cache misses and the model is called again; say so in your PR.
+- **No secrets in git.** Each person keeps their own key in `.env`.
+- Ask the team before adding a dependency or starting Phase 2.
+
+Working on the code: make small changes, run `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest` (the variable avoids a clash with unrelated pytest plugins some machines have installed), and open a pull request against `main`.

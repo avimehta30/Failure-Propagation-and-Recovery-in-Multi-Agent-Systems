@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"data/outbox/sms.jsonl\"}}", "tokens_in": 2391, "tokens_out": 41, "latency_ms": 604.2, "reasoning": "Check outbox file to confirm records have household_id, template_id, params keys."}

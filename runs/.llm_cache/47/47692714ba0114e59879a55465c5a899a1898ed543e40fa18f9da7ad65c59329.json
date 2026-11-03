@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"format_reservation_id\"}}", "tokens_in": 904, "tokens_out": 33, "latency_ms": 581.3, "reasoning": "Need to verify format_reservation_id exists in core/ids.py."}

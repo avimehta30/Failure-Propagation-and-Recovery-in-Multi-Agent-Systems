@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def sent_payments\"}}", "tokens_in": 673, "tokens_out": 30, "latency_ms": 642.1, "reasoning": "Verify sent_payments exists in payments/vouchers.py."}

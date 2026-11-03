@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 2764, "tokens_out": 43, "latency_ms": 803.3, "reasoning": "Need to see registry/register.py for load_households, and distribution/planner.py for P5. Read both."}

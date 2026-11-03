@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"eligibility/rules.py\", \"name\": \"threshold_for\"}}", "tokens_in": 3625, "tokens_out": 28, "latency_ms": 514.7, "reasoning": ""}

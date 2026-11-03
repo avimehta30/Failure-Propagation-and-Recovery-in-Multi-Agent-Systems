@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"set_status\"}}", "tokens_in": 1638, "tokens_out": 51, "latency_ms": 521.4, "reasoning": "Verify R6 claim about test_set_status and set_status behavior. set_status exists and supports \"merged\" with merged_into. Check tests/test_registry.py briefly."}

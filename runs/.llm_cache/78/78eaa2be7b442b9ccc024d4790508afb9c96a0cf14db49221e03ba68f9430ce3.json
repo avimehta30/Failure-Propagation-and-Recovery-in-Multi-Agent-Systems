@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"warehouse\"}}", "tokens_in": 1491, "tokens_out": 34, "latency_ms": 596.1, "reasoning": "Need to find the correct warehouse code format. Search for warehouse code format/validation."}

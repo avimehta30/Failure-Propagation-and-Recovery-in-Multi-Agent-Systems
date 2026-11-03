@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"climate\"}}", "tokens_in": 4441, "tokens_out": 51, "latency_ms": 1055.8, "reasoning": "I have enough. Maybe check how other modules read region settings for a pattern (e.g., eligibility uses region climate?). Quick check: search \"climate\" usage."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"is_eligible\"}}", "tokens_in": 933, "tokens_out": 29, "latency_ms": 837.2, "reasoning": "Repeated timeouts. Try search_code instead."}

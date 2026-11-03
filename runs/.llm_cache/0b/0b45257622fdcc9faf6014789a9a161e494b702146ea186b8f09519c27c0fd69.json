@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"qualifies\"}}", "tokens_in": 767, "tokens_out": 36, "latency_ms": 542.3, "reasoning": "read_file keeps timing out. Try search_code to find content, or read_function."}

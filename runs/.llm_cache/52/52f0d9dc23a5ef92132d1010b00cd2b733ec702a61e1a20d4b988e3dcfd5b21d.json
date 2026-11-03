@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \"registry\"}}", "tokens_in": 830, "tokens_out": 18, "latency_ms": 425.3, "reasoning": ""}

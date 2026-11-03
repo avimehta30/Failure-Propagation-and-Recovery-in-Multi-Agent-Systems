@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"eligibility/scoring.py\"}}", "tokens_in": 1701, "tokens_out": 34, "latency_ms": 434.3, "reasoning": "Check scoring uses size >= 6 large_household bonus."}

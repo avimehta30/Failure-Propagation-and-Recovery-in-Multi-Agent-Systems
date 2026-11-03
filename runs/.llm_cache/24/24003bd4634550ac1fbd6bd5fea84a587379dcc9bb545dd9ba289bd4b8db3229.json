@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/models.py\", \"start_line\": 1}}", "tokens_in": 539, "tokens_out": 68, "latency_ms": 578.2, "reasoning": "We need to verify the finding. Check core/models.py for Household model with head(), size(), age_on at those lines. Also check dedup.py signature at line 45.\n\nLet's read files."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def queue_sms\"}}", "tokens_in": 1328, "tokens_out": 50, "latency_ms": 511.8, "reasoning": "The file seems to end at line 41. But queue_sms exists in tests. Maybe there's another file? Search for \"def queue_sms\"."}

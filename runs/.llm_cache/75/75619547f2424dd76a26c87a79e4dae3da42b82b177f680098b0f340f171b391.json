@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \".\"}}", "tokens_in": 979, "tokens_out": 41, "latency_ms": 498.8, "reasoning": "Let me check the code: eligibility rules, payments.vouchers, notifications.sms, registry.register, payments.receipts."}

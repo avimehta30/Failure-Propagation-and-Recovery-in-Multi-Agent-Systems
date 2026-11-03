@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\", \"start_line\": 1}}", "tokens_in": 2314, "tokens_out": 63, "latency_ms": 2062.5, "reasoning": "Need: household model (active, collects at site, sms_ok), get_household, list households. Check registry/register.py and core/models.py. Also data/network.json structure."}

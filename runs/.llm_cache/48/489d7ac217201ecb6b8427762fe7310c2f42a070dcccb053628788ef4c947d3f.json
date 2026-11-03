@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"run_script\", \"args\": {\"path\": \"scripts/resend_failed_sms.py\", \"step\": \"P2\"}}", "tokens_in": 5007, "tokens_out": 30, "latency_ms": 786.6, "reasoning": ""}

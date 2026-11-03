@@ -1,0 +1,1 @@
+{"model": "qwen/qwen3.8-27b", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"HH-\\\\d{5}\"}}", "tokens_in": 2330, "tokens_out": 23, "latency_ms": 479.1}

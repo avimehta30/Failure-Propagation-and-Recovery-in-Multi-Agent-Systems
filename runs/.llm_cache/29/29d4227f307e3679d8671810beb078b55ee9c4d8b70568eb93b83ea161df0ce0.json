@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/ids.py\", \"start_line\": 30}}", "tokens_in": 2358, "tokens_out": 47, "latency_ms": 641.2, "reasoning": "I need make_household_id signature. Let me read the rest of core/ids.py."}

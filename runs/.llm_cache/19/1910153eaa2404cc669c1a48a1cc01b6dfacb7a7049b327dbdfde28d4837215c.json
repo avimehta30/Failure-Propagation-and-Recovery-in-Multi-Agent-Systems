@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def append_jsonl\"}}", "tokens_in": 935, "tokens_out": 34, "latency_ms": 516.9, "reasoning": "Need to verify store.append_jsonl claim. Find store module."}

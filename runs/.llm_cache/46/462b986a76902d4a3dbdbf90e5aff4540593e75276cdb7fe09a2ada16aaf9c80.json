@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 1473, "tokens_out": 58, "latency_ms": 497.6, "reasoning": "Need to see core models, store, registry functions: load_households, save_households, is_valid_household_id, set_status. Let me list core and read registry/register.py."}

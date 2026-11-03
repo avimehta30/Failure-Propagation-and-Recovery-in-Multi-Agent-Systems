@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/models.py\"}}", "tokens_in": 1893, "tokens_out": 55, "latency_ms": 552.0, "reasoning": "Check core/models.py Household.region field and age_on. Also check regions.yaml maybe. The plan step relies on Household.region being region code. Let me verify core/models.py."}

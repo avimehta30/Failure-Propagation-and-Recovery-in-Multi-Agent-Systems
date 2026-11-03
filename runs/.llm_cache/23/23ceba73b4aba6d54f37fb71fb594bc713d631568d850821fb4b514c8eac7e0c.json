@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"format_warehouse_id\"}}", "tokens_in": 475, "tokens_out": 36, "latency_ms": 379.8, "reasoning": "Check core/ids.py."}

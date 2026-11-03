@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def vulnerability_score\"}}", "tokens_in": 933, "tokens_out": 40, "latency_ms": 603.8, "reasoning": "I should also check vulnerability_score signature in eligibility/scoring.py to report how to compute the score."}

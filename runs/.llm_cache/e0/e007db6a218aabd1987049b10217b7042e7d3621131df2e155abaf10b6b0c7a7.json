@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"inventory/stock.py\"}}", "tokens_in": 498, "tokens_out": 46, "latency_ms": 401.9, "reasoning": "Verify the finding: check inventory/stock.py for reserve_stock error style, and inventory/lots.py for InsufficientStock."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \".\"}}", "tokens_in": 661, "tokens_out": 23, "latency_ms": 437.3, "reasoning": "Start by listing the directory."}

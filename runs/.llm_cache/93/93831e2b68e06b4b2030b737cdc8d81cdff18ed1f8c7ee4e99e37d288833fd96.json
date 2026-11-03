@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \"registry\"}}", "tokens_in": 573, "tokens_out": 26, "latency_ms": 1133.1, "reasoning": "Let me explore the registry directory first."}

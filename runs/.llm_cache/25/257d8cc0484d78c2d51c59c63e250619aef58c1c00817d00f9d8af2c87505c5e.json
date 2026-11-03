@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"next_number\"}}", "tokens_in": 754, "tokens_out": 30, "latency_ms": 859.0, "reasoning": "Now verify queue_sms computes next SMS ID this way."}

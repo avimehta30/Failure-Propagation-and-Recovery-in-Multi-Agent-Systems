@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"class Household\"}}", "tokens_in": 1442, "tokens_out": 34, "latency_ms": 1005.8, "reasoning": "Need Household model: status field, members. Check core/models.py briefly."}

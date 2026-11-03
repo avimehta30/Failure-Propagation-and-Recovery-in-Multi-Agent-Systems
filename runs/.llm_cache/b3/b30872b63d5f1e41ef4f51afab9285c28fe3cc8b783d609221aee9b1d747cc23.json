@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"reserve_stock(\"}}", "tokens_in": 3625, "tokens_out": 20, "latency_ms": 477.4, "reasoning": ""}

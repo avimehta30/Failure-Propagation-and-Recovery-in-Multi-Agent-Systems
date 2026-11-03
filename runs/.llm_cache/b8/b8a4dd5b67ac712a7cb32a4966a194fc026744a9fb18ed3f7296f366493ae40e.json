@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"final\": {\"verdict\": \"accept\", \"reason\": \"core/models.py Household has exactly the fields described: site, status (default \\\"active\\\", values active|inactive|merged), sms_ok (bool, default True), and phone, matching the finding.\"}}", "tokens_in": 1561, "tokens_out": 57, "latency_ms": 1364.9, "reasoning": ""}

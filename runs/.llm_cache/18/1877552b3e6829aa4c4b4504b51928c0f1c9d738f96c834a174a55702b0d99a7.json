@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def disburse\"}}", "tokens_in": 1732, "tokens_out": 49, "latency_ms": 1760.3, "reasoning": "Now verify the claims about disburse and queue_sms defaulting sent_at/queued_at to now(). Need to check the payments/sms modules."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"class Household\"}}", "tokens_in": 2049, "tokens_out": 38, "latency_ms": 660.5, "reasoning": "Check core/models.py Household has region field. R4 claims it. Let me verify quickly."}

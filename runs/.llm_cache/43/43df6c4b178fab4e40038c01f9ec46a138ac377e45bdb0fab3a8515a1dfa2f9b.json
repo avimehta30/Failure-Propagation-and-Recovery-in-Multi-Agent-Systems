@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"household_check_digit\"}}", "tokens_in": 1356, "tokens_out": 49, "latency_ms": 860.4, "reasoning": "Check household_check_digit to confirm the skip logic and that make_household_id produces valid IDs."}

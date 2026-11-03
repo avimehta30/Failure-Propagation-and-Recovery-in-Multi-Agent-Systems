@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"sms_enabled\"}}", "tokens_in": 1248, "tokens_out": 29, "latency_ms": 490.6, "reasoning": "Check config/settings.py for sms_enabled: True."}

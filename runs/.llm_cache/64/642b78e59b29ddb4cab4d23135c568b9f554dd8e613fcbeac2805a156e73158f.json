@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def get_household\"}}", "tokens_in": 1460, "tokens_out": 49, "latency_ms": 929.2, "reasoning": "I should verify get_household raises KeyError. The verifier already stated it; but I should confirm by reading registry/register.py get_household."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/ids.py\", \"start_line\": 40}}", "tokens_in": 2986, "tokens_out": 28, "latency_ms": 449.2, "reasoning": ""}

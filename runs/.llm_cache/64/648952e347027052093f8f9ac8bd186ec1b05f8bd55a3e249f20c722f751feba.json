@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \"notifications\"}}", "tokens_in": 1362, "tokens_out": 59, "latency_ms": 599.2, "reasoning": "I need to know the APIs: delivery_status (R3), sent_messages (R4), queue_sms (R1). Likely in notifications/ or registry/. Let me look at notifications/ and registry/."}

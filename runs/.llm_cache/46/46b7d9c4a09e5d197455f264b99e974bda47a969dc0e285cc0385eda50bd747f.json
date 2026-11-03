@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"WINTER-KIT\"}}", "tokens_in": 2134, "tokens_out": 35, "latency_ms": 580.7, "reasoning": "Verify WINTER-KIT is in SKUS in config/settings.py."}

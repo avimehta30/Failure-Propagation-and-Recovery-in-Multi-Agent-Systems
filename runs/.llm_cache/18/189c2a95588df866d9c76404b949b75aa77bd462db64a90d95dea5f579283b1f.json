@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"registry/register.py\", \"name\": \"register\"}}", "tokens_in": 793, "tokens_out": 47, "latency_ms": 676.0, "reasoning": "Both read tools denied? Odd. Maybe permissions differ per path. Try read_function on registry/register.py."}

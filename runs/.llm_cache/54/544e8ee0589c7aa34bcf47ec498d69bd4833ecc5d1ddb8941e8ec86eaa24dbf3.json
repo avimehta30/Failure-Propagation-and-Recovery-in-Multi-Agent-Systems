@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"final\": {\"verdict\": \"accept\", \"reason\": \"core/ids.py lines 71-72 confirm format_sms_id returns f\\\"SMS-{number:05d}\\\", e.g. SMS-00042 for 42.\"}}", "tokens_in": 548, "tokens_out": 52, "latency_ms": 6146.6, "reasoning": ""}

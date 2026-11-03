@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"name\": \"is_valid_warehouse_id\", \"path\": \"core/ids.py\"}}", "tokens_in": 1343, "tokens_out": 52, "latency_ms": 563.1, "reasoning": "The tests confirm the claims. Now check the function itself to verify the claim about regex + region list."}

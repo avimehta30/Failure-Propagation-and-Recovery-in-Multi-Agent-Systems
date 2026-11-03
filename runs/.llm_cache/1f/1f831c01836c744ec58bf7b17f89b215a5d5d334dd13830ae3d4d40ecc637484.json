@@ -1,0 +1,1 @@
+{"model": "qwen/qwen3.8-27b", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \".\"}}", "tokens_in": 483, "tokens_out": 16, "latency_ms": 258.6}

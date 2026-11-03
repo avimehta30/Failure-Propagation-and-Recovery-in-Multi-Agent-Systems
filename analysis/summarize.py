@@ -1,6 +1,6 @@
 """Aggregate runs/ into summary tables (build step 9).
 
-    python -m analysis.summarize            # writes runs/summary.md and runs/summary_*.csv
+    python -m analysis.summarize            # writes results/summary.md and results/summary_*.csv
 
 Reads runs/baseline/ (clean), runs/faults/ (fault runs) and runs/recovery/ (full restart).
 Accidental and adversarial faults are always reported in separate tables.
@@ -17,6 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 RUNS = ROOT / "runs"
+OUT = ROOT / "results"   # tracked in git, unlike runs/
 
 
 def load(folder: Path) -> list[dict]:
@@ -150,6 +151,7 @@ def _csv(rows: list[dict], path: Path) -> None:
 
 
 def main() -> int:
+    OUT.mkdir(exist_ok=True)
     clean, faults, recovery = load(RUNS / "baseline"), load(RUNS / "faults"), load(RUNS / "recovery")
     tables = {
         "clean": ("Clean baseline (no faults)", clean_table(clean)),
@@ -163,8 +165,8 @@ def main() -> int:
            f"{len(clean)} clean runs, {len(faults)} fault runs, {len(recovery)} recovery runs.", ""]
     for name, (title, rows) in tables.items():
         out.append(_md(rows, title))
-        _csv(rows, RUNS / f"summary_{name}.csv")
-    (RUNS / "summary.md").write_text("\n".join(out))
+        _csv(rows, OUT / f"summary_{name}.csv")
+    (OUT / "summary.md").write_text("\n".join(out))
     print("\n".join(out))
     return 0
 

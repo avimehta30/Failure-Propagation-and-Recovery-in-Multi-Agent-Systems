@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"notifications/sms.py\", \"name\": \"SmsMessage\"}}", "tokens_in": 1961, "tokens_out": 29, "latency_ms": 486.6, "reasoning": ""}

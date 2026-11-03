@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"inventory/stock.py\"}}", "tokens_in": 2091, "tokens_out": 58, "latency_ms": 732.8, "reasoning": "Need to check how household.region is accessed \u2014 Household model. Let me read core/models.py quickly? I have 6 steps. I need inventory/stock.py too. Read both."}

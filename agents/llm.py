@@ -62,7 +62,9 @@ class LLM:
                  max_tokens: int = 4000, json_mode: bool = True, cache_dir: Path | str | None = DEFAULT_CACHE,
                  timeout_s: int = 180, max_wait_s: int = 900):
         self.model = model
-        self.base_url = (base_url or load_env(tuple(base_url_env))).rstrip("/")
+        # The URL and key are read on the first real call, so cached replays need no .env.
+        self.base_url = base_url.rstrip("/") if base_url else None
+        self.base_url_env = tuple(base_url_env)
         self.api_key_env = tuple(api_key_env)
         self.temperature, self.max_tokens, self.json_mode = temperature, max_tokens, json_mode
         self.cache_dir = Path(cache_dir) if cache_dir else None
@@ -83,6 +85,8 @@ class LLM:
 
     # ---------------------------------------------------------------- provider call
     def _call(self, messages, seed, max_tokens) -> LLMReply:
+        if self.base_url is None:
+            self.base_url = load_env(self.base_url_env).rstrip("/")
         if self._key is None:
             self._key = load_api_key(self.api_key_env)
         body = {"model": self.model, "messages": messages, "temperature": self.temperature,

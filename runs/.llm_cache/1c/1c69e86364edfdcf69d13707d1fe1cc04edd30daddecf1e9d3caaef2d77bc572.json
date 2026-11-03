@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/models.py\", \"start_line\": 1}}", "tokens_in": 3301, "tokens_out": 63, "latency_ms": 1060.5, "reasoning": "Check the Household model for fields status, merged_into, head, id, and to_dict/from_dict. Also check store.write_json atomicity. Let me read core/models.py."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"queue_sms\"}}", "tokens_in": 1984, "tokens_out": 39, "latency_ms": 446.2, "reasoning": "Need to verify queue_sms uses registered phone (m.phone == h.phone). Search for queue_sms."}

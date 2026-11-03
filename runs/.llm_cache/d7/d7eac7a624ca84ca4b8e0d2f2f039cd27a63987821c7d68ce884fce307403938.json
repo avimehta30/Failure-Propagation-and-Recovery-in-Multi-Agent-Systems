@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/dedup.py\"}}", "tokens_in": 1430, "tokens_out": 40, "latency_ms": 1575.9, "reasoning": "I should check registry/dedup.py and core/ids.py to know function signatures."}

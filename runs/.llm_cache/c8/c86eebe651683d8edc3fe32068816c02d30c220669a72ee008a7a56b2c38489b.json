@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"is_valid_warehouse_id\"}}", "tokens_in": 902, "tokens_out": 39, "latency_ms": 1313.1, "reasoning": "Need to verify is_valid_warehouse_id depends on region_codes(). Search for it."}

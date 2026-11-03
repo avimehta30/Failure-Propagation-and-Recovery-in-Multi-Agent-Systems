@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def routes_between\"}}", "tokens_in": 2622, "tokens_out": 20, "latency_ms": 544.8, "reasoning": ""}

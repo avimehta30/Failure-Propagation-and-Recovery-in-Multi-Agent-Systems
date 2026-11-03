@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"class InsufficientStock\"}}", "tokens_in": 1432, "tokens_out": 32, "latency_ms": 526.8, "reasoning": "Check inventory/lots.py for InsufficientStock definition."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def list_households\"}}", "tokens_in": 3579, "tokens_out": 21, "latency_ms": 601.2, "reasoning": ""}

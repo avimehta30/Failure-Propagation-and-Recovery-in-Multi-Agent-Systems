@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/models.py\"}}", "tokens_in": 2937, "tokens_out": 53, "latency_ms": 789.1, "reasoning": "I need to check the Household model for vulnerability score field name, and maybe look at an existing script for style. Let me read core/models.py and list scripts."}
