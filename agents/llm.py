@@ -4,6 +4,10 @@ The cache key is (model, messages, seed, temperature, max_tokens). A cache hit r
 original reply together with its original token counts and latency, so rerunning an
 experiment costs nothing and reports the same cost as the first run.
 
+Prompts can contain absolute paths (e.g. a script's traceback names its workspace file). So that
+the cache works in any clone, the key is computed with this clone's path replaced by CACHE_ROOT,
+the path of the machine the cache was first built on. The model still sees the real prompt.
+
 The API key and base URL come from environment variables or the project's .env file. The key
 is never logged, cached or printed. Reasoning models' hidden reasoning text is kept separately
 from the answer, cached, and logged to the trace.
@@ -23,6 +27,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_CACHE = ROOT / "runs" / ".llm_cache"
+CACHE_ROOT = "/Users/avimehta/Failure-Propagation-and-Recovery-in-Multi-Agent-Systems"
 
 
 class RateLimitExhausted(RuntimeError):
@@ -73,8 +78,8 @@ class LLM:
 
     def chat(self, messages: list[dict], *, seed: int = 0, max_tokens: int | None = None) -> LLMReply:
         max_tokens = max_tokens or self.max_tokens
-        key = hashlib.sha256(json.dumps([self.model, messages, seed, self.temperature, max_tokens],
-                                        sort_keys=True).encode()).hexdigest()
+        keyed = json.dumps([self.model, messages, seed, self.temperature, max_tokens], sort_keys=True)
+        key = hashlib.sha256(keyed.replace(str(ROOT), CACHE_ROOT).encode()).hexdigest()
         cached = self._cache_get(key)
         if cached:
             return LLMReply(cached["text"], cached["tokens_in"], cached["tokens_out"], cached["latency_ms"], True,
