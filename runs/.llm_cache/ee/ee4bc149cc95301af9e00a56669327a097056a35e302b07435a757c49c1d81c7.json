@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"reserve_stock\"}}", "tokens_in": 1146, "tokens_out": 39, "latency_ms": 1977.2, "reasoning": "Need to verify reserve_stock validates sku against SKUS and raises ValueError. Check inventory/stock.py."}

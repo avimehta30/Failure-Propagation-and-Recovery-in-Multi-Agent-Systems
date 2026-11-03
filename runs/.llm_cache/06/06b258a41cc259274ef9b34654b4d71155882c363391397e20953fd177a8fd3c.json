@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def reserve_stock\"}}", "tokens_in": 1131, "tokens_out": 58, "latency_ms": 911.8, "reasoning": "The claim: SKUS includes WINTER-KIT, and reserve_stock accepts it without changes. SKUS confirmed. But does reserve_stock validate against SKUS? Check inventory/stock.py."}

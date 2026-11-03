@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \".\"}}", "tokens_in": 783, "tokens_out": 37, "latency_ms": 855.9, "reasoning": "I need to understand the codebase first. Let me read registry/register.py and list the directory."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"region_codes\"}}", "tokens_in": 2713, "tokens_out": 19, "latency_ms": 347.9, "reasoning": ""}

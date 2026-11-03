@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def age_on\"}}", "tokens_in": 1411, "tokens_out": 30, "latency_ms": 640.7, "reasoning": "Check Member.age_on exists in core/models.py."}

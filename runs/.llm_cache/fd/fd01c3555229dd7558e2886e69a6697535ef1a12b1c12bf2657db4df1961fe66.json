@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"registry/dedup.py\", \"name\": \"same_family\"}}", "tokens_in": 633, "tokens_out": 52, "latency_ms": 1063.9, "reasoning": "I need to re-check registry/dedup.py and core/ids.py perhaps. Let me read the functions."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"inventory/stock.py\", \"name\": \"reserve_stock\"}}", "tokens_in": 609, "tokens_out": 28, "latency_ms": 529.0, "reasoning": ""}

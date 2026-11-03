@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"eligibility/scoring.py\"}}", "tokens_in": 485, "tokens_out": 22, "latency_ms": 423.5, "reasoning": ""}

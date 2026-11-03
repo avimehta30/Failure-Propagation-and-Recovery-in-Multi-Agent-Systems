@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"data/ledger.json\"}}", "tokens_in": 841, "tokens_out": 45, "latency_ms": 491.3, "reasoning": "Need to verify household mapping. Where are message details? Maybe data/outbox/ or ledger.json. Check ledger.json."}

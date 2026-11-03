@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/models.py\", \"name\": \"Household\"}}", "tokens_in": 1156, "tokens_out": 55, "latency_ms": 1938.3, "reasoning": "Need to verify Household fields and sms_ok default, and queue_sms refusing sms_ok=False. Check core/models.py and search for queue_sms."}

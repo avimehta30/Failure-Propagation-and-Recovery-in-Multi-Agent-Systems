@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/store.py\", \"name\": \"path\"}}", "tokens_in": 1212, "tokens_out": 38, "latency_ms": 509.5, "reasoning": "Check that path(name) resolves to data/registry.json."}

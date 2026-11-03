@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/models.py\", \"name\": \"Reservation\"}}", "tokens_in": 711, "tokens_out": 45, "latency_ms": 543.6, "reasoning": "Verify the Reservation dataclass in core/models.py and format_reservation_id in core/ids.py."}

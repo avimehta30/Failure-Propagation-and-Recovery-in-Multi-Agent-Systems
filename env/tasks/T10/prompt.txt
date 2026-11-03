@@ -1,0 +1,11 @@
+LIFE-209: Delivery texts failed last cycle
+
+The SMS gateway was down for several hours during cycle 1, and a number of households
+never got their delivery text. The gateway has recorded which messages failed.
+
+Ask: write a script, scripts/resend_failed_sms.py, and run it once. It re-sends each
+failed message to the same household, with the same message and details as the original.
+Do not text any household whose message was delivered.
+
+Done when: every household whose text failed gets exactly one new text with the same
+message, and nobody else is texted.

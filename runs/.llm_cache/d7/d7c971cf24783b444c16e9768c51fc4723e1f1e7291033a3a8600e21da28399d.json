@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"sms\"}}", "tokens_in": 1046, "tokens_out": 36, "latency_ms": 394.4, "reasoning": "send_sms not found anywhere. Maybe it's in a gateway module. Search \"sms\"."}

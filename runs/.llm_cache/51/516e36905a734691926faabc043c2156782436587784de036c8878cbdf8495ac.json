@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"is_valid_warehouse_id\"}}", "tokens_in": 3413, "tokens_out": 31, "latency_ms": 1483.8, "reasoning": ""}

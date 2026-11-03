@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"send_sms\"}}", "tokens_in": 925, "tokens_out": 49, "latency_ms": 822.0, "reasoning": "Need to verify send_sms() behavior \u2014 that it raises when sms_enabled is False, and that queued_at comes from now(). Check the sms module."}

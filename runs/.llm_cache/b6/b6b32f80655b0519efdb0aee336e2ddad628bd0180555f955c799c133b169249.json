@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 1779, "tokens_out": 47, "latency_ms": 501.1, "reasoning": "Check register.load_households signature and whether it accepts active_only. Also check receipts helpers exist. One more read: registry/register.py."}

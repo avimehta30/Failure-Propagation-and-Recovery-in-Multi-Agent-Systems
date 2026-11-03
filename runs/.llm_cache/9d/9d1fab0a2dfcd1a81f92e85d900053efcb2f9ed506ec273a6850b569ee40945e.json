@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"data/outbox/sms.jsonl\"}}", "tokens_in": 2248, "tokens_out": 73, "latency_ms": 907.6, "reasoning": "The output says 9 resent, no skips. That matches the expected 9 failed messages. I could verify the outbox to confirm new IDs start at SMS-00016. Let me read data/outbox/sms.jsonl to verify."}

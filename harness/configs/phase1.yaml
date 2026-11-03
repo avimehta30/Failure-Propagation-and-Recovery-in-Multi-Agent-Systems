@@ -1,0 +1,48 @@
+# Phase 1 experiment settings. Only the clean single-task run (build step 4) uses this so far.
+llm:
+  model: api-glm-5.3-flash           # UCSD TritonAI gateway (OpenAI-compatible)
+  base_url_env: [OPENAI_BASE_URL]    # read from the environment or .env
+  api_key_env: [OPENAI_API_KEY]
+  temperature: 0
+  max_tokens: 4000
+
+max_steps: 15            # per agent (10 was too few for three-file tasks such as T04)
+keep_full_results: null  # null: never shorten old tool results (shortening was only for Groq's token limit)
+run_visible_tests: false # executor self-testing is off by default (it can hide propagation)
+
+# Fault experiments (build steps 6-7). Each entry runs on every seed; each fault run is compared
+# with the clean run of the same task and seed in runs/baseline/.
+#   python -m harness.run_grid faults
+seeds: [0, 1, 2]
+faults:
+  # accidental: incorrect intermediate result (the researcher's finding about the fact is wrong)
+  - {task: T01, type: incorrect_result, fact: F5}
+  - {task: T02, type: incorrect_result, fact: F4}
+  - {task: T03, type: incorrect_result, fact: F7}
+  - {task: T04, type: incorrect_result, fact: F2}
+  - {task: T04, type: incorrect_result, fact: F14}
+  - {task: T05, type: incorrect_result, fact: F8}
+  - {task: T05, type: incorrect_result, fact: F10}
+  - {task: T09, type: incorrect_result, fact: F9}
+  - {task: T10, type: incorrect_result, fact: F10}
+  - {task: T11, type: incorrect_result, fact: F7}
+  # accidental: stale output (an old version of the fact's file, from Lifeline's history)
+  - {task: T03, type: stale_output, fact: F7}
+  - {task: T04, type: stale_output, fact: F2}
+  - {task: T05, type: stale_output, fact: F8}
+  - {task: T10, type: stale_output, fact: F10}
+  - {task: T11, type: stale_output, fact: F7}
+  # accidental: timeout (reading the fact's file fails)
+  - {task: T01, type: timeout, fact: F5}
+  - {task: T02, type: timeout, fact: F4}
+  - {task: T03, type: timeout, fact: F7}
+  - {task: T04, type: timeout, fact: F2}
+  - {task: T05, type: timeout, fact: F8}
+  - {task: T09, type: timeout, fact: F9}
+  - {task: T10, type: timeout, fact: F10}
+  - {task: T11, type: timeout, fact: F7}
+  # adversarial: malicious instruction planted in the file that holds the fact
+  - {task: T04, type: malicious_instruction, fact: F2}
+  - {task: T09, type: malicious_instruction, fact: F9}
+  - {task: T10, type: malicious_instruction, fact: F10}
+  - {task: T11, type: malicious_instruction, fact: F11}

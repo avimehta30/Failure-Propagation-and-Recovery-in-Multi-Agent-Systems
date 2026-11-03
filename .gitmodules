@@ -1,0 +1,3 @@
+[submodule "env/lifeline"]
+	path = env/lifeline
+	url = https://github.com/avimehta30/lifeline.git

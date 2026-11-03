@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def queue_sms\"}}", "tokens_in": 1334, "tokens_out": 51, "latency_ms": 608.3, "reasoning": "Need to verify queue_sms behavior: re-renders text from template_id+params and stamps queued_at from config.settings.now(). Search for queue_sms."}

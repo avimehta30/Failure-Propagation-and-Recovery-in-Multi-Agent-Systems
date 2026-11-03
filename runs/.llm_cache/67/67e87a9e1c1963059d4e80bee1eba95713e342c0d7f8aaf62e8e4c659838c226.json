@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"logistics/\"}}", "tokens_in": 2877, "tokens_out": 20, "latency_ms": 769.5, "reasoning": ""}

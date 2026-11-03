@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \"notifications\"}}", "tokens_in": 1062, "tokens_out": 46, "latency_ms": 482.5, "reasoning": "All tools are denied. I can only use list_dir apparently. Let me try list_dir on other directories to at least map the structure."}

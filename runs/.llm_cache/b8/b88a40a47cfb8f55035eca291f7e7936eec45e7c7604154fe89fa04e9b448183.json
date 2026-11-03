@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/models.py\", \"name\": \"Reservation\"}}", "tokens_in": 1679, "tokens_out": 41, "latency_ms": 658.6, "reasoning": "Check SKUS in config/settings.py and Reservation model in core/models.py."}

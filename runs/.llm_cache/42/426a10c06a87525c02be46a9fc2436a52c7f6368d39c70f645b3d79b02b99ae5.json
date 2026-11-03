@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"from config.settings import today as _today\"}}", "tokens_in": 1166, "tokens_out": 36, "latency_ms": 553.9, "reasoning": "Now check allocation/rations.py for the import pattern."}

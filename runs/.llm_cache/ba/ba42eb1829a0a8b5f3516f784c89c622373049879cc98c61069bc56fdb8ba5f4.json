@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"registry/register.py\", \"name\": \"next_household_id\"}}", "tokens_in": 529, "tokens_out": 42, "latency_ms": 725.6, "reasoning": "Verify the claim about next_household_id in registry/register.py."}

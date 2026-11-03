@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 2448, "tokens_out": 56, "latency_ms": 707.3, "reasoning": "Need to verify registry.register has load_households with active_only filter, and household has site, sms_ok, id fields. Also check R10 mention. Read registry/register.py."}

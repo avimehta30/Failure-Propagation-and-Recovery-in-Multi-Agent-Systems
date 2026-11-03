@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"people_per_kit\"}}", "tokens_in": 1832, "tokens_out": 37, "latency_ms": 613.6, "reasoning": "read_function keeps timing out. Try search_code with specific queries to extract content."}

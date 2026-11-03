@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"payment_key\"}}", "tokens_in": 580, "tokens_out": 41, "latency_ms": 405.0, "reasoning": "Need to verify that a second payment with a used key is rejected. Search for where payment_key is used."}

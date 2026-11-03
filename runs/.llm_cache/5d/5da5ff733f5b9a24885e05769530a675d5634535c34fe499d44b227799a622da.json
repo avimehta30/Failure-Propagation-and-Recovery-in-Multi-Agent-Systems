@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"is_valid_household_id\"}}", "tokens_in": 2430, "tokens_out": 64, "latency_ms": 641.6, "reasoning": "Check core/ids.py is_valid_household_id and store.write_json quickly. Also check scripts/stock_report.py for R8 convention. Let me verify ids."}

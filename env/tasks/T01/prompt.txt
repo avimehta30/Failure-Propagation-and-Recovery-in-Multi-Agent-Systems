@@ -1,0 +1,13 @@
+LIFE-142: Registration accepts mistyped household IDs
+
+Caseworkers type household IDs by hand. Last week someone typed HH-10471 instead of
+HH-10421. The system accepted it and created a second record for the same family, who
+almost received aid twice.
+
+Ask: when a household is registered (register_household in registry/register.py),
+reject any invalid household ID with a clear error so the caseworker can retype it.
+Raise a ValueError (or a subclass of it) whose message includes the rejected ID, and
+do not save anything to the registry when an ID is rejected.
+
+Done when: a mistyped ID is rejected, and a correct ID still registers. Registering
+without an ID (so one is assigned automatically) must keep working.

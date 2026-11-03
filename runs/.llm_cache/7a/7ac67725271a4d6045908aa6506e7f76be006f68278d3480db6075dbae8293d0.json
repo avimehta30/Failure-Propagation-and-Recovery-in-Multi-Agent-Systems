@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"data/outbox/sms.jsonl\", \"start_line\": 1}}", "tokens_in": 3413, "tokens_out": 31, "latency_ms": 1652.9, "reasoning": ""}

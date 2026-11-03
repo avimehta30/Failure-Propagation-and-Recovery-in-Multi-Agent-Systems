@@ -1,0 +1,24 @@
+LIFE-178: Deliveries keep getting sent down blocked roads
+
+After the landslide, field teams have reported several roads as blocked or limited, but
+route planning ignores road status: best_route always picks the shortest route and always
+sends a truck. Families wait all day for deliveries that never arrive.
+
+Ask:
+1. Road access: add can_pass(road_id, vehicle, network=None) -> bool to
+   logistics/access.py. It says whether that vehicle ("truck" or "van") may use the road,
+   given the road's current status code.
+2. Routing: add passable_route(warehouse_id, site, network=None) to logistics/routes.py.
+   A route is usable if at least one vehicle (a truck or a van) may use every road on it.
+   passable_route returns (route, vehicle) for the shortest usable route, sending a truck
+   if a truck may use every road on that route and a van otherwise, or None if no route
+   is usable. Leave best_route as it is. Also add rerouted_sites(network=None) ->
+   list[str]: the sites, in name order, for which passable_route finds a route that is
+   different from the route best_route picks (the vehicle alone changing does not count).
+3. Notification: add notify_rerouted(sites, day) to notifications/sms.py. It sends one
+   text to each active household that collects at one of those sites and has agreed to
+   receive texts, using the approved message for moved deliveries with the household's
+   site and the new day. It returns the messages sent.
+
+Done when: no delivery uses a road its vehicle may not use, trucks are sent whenever the
+route allows it, and every affected household gets exactly one text.

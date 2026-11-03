@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/models.py\"}}", "tokens_in": 478, "tokens_out": 35, "latency_ms": 531.8, "reasoning": "Need to check core/models.py SmsMessage fields and queue_sms render behavior."}

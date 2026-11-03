@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 437, "tokens_out": 30, "latency_ms": 842.4, "reasoning": "Check registry/register.py for load_households signature."}

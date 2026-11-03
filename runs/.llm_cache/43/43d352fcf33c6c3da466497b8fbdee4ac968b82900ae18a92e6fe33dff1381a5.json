@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"day = today or _today()\"}}", "tokens_in": 1271, "tokens_out": 24, "latency_ms": 406.9, "reasoning": ""}

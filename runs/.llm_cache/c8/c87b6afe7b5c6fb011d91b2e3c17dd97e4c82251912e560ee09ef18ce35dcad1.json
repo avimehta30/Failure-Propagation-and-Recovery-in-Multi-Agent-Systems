@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"route_id\"}}", "tokens_in": 1644, "tokens_out": 57, "latency_ms": 853.2, "reasoning": "The planner code matches the finding: build_plan calls best_route(warehouse, hh.site, network), sets route_id and vehicle, or status='unreachable'. Now check Delivery model fields."}

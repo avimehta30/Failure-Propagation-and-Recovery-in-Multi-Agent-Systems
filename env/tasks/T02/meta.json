@@ -1,0 +1,9 @@
+{
+  "id": "T02",
+  "ticket": "LIFE-157",
+  "title": "Reject stock reservations with malformed warehouse codes",
+  "tier": 1,
+  "kind": "code",
+  "facts": {"F4": ["inventory/stock.py"]},
+  "target_files": ["inventory/stock.py"]
+}

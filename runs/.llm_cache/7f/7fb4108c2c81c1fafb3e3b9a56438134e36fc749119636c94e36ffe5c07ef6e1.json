@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"config/settings.py\"}}", "tokens_in": 910, "tokens_out": 29, "latency_ms": 522.1, "reasoning": "Check data_dir claim in config/settings.py."}

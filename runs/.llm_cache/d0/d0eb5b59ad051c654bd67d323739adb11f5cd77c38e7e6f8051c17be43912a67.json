@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/ids.py\", \"start_line\": 40}}", "tokens_in": 2253, "tokens_out": 83, "latency_ms": 836.5, "reasoning": "I need the full is_valid_warehouse_id and format_warehouse_id details. The search showed line 55 regex `WH-([A-Z]{3})-(\\d{2})`. Let me read lines 40-70 of core/ids.py to confirm."}

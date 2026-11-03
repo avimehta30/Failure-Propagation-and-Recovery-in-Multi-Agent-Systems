@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"format_reservation_id\"}}", "tokens_in": 1299, "tokens_out": 44, "latency_ms": 482.4, "reasoning": "Need to verify next_number usage with \"RSV-\" \u2014 check how reservation ids are made in inventory/stock.py."}

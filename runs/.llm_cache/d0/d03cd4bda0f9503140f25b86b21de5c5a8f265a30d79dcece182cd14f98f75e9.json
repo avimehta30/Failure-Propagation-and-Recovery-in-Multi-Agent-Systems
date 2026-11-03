@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"config/settings.py\", \"name\": \"region\"}}", "tokens_in": 1661, "tokens_out": 26, "latency_ms": 396.4, "reasoning": ""}

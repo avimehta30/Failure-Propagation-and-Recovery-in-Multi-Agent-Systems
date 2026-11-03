@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"from core.ids import\"}}", "tokens_in": 678, "tokens_out": 26, "latency_ms": 526.5, "reasoning": "Verify register.py imports."}

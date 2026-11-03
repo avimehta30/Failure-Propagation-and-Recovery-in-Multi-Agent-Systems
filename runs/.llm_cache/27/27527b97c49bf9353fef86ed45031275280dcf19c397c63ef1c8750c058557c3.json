@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"payments/vouchers.py\", \"start_line\": 1}}", "tokens_in": 1337, "tokens_out": 48, "latency_ms": 446.2, "reasoning": "Check _now in vouchers.py \u2014 likely imports now from settings. Let me check top of file."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \"eligibility\"}}", "tokens_in": 796, "tokens_out": 41, "latency_ms": 512.8, "reasoning": "All tools are being denied. Try list_dir on other directories \u2014 that worked. Maybe only list_dir works."}

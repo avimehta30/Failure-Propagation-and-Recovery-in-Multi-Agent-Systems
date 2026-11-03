@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def queue_sms\"}}", "tokens_in": 922, "tokens_out": 52, "latency_ms": 472.4, "reasoning": "Need to verify queued_at is set from config.settings.now() with isoformat(timespec='seconds'), and queue_sms accepts now= override. Find queue_sms."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def load_households\"}}", "tokens_in": 1299, "tokens_out": 31, "latency_ms": 599.4, "reasoning": "Verify load_households exists with active_only param."}

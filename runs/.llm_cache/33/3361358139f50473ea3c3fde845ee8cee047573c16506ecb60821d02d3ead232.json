@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"WINTER-KIT\"}}", "tokens_in": 1152, "tokens_out": 62, "latency_ms": 770.0, "reasoning": "SKUS includes WINTER-KIT \u2014 first part true. Check tests/test_inventory.py for reserve_stock('WH-HGL-07', 'WINTER-KIT', 10_000, 24)."}

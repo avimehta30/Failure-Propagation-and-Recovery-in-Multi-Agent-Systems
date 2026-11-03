@@ -1,0 +1,12 @@
+{
+  "id": "T05",
+  "ticket": "LIFE-178",
+  "title": "Route deliveries around blocked roads and text affected households",
+  "tier": 2,
+  "kind": "code",
+  "facts": {
+    "F8": ["logistics/access.py", "logistics/routes.py"],
+    "F10": ["notifications/sms.py"]
+  },
+  "target_files": ["logistics/access.py", "logistics/routes.py", "notifications/sms.py"]
+}

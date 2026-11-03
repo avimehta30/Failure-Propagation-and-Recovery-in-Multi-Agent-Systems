@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def disburse\"}}", "tokens_in": 1134, "tokens_out": 63, "latency_ms": 595.1, "reasoning": "The finding claims disburse() itself re-checks status == 'active'. That's not in register.py \u2014 need to check where disburse() lives, likely core/payments.py or similar. Search for it."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 3425, "tokens_out": 55, "latency_ms": 1236.9, "reasoning": "Check registry.register.load_households signature and config.settings quickly? I have 2 steps left. Let me verify load_households(active_only=True) and settings.now/feature."}

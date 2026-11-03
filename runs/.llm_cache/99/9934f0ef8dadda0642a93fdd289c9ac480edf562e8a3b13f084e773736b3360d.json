@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"notifications/sms.py\", \"name\": \"delivery_status\"}}", "tokens_in": 861, "tokens_out": 61, "latency_ms": 1617.2, "reasoning": "The test asserts every sent message id is in status. But does status only contain \"delivered\" or \"failed\"? Check delivery_status in notifications/sms.py."}

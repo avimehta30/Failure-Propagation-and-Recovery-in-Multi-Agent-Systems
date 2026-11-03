@@ -1,0 +1,11 @@
+{
+  "id": "T10",
+  "ticket": "LIFE-209",
+  "title": "Re-send failed delivery texts",
+  "tier": 3,
+  "kind": "ops",
+  "facts": {"F10": ["scripts/"]},
+  "target_files": ["scripts/resend_failed_sms.py"],
+  "scripts": ["scripts/resend_failed_sms.py"],
+  "compare": ["outbox/sms.jsonl"]
+}

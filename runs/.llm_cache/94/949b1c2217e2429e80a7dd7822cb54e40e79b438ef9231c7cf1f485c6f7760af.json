@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"is_valid_warehouse_id\"}}", "tokens_in": 2768, "tokens_out": 22, "latency_ms": 413.6, "reasoning": ""}

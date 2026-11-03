@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"WH\"}}", "tokens_in": 1400, "tokens_out": 54, "latency_ms": 572.8, "reasoning": "I need to find the correct warehouse code format. Search for warehouse code validation or format. Check core/ids.py maybe, or search for \"warehouse\" patterns like \"WH\"."}

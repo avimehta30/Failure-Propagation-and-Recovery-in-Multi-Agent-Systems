@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"eligibility/rules.py\", \"name\": \"programs\"}}", "tokens_in": 456, "tokens_out": 34, "latency_ms": 656.4, "reasoning": "Verify eligibility/rules.py programs function."}

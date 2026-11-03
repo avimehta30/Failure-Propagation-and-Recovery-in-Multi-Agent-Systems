@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \"eligibility\"}}", "tokens_in": 3868, "tokens_out": 53, "latency_ms": 820.7, "reasoning": "Check how rations/eligibility use household status \u2014 to confirm merged records don't get rations. Also check core/store.py. Let me look at eligibility quickly."}

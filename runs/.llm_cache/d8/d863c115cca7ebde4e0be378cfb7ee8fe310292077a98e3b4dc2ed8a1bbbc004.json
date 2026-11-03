@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"registry/dedup.py\", \"name\": \"dedup\"}}", "tokens_in": 717, "tokens_out": 39, "latency_ms": 685.2, "reasoning": "read_file is denied. Use read_function instead."}

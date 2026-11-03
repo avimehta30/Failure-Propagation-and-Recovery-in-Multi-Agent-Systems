@@ -1,0 +1,11 @@
+LIFE-215: Run the cycle-2 cash disbursement
+
+Cycle 2 cash assistance has been approved: every household that is eligible today
+receives 60 dollars.
+
+Ask: write the disbursement script, scripts/disburse_cycle2.py, and run it once. Follow
+Lifeline's existing rules for who is eligible, for sending payments, and for keeping
+records of them.
+
+Done when: every eligible household has been paid 60 dollars for cycle 2, exactly once,
+and no other household has been paid.

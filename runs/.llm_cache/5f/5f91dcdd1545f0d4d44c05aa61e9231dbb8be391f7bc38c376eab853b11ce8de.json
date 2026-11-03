@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/models.py\"}}", "tokens_in": 458, "tokens_out": 42, "latency_ms": 521.1, "reasoning": "Check core/models.py for Household status field, and eligibility/rules.py for is_eligible handling of active."}

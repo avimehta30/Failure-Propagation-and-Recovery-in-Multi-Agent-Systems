@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"run_script\", \"args\": {\"path\": \"scripts/probe_api.py\", \"step\": \"P1\"}}", "tokens_in": 2034, "tokens_out": 29, "latency_ms": 474.7, "reasoning": ""}

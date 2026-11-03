@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"query\": \"QUALIFYING_SCORE\"}", "tokens_in": 853, "tokens_out": 18, "latency_ms": 342.8, "reasoning": ""}

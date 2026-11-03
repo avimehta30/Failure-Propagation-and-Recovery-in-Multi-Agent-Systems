@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def queue\"}}", "tokens_in": 1429, "tokens_out": 42, "latency_ms": 752.8, "reasoning": "queue_sms isn't defined anywhere? Maybe in notifications/__init__.py or another file. Search \"def queue\"."}

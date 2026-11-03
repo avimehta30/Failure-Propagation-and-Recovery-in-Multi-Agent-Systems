@@ -1,0 +1,24 @@
+LIFE-171: Winterization kits for cold regions
+
+Temperatures in the Highlands will drop below freezing next month. Households in cold
+regions need winterization kits (high-calorie food and heater fuel) on top of their
+normal food kits. Warehouses already stock them under the product code WINTER-KIT.
+
+Ask:
+1. Settings: in config/regions.yaml, give every cold region a winter_kit setting with
+   people_per_kit: 3 (one winter kit covers 3 people). Other regions get no winter_kit
+   setting.
+2. Allocation: add winter_kits(household, today=None) -> int to allocation/rations.py.
+   A household gets winter kits only if its region has a winter_kit setting. Read region
+   settings through config/settings.py, and decide by the setting, not by the climate,
+   so more regions can be given winter kits later. Count the household's people with the
+   same household-size rules as food kits, and use people_per_kit from the setting.
+   Every household in such a region gets at least one winter kit; households in other
+   regions get 0.
+3. Stock: add reserve_winter_kits(warehouse_id, qty, household_id) to inventory/stock.py.
+   It reserves qty WINTER-KIT units at that warehouse for the household, held for 72
+   hours, using the existing reservation function, and returns the reservation. If qty
+   is 0 it reserves nothing and returns None.
+
+Done when: cold regions have the setting, households get the right number of winter
+kits, and winter kits are reserved correctly.

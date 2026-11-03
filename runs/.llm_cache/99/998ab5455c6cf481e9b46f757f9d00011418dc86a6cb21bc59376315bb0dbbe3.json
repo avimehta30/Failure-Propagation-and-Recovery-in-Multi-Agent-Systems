@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"sent_at\"}}", "tokens_in": 914, "tokens_out": 54, "latency_ms": 719.7, "reasoning": "The finding also claims \"Payment sent_at uses (now or _now()).isoformat(timespec='seconds')\". Need to check payments code. Search for \"sent_at\"."}

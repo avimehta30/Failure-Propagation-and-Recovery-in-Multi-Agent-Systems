@@ -1,0 +1,13 @@
+LIFE-203: Duplicate families in the registry
+
+Some families are registered twice, under slightly different spellings of the same name
+("Mohamed Ali" and "Muhammad Ali"). They are getting double rations. Some of the duplicate
+records were typed in before IDs were checked at registration, so their household IDs
+are mistyped.
+
+Ask: write a one-time script, scripts/merge_duplicates.py, and run it once. It finds the
+households that are really the same family and merges each group into one record: keep
+the record whose household ID is valid, and mark the other record as merged into it.
+
+Done when: each real family has exactly one active record, the kept record has a valid
+ID, no record is deleted, and no other record is changed.

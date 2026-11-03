@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"sms\"}}", "tokens_in": 745, "tokens_out": 38, "latency_ms": 502.9, "reasoning": "Both read tools denied? Odd. Maybe only list_dir and search_code allowed. Try search_code."}

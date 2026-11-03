@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"CHECK_WEIGHTS\"}}", "tokens_in": 918, "tokens_out": 34, "latency_ms": 492.5, "reasoning": "Check CHECK_WEIGHTS is (5,4,3,2)."}

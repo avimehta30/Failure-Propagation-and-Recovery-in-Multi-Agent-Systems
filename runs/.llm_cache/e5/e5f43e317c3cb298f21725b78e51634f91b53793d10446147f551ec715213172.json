@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"SmsMessage\"}}", "tokens_in": 1505, "tokens_out": 42, "latency_ms": 515.8, "reasoning": "queue_sms isn't in notifications/sms.py? Maybe there's another file. Search \"SmsMessage\"."}

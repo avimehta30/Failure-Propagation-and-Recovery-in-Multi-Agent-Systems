@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"registry/register.py\", \"name\": \"load_households\"}}", "tokens_in": 2001, "tokens_out": 57, "latency_ms": 564.9, "reasoning": "Verify R8: load_households in registry/register.py, and Household fields. Check core/models.py Household and registry/register.py load_households."}

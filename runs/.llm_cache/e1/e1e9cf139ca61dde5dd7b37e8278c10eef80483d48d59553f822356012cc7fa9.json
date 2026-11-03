@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 2101, "tokens_out": 48, "latency_ms": 629.9, "reasoning": "Verify R12: load_households(active_only=True) exists in registry/register.py. Also Household fields. Let me check registry/register.py."}

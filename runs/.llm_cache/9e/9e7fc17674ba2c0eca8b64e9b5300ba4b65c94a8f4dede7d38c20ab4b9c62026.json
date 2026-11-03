@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def load_households\"}}", "tokens_in": 1967, "tokens_out": 44, "latency_ms": 612.8, "reasoning": "Verify R8: load_households in registry/register.py. Check it exists with active_only param and Household fields."}

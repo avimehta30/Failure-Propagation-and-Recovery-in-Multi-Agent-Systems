@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"format_reservation_id\"}}", "tokens_in": 908, "tokens_out": 48, "latency_ms": 572.7, "reasoning": "Need to verify reservation id format via core.ids.format_reservation_id with prefix 'RSV-'."}

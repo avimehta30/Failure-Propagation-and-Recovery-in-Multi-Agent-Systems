@@ -218,3 +218,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project
+# runs/ holds per-run workspaces and traces (too big for git; see the GitHub release).
+# The response cache is tracked so anyone can replay every run exactly, for free.
+runs/*
+!runs/.llm_cache/
+!env/
+!env/**
+__pycache__/
+*.py[cod]
+*.tmp
+report/*.zip
+report/*.pdf
+!report/main.pdf

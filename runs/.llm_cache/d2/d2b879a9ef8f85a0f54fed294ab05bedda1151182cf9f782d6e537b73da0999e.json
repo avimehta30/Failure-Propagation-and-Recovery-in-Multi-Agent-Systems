@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/ids.py\"}}", "tokens_in": 1447, "tokens_out": 56, "latency_ms": 1002.7, "reasoning": "I need to check core.ids is_valid_household_id exists. Let me read core/ids.py and core/models.py quickly. I have 14 steps; read both."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def queue_sms\"}}", "tokens_in": 2333, "tokens_out": 33, "latency_ms": 760.5, "reasoning": "Check queue_sms default queued_at claim. Search for queue_sms."}

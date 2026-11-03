@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"eligibility/scoring.py\"}}", "tokens_in": 1747, "tokens_out": 58, "latency_ms": 725.8, "reasoning": "Check scoring.py signature and tests briefly. R3 says vulnerability_score(household, today=None). The rules.py imports vulnerability_score. The plan matches. Maybe verify scoring exists."}

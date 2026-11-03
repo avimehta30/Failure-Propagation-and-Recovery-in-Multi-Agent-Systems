@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"format_reservation_id\"}}", "tokens_in": 903, "tokens_out": 31, "latency_ms": 676.5, "reasoning": "Verify the id formatting claim via core/ids.py."}

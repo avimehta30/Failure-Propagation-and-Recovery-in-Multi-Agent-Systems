@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"MIN_KITS\"}}", "tokens_in": 3563, "tokens_out": 20, "latency_ms": 747.6, "reasoning": ""}

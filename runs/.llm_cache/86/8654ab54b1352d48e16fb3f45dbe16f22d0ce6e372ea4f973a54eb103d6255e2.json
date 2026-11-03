@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def render\"}}", "tokens_in": 2234, "tokens_out": 19, "latency_ms": 522.9, "reasoning": ""}

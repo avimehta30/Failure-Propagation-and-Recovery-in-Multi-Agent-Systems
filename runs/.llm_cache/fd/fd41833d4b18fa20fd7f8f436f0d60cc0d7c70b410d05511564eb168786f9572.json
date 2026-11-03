@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \".\"}}", "tokens_in": 1052, "tokens_out": 43, "latency_ms": 549.8, "reasoning": "send_sms doesn't exist anywhere. Maybe it's in a module like core/sms.py or gateway. Let me list dir."}

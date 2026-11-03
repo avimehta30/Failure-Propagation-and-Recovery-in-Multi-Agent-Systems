@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \".\"}}", "tokens_in": 443, "tokens_out": 32, "latency_ms": 612.3, "reasoning": "Explore the codebase. Start with list_dir and search for reserve_stock."}

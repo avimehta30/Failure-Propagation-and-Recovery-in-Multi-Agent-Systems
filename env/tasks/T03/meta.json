@@ -1,0 +1,9 @@
+{
+  "id": "T03",
+  "ticket": "LIFE-163",
+  "title": "Flag households within 5 points of qualifying",
+  "tier": 1,
+  "kind": "code",
+  "facts": {"F7": ["eligibility/rules.py"]},
+  "target_files": ["eligibility/rules.py"]
+}

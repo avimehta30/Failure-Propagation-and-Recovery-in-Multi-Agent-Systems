@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def load_households\"}}", "tokens_in": 879, "tokens_out": 32, "latency_ms": 402.5, "reasoning": "Verify the claim about registry.register.load_households existing."}

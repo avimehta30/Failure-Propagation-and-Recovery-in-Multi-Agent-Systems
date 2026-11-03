@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"eligibility/rules.py\", \"name\": \"is_eligible\"}}", "tokens_in": 767, "tokens_out": 41, "latency_ms": 816.8, "reasoning": "read_file keeps timing out. Try read_function instead."}

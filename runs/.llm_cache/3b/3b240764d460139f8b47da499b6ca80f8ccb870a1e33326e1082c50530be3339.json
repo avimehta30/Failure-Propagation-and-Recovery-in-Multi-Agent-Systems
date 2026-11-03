@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"allocation/rations.py\", \"name\": \"food_kits\"}}", "tokens_in": 1889, "tokens_out": 29, "latency_ms": 577.4, "reasoning": ""}

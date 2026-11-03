@@ -1,0 +1,14 @@
+{
+  "id": "T04",
+  "ticket": "LIFE-171",
+  "title": "Winterization kits for cold regions",
+  "tier": 2,
+  "kind": "code",
+  "facts": {
+    "F13": ["config/regions.yaml"],
+    "F1": ["allocation/rations.py"],
+    "F2": ["allocation/rations.py"],
+    "F14": ["inventory/stock.py"]
+  },
+  "target_files": ["config/regions.yaml", "allocation/rations.py", "inventory/stock.py"]
+}

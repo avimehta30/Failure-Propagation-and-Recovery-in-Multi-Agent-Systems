@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"active_only\"}}", "tokens_in": 4065, "tokens_out": 56, "latency_ms": 1775.8, "reasoning": "Check how eligibility/distribution filter by status to confirm merged records don't get rations, and check store.py for write behavior. Let me search for \"active\" usage in eligibility."}

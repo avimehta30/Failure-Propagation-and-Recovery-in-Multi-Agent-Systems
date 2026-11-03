@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"data/outbox/sms.jsonl\"}}", "tokens_in": 1775, "tokens_out": 62, "latency_ms": 513.3, "reasoning": "Check the outbox to confirm sent_messages works and SmsMessage fields (household_id, template_id, params). Also check core/models SmsMessage. Let me read the outbox file."}

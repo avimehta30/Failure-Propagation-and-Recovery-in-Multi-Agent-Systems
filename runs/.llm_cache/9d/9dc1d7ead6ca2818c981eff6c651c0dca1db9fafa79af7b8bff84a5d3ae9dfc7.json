@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/dedup.py\"}}", "tokens_in": 522, "tokens_out": 29, "latency_ms": 1137.5, "reasoning": "Check registry/dedup.py."}

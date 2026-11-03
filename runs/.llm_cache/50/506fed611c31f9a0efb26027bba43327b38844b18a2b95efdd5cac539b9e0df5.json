@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"food_kits\"}}", "tokens_in": 4308, "tokens_out": 20, "latency_ms": 547.3, "reasoning": ""}

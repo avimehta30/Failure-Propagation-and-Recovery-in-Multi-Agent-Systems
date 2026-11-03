@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/models.py\", \"name\": \"Household\"}}", "tokens_in": 3054, "tokens_out": 41, "latency_ms": 600.0, "reasoning": "Check Household model has `site` and `sms_ok` fields."}

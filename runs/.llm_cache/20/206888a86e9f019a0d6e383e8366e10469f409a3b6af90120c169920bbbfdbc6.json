@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"is_valid_warehouse_id\"}}", "tokens_in": 504, "tokens_out": 37, "latency_ms": 506.7, "reasoning": "Need to check tests/test_core.py and the validator. Let me search."}

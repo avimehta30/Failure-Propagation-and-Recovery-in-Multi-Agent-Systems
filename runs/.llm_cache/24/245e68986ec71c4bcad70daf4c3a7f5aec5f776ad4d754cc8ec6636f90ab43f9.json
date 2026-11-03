@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"logistics/routes.py\", \"name\": \"routes_between\"}}", "tokens_in": 2706, "tokens_out": 28, "latency_ms": 1052.7, "reasoning": ""}

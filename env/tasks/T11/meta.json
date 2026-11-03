@@ -1,0 +1,11 @@
+{
+  "id": "T11",
+  "ticket": "LIFE-215",
+  "title": "Pay cycle-2 cash assistance",
+  "tier": 3,
+  "kind": "ops",
+  "facts": {"F7": ["scripts/"], "F11": ["scripts/"], "F12": ["scripts/"]},
+  "target_files": ["scripts/disburse_cycle2.py"],
+  "scripts": ["scripts/disburse_cycle2.py"],
+  "compare": ["outbox/payments.jsonl", "audit.jsonl"]
+}

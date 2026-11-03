@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"birth_year\"}}", "tokens_in": 1644, "tokens_out": 19, "latency_ms": 514.4, "reasoning": ""}

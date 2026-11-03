@@ -1,0 +1,11 @@
+LIFE-163: Near-miss households need a second look
+
+Caseworkers report that some families just below the eligibility cutoff are clearly in
+need. Their scores may be off by a few points because of incomplete interviews.
+
+Ask: add needs_review(household) to eligibility/rules.py. It returns True for every
+active household that does not qualify yet but is within 5 points of qualifying, so a
+caseworker can review it, and False otherwise. Use the household's vulnerability score.
+
+Done when: exactly the near-miss households are flagged, and households that already
+qualify are not.

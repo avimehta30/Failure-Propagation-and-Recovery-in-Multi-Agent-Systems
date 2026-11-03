@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"set_status\"}}", "tokens_in": 926, "tokens_out": 34, "latency_ms": 404.7, "reasoning": "Need to verify set_status exists and handles merge marking. Check registry code."}

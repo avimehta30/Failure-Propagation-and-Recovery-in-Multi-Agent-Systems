@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 1135, "tokens_out": 36, "latency_ms": 528.8, "reasoning": "Let me verify the code. Read registry/register.py and core/ids.py."}

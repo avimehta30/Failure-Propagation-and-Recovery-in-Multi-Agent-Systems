@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"list_dir\", \"args\": {\"path\": \"registry\"}}", "tokens_in": 1570, "tokens_out": 50, "latency_ms": 606.2, "reasoning": "I need to know find_duplicates and is_valid_household_id signatures. They're likely in registry or core. Let me check registry dir and core/ids."}

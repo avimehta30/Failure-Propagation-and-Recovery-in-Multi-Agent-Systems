@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/models.py\", \"start_line\": 1}}", "tokens_in": 2994, "tokens_out": 53, "latency_ms": 985.9, "reasoning": "Need Household model fields (site, sms_ok, phone), and how deliveries/collection sites are stored. Check core/models.py."}

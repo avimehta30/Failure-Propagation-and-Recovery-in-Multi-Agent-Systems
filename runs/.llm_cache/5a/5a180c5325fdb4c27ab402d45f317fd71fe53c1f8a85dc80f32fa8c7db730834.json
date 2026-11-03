@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"household_check_digit\"}}", "tokens_in": 1330, "tokens_out": 30, "latency_ms": 472.2, "reasoning": ""}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/store.py\", \"name\": \"path\"}}", "tokens_in": 1171, "tokens_out": 60, "latency_ms": 770.0, "reasoning": "Check path resolution: OUTBOX = \"outbox/payments.jsonl\" but the finding says appends to data/outbox/payments.jsonl. Check store.path."}

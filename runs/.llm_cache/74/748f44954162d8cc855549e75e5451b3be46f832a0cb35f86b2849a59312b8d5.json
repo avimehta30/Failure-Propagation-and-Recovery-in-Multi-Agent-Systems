@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"needs_review\"}}", "tokens_in": 460, "tokens_out": 27, "latency_ms": 403.3, "reasoning": "Check the codebase for needs_review."}

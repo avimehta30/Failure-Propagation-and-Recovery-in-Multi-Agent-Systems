@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"register_household\"}}", "tokens_in": 4340, "tokens_out": 43, "latency_ms": 1301.6, "reasoning": "I have enough. Maybe check where register_household is called elsewhere (scripts) to note callers. Quick search."}

@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"inventory/stock.py\", \"name\": \"reserve_stock\"}}", "tokens_in": 1915, "tokens_out": 60, "latency_ms": 668.5, "reasoning": "I should check reserve_stock fully to see where validation happens and how ledger is recorded. I have 3 steps. Let me read the full reserve_stock function."}

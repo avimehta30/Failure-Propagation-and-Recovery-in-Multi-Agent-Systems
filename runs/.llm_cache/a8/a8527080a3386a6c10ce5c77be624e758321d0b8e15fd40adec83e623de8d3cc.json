@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def best_route\"}}", "tokens_in": 2249, "tokens_out": 20, "latency_ms": 1322.0, "reasoning": ""}

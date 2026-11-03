@@ -1,0 +1,9 @@
+{
+  "id": "T01",
+  "ticket": "LIFE-142",
+  "title": "Reject mistyped household IDs at registration",
+  "tier": 1,
+  "kind": "code",
+  "facts": {"F5": ["registry/register.py"]},
+  "target_files": ["registry/register.py"]
+}

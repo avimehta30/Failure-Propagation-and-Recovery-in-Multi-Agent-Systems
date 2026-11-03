@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"payments/vouchers.py\"}}", "tokens_in": 1606, "tokens_out": 21, "latency_ms": 648.2, "reasoning": ""}

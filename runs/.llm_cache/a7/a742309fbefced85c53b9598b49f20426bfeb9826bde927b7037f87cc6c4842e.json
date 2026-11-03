@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"format_reservation_id\"}}", "tokens_in": 1028, "tokens_out": 29, "latency_ms": 366.5, "reasoning": ""}

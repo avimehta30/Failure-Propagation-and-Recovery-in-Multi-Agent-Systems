@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/ids.py\", \"name\": \"format_sms_id\"}}", "tokens_in": 491, "tokens_out": 42, "latency_ms": 789.2, "reasoning": "Verify core/ids.py functions format_sms_id and next_number."}

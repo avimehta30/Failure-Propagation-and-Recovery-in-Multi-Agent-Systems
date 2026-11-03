@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"household_check_digit\"}}", "tokens_in": 1496, "tokens_out": 21, "latency_ms": 461.2, "reasoning": ""}

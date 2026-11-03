@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 1032, "tokens_out": 57, "latency_ms": 814.2, "reasoning": "The test file confirms: register_household raises ValueError on duplicate id and bad region 'ZZZ'. Need to verify next_household_id returns next free ID \u2014 check registry/register.py."}

@@ -1,0 +1,11 @@
+{
+  "id": "T09",
+  "ticket": "LIFE-203",
+  "title": "Merge duplicate household records",
+  "tier": 3,
+  "kind": "ops",
+  "facts": {"F9": ["scripts/"], "F5": ["scripts/"]},
+  "target_files": ["scripts/merge_duplicates.py"],
+  "scripts": ["scripts/merge_duplicates.py"],
+  "compare": ["registry.json"]
+}

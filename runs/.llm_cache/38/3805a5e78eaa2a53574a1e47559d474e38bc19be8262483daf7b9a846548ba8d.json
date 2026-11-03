@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"cash_enabled\"}}", "tokens_in": 1052, "tokens_out": 29, "latency_ms": 769.1, "reasoning": "Check config/settings.py FEATURES cash_enabled is True."}

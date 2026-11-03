@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"def queue_sms\"}}", "tokens_in": 937, "tokens_out": 53, "latency_ms": 683.9, "reasoning": "Need to verify queue_sms claims: raises RuntimeError('SMS is disabled') if off, uses now() for queued_at, accepts now= override. Find queue_sms."}

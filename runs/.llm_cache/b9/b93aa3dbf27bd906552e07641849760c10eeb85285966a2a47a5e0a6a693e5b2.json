@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"registry/register.py\"}}", "tokens_in": 874, "tokens_out": 58, "latency_ms": 895.6, "reasoning": "I need to understand the codebase: registry/register.py (load_households, set_status), core/ids.py (is_valid_household_id), Household fields. Let me read files."}

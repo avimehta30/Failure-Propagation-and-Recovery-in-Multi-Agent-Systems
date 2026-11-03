@@ -1,0 +1,17 @@
+# Per-region settings. Several modules read these values; change them with care.
+#
+#   climate          temperate or cold
+#   (extra kit types offered in a region are added here as their own settings)
+
+regions:
+  NVL:
+    name: North Valley
+    climate: temperate
+
+  CPL:
+    name: Coastal Plains
+    climate: temperate
+
+  HGL:
+    name: Highlands
+    climate: cold

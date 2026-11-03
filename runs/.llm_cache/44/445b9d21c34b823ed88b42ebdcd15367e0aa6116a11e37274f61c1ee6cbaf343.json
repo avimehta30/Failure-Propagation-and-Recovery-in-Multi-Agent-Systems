@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"class Household\"}}", "tokens_in": 3542, "tokens_out": 45, "latency_ms": 1240.6, "reasoning": "I have enough. Maybe check Household.from_dict to see if it validates id? Quick check of core/models.py Household.from_dict."}

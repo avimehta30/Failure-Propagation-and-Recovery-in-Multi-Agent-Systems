@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/models.py\"}}", "tokens_in": 2178, "tokens_out": 49, "latency_ms": 1173.2, "reasoning": "Check core/models.py line 31 for Household.status values, and planner.py line 38 for hh.site. Let me read core/models.py."}

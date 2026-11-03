@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"registry/register.py\", \"name\": \"load_households\"}}", "tokens_in": 1915, "tokens_out": 28, "latency_ms": 689.5, "reasoning": ""}

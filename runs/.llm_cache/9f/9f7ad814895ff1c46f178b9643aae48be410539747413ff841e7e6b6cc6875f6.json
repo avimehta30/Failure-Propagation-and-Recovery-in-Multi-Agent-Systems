@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/models.py\", \"start_line\": 75}}", "tokens_in": 1737, "tokens_out": 34, "latency_ms": 674.7, "reasoning": "Check Delivery model fields vehicle too."}

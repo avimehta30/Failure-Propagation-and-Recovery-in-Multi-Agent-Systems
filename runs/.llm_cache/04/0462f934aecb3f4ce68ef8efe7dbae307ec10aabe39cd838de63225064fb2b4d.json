@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"_now\"}}", "tokens_in": 1492, "tokens_out": 52, "latency_ms": 788.3, "reasoning": "Check _now uses settings.now? Likely. The finding says queue_sms uses config.settings.now() for queued_at when now=None. Let me check _now definition quickly."}

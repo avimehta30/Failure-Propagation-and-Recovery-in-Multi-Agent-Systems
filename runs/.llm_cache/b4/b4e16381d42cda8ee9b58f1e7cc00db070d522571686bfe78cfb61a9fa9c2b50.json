@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"core/store.py\", \"start_line\": 1}}", "tokens_in": 1251, "tokens_out": 44, "latency_ms": 714.6, "reasoning": "Check path() to confirm OUTBOX resolves to data/outbox/payments.jsonl."}

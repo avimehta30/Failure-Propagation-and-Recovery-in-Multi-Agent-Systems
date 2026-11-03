@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/models.py\", \"name\": \"Household\"}}", "tokens_in": 539, "tokens_out": 42, "latency_ms": 839.1, "reasoning": "Verify the finding: read core/models.py Household class and registry/register.py."}

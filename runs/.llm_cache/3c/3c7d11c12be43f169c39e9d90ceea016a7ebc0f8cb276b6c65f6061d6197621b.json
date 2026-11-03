@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_function\", \"args\": {\"path\": \"core/models.py\", \"name\": \"Payment\"}}", "tokens_in": 1245, "tokens_out": 67, "latency_ms": 663.7, "reasoning": "Check Payment model fields: id, household_id, amount, key, sent_at. The finding says fields: id, household_id, amount, key, sent_at. Let me verify Payment model quickly."}

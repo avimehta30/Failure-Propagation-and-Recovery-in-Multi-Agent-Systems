@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"read_file\", \"args\": {\"path\": \"pytest.ini\", \"start_line\": 1}}", "tokens_in": 3406, "tokens_out": 26, "latency_ms": 925.6, "reasoning": ""}

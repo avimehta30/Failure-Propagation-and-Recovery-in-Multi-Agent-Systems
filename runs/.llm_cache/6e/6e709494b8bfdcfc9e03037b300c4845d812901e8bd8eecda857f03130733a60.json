@@ -1,0 +1,1 @@
+{"model": "api-glm-5.3-flash", "text": "{\"tool\": \"search_code\", \"args\": {\"query\": \"find_duplicates\"}}", "tokens_in": 1529, "tokens_out": 19, "latency_ms": 440.4, "reasoning": ""}
