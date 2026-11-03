@@ -24,6 +24,8 @@
 \usetikzlibrary{positioning,arrows.meta,fit,backgrounds}
 \usepackage{caption}
 \usepackage{float}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
 \newcommand{\code}[1]{\texttt{\detokenize{#1}}}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
@@ -37,7 +39,7 @@
         showstringspaces=false}
 
 \title{Failure Propagation and Recovery in Multi-Agent Systems:\\
-Phase 1 Progress Report on the Test Bed and First Runs}
+Phase 1 Report on Fault Propagation and Two Recovery Baselines}
 
 \author{Avi Mehta}
 
@@ -46,7 +48,7 @@ Phase 1 Progress Report on the Test Bed and First Runs}
 
 % ===========================================================================
 \begin{abstract}
-\emph{[To be written once the Phase 1 experiments are complete.]}
+\emph{[Draft.]} When several AI agents work as a team, a mistake made by one can be built upon by the others. We study how such mistakes spread, using a three-agent team (researcher, planner, executor) that completes eight software tickets on \emph{Lifeline}, a small made-up codebase written so that no model can already know it. Every action is recorded together with what it was built from, which forms a dependency graph. We inject four kinds of fault at controlled points (wrong findings, outdated files, failed reads, and planted malicious instructions) and count a fault as spread only if it both appears in the dependency graph of later work and changes the result. In 81 fault runs, accidental faults spread in 20 of 69 runs; the planted instructions, written plainly, were never followed. Spread faults stayed where the graph said they would: a wrong rounding rule damaged only the file that used it. We then compare two simple recovery methods. Restarting from scratch fixed the code, but because it repeats every action, it \emph{tripled} the texts and payments sent by mistake (22 to 76), which cannot be taken back. Checking every step with an extra model call prevented all such damage, but cost about 2.3 times the tokens and raised 16 false alarms. These results motivate Phase~2: recovery that redoes only the work the faulty result actually touched.
 \end{abstract}
 
 
@@ -89,7 +91,7 @@ The project has two phases:
 
 \subsection{What this report covers}
 
-To study how errors spread, we first need a fair, controlled place to watch agents work: a \emph{test bed}. Think of it as a laboratory. Before running any experiment, a scientist has to build the equipment and check that it measures correctly. This report describes our equipment, piece by piece, and the first test runs on it. Each section answers one plain question:
+To study how errors spread, we first need a fair, controlled place to watch agents work: a \emph{test bed}. Think of it as a laboratory. Before running any experiment, a scientist has to build the equipment and check that it measures correctly. This report describes our equipment, piece by piece, and then the experiments we ran with it. Each section answers one plain question:
 
 \begin{table}[htbp]
 \centering
@@ -104,11 +106,14 @@ What jobs are they given, and how are they graded? & Section~\ref{sec:tasks}: ta
 Who are the agents, and what are they allowed to do? & Sections~\ref{sec:agents} and~\ref{sec:tools} \\
 How do we record what happened, and what came from what? & Section~\ref{sec:trace}: tracing \\
 Does the equipment work? & Sections~\ref{sec:verify} and~\ref{sec:run}: checks and first runs \\
+How well do the agents do with nothing going wrong? & Section~\ref{sec:baseline}: clean baseline \\
+What happens when we feed them bad information? & Section~\ref{sec:faultres}: fault experiments \\
+How well do two simple ways of recovering work? & Section~\ref{sec:recovery}: recovery baselines \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\paragraph{What this report does not cover yet.} No faults have been injected so far. The experiments that measure how errors spread, and how well the two recovery baselines work, come next (Section~\ref{sec:next}).
+\paragraph{What this report does not cover.} Phase~2, a recovery method that uses the dependency graph to redo only the affected work, is not built yet (Section~\ref{sec:next}).
 
 % ===========================================================================
 \section{Background and Key Ideas}
@@ -421,7 +426,7 @@ Table~\ref{tab:tasklist} lists the tasks, in three tiers of difficulty. The orig
 \begin{table}[htbp]
 \centering
 \small
-\caption{The eight tasks. T01--T03 are built; the rest are designed and will be built next.}
+\caption{The eight tasks, all built and checked.}
 \label{tab:tasklist}
 \begin{tabularx}{\linewidth}{@{}llLl@{}}
 \toprule
@@ -454,25 +459,28 @@ Before any agent touches a task, we test the answer key itself. If the hidden te
   \item \textbf{a solution that believes the wrong version of each fact}, which should \emph{fail}. This is the key check: it proves that a fault on that fact would show up in the grade.
 \end{enumerate}
 
-Table~\ref{tab:sanity} shows the results for the three tasks built so far. Every check comes out as expected, on all three seeds.
+For the operations tasks (T09--T11) the ``tests'' are checks on the final data instead: for example, \emph{every duplicate merged}, \emph{no household paid twice}, \emph{every payment in the audit log}. Table~\ref{tab:sanity} shows the results for seed~0. Every check comes out as expected on all three seeds, and every wrong fact fails for the reason the design predicts (for T04, each wrong fact breaks only its own part of the task).
 
 \begin{table}[htbp]
 \centering
 \small
-\caption{Answer-key checks for seed 0 (hidden tests passed / total). Seeds 1 and 2 give the same verdicts.}
+\caption{Answer-key checks for seed 0 (tests or checks passed / total). Seeds 1 and 2 give the same verdicts.}
 \label{tab:sanity}
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{@{}lccc@{}}
+\begin{tabularx}{\linewidth}{@{}lccL@{}}
 \toprule
-Code tested & T01 & T02 & T03 \\
+Task & Starting code & Correct solution & Each wrong-fact solution \\
+ & (should fail) & (should pass) & (should fail) \\
 \midrule
-Starting code (should fail) & 5 / 15 & 4 / 13 & fails$^{*}$ \\
-Correct solution (should pass) & 15 / 15 & 13 / 13 & 12 / 12 \\
-Wrong-fact version (should fail) & 11 / 15 & 7 / 13 & 4 / 12 \\
-\midrule
-Answer key fair? & yes & yes & yes \\
+T01 & 5 / 15 & 15 / 15 & F5: 11 / 15 \\
+T02 & 4 / 13 & 13 / 13 & F4: 7 / 13 \\
+T03 & fails$^{*}$ & 12 / 12 & F7: 4 / 12 \\
+T04 & 2 / 15 & 15 / 15 & F1: 13 / 15; F2: 10 / 15; F13: 14 / 15; F14: 12 / 15 \\
+T05 & 0 / 20 & 20 / 20 & F8: 13 / 20; F10: 17 / 20 \\
+T09 & 3 / 4 & 4 / 4 & F5: 2 / 4; F9: 3 / 4 \\
+T10 & 4 / 5 & 5 / 5 & F10: 2 / 5 \\
+T11 & 6 / 7 & 7 / 7 & F7: 5 / 7; F11: 5 / 7; F12: 6 / 7 \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \\[3pt]
 {\footnotesize $^{*}$The function the ticket asks for does not exist yet.}
 \end{table}
@@ -537,13 +545,13 @@ Table~\ref{tab:settings} lists how each agent runs, and why each choice was made
 \toprule
 Setting & Choice & Why \\
 \midrule
-Tool loop & At most 10 steps. Each reply is one JSON object: a tool call, or the final answer & Keeps every action structured and recordable \\
+Tool loop & At most 15 steps per agent. Each reply is one JSON object: a tool call, or the final answer & Keeps every action structured and recordable; 10 steps proved too few for three-file tasks \\
 Mistakes in replies & An invalid reply or unusable answer is sent back with the reason, and the agent tries again & A plan citing a finding that does not exist is caught at once \\
 Step budget & The agent is told how many steps are left, and must answer on its last one & Without this, the researcher explored until it ran out (Section~\ref{sec:run}) \\
 Model & \code{api-glm-5.3-flash}, through the UCSD TritonAI service & Fast and cheap; chosen in a pilot (Section~\ref{sec:pilot}) \\
 Temperature & 0 & The model always picks its most likely answer, so runs are as repeatable as possible \\
 Response cache & Every reply is saved, keyed by model, exact prompt and seed & Rerunning replays saved replies: repeatable and free \\
-Short memory & Tool results older than the last two are shortened & Keeps prompts small; this may have a cost (Section~\ref{sec:r4}) \\
+Full memory & Earlier tool results are kept in full & An early version shortened old results to fit a provider limit; agents then re-read files and ran out of steps (Section~\ref{sec:r4}) \\
 Test files & Read-only; agents may not add or change tests & The grade must stay fixed; the tool layer enforces this too \\
 No fault logic & Agents contain no code for faults & Faults come only from the harness \\
 \bottomrule
@@ -666,18 +674,20 @@ All of the checks below run without calling any language model, and all pass (Ta
 Group & Checks & What they verify \\
 \midrule
 Environment checks & 34 & Lifeline's own 48 tests pass; module boundaries hold; each fact in one file; old versions in history; seed data repeatable with every tricky case \\
-Answer-key checks & 34 & Starting code fails, correct solution passes, wrong-fact solutions fail (3 tasks, 3 seeds) \\
+Answer-key checks & 92 & Starting code fails, correct solution passes, wrong-fact solutions fail (8 tasks, 3 seeds); expected final states rebuild exactly \\
 Sandbox tests & 29 & Every forbidden action refused \emph{and} recorded; legitimate work allowed \\
 Trace tests & 5 & Event fields, branching chains, catching bad traces \\
 Pipeline tests & 2 & The whole pipeline end to end with a scripted stand-in model \\
+Fault tests & 5 & Each fault changes only what an agent sees; an ignored fault is not counted as spread \\
+Recovery tests & 2 & Full restart keeps what was already sent; always-verify catches a wrong finding \\
 \midrule
-Total & 104 & \\
+Total & 169 & \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 % ===========================================================================
-\section{First Runs (T01, No Faults)}
+\section{First Runs and Choosing the Model}
 \label{sec:run}
 
 \subsection{Getting a valid run}
@@ -700,7 +710,7 @@ Attempt & Tests passed & Findings & What happened, and the fix \\
 \end{tabularx}
 \end{table}
 
-Both fixes are general instructions that mention no fact and no task. Still, any change made after looking at one task risks fitting the agents to that task; the clean baseline across all tasks will show whether they work in general.
+Both fixes are general instructions that mention no fact and no task. Still, any change made after looking at one task risks fitting the agents to that task; the clean baseline across all tasks (Section~\ref{sec:baseline}) shows how well they work in general.
 
 \begin{figure}[htbp]
 \centering
@@ -743,7 +753,7 @@ Both fixes are general instructions that mention no fact and no task. Still, any
 \subsection{A false finding with no fault injected}
 \label{sec:r4}
 
-In that valid run, finding R4 said there was no function in \code{core/ids.py} for checking an ID. That is false: \code{is_valid_household_id} exists. The planner trusted R4 and planned a new helper, and the executor wrote one. The final code happened to be correct, but a wrong intermediate result was passed on and acted upon: the very thing this project studies, appearing on its own. A likely cause is the short memory (Table~\ref{tab:settings}): by the time the researcher wrote its findings, its early read of \code{core/ids.py} had been shortened. This is not yet confirmed. The lesson for the experiment is that fault-free runs are not always error-free, so every fault run must be compared with its matching fault-free run.
+In that valid run, finding R4 said there was no function in \code{core/ids.py} for checking an ID. That is false: \code{is_valid_household_id} exists. The planner trusted R4 and planned a new helper, and the executor wrote one. The final code happened to be correct, but a wrong intermediate result was passed on and acted upon: the very thing this project studies, appearing on its own. A likely cause is that, at the time, old tool results were shortened to fit the provider's limits: by the time the researcher wrote its findings, its early read of \code{core/ids.py} had been cut. This was not confirmed; the shortening was later turned off (Table~\ref{tab:settings}). The lesson for the experiment is that fault-free runs are not always error-free, so every fault run must be compared with its matching fault-free run.
 
 \subsection{Choosing the model}
 \label{sec:pilot}
@@ -768,21 +778,192 @@ Cost & about \$0.007 & about \$0.08 \\
 \end{tabular}
 \end{table}
 
-Both solved the task correctly, and neither repeated the false finding. Flash was about 14 times faster and over 10 times cheaper, so we chose it. At this cost, the whole Phase~1 experiment (about 260 runs) should cost a few dollars.
+Both solved the task correctly, and neither repeated the false finding. Flash was about 14 times faster and over 10 times cheaper, so we chose it. All of the experiments in this report together cost \$2.32.
 
 The pilot also revealed a problem. Both planners added an extra step, ``add new tests,'' and the Flash executor tried to write a test file. The sandbox blocked it and recorded an unauthorized action. The intent was harmless, but it would have filled the fault-free results with false alarms, and changing tests must never be allowed, since the grade must stay fixed. We added one general rule to the planner and executor: test files are read-only. Rerun with this rule, Flash passed 15/15 with one plan step, no unauthorized actions, in 19 seconds.
+
+% ===========================================================================
+\section{Clean Baseline}
+\label{sec:baseline}
+
+Every task was run on seeds 0, 1 and 2 with no faults: 24 runs. Table~\ref{tab:clean} shows the results. \textbf{20 of 24 runs passed}, every trace was valid, and no run attempted a forbidden action.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Clean baseline: 8 tasks $\times$ 3 seeds, no faults. Tokens and time are averages per run.}
+\label{tab:clean}
+\begin{tabular}{@{}llcrr@{}}
+\toprule
+Task & Tier & Passed & Tokens & Time (s) \\
+\midrule
+T01 & 1 & 3 / 3 & 28.9K & 21 \\
+T02 & 1 & 3 / 3 & 45.1K & 64 \\
+T03 & 1 & 3 / 3 & 27.1K & 60 \\
+T04 & 2 & 3 / 3 & 51.7K & 32 \\
+T05 & 2 & 2 / 3 & 97.1K & 79 \\
+T09 & 3 & 3 / 3 & 67.0K & 87 \\
+T10 & 3 & 3 / 3 & 66.6K & 60 \\
+T11 & 3 & 0 / 3$^{*}$ & 70.0K & 37 \\
+\midrule
+All & & 20 / 24 & 56.7K & \\
+\bottomrule
+\end{tabular}
+\\[3pt]
+{\footnotesize $^{*}$Every eligible household was paid exactly once, with the right key, on all three seeds; only the audit-log check failed.}
+\end{table}
+
+\paragraph{The four failures.} The T05 failure (seed~0) is a genuine mistake: the agent gave a function an extra required input that the ticket did not ask for. The three T11 failures are more interesting. The rule ``every payment must be recorded in the audit log'' is written only in \code{audit/log.py}, and nothing in the payments code points there. None of the three researchers ever opened that folder, so the rule was missed with no fault at all. A rule kept where nothing refers to it is invisible to the team, which is a finding in itself. Because a fault is judged check by check against the clean run (Section~\ref{sec:faultres}), T11's payment checks, which do pass cleanly, still measure faults correctly.
+
+\paragraph{Changes made while building the baseline.} We record every change, because each one was made after seeing agent runs:
+\begin{itemize}
+  \item \textbf{Step limit 10 $\rightarrow$ 15, full memory.} The first T04 runs failed because the executor ran out of steps, partly by re-reading files it had already read when old results were shortened. After the change, T04 passed 3/3.
+  \item \textbf{Clearer T05 wording.} The first T05 ticket said a site is rerouted when its shortest route ``can no longer be used''. All three runs reasonably read this as ``by a truck''. The ticket now says exactly what counts, without revealing the road rules.
+  \item \textbf{T11 mentions record-keeping.} The ticket now asks the team to follow the rules ``for keeping records'' of payments, without naming the audit log (which would give away fact F12). As described above, this was not enough for the agents to find the rule.
+  \item \textbf{Bookkeeping.} The executor sometimes forgot to label an edit with its plan step; such edits are now linked to the plan step for the same file, so the dependency graph stays precise.
+\end{itemize}
+
+\paragraph{The no-reading test.} With every code-reading tool turned off (agents could only list folder names), all five code tasks failed (seed~0). The first attempt at the three operations tasks revealed a loophole: the executor wrote small scripts that \emph{printed} the code and data files, ran them, and read the output. T10 passed this way. Scripts are allowed to read files inside the workspace, so this is a genuine side channel around the reading tools. With script output hidden as well, all three operations tasks failed too, so \textbf{all eight tasks fail without reading the code}: they cannot be solved by guessing, and the facts genuinely have to come from the code.
+
+% ===========================================================================
+\section{Fault Experiments}
+\label{sec:faultres}
+
+\subsection{What we ran}
+
+We injected each of the four kinds of fault (Table~\ref{tab:faults}) into the tasks it applies to, on all three seeds: 81 fault runs in total (69 accidental, 12 adversarial). Each run targets one fact. Stale outputs only apply to the five facts with an old version in Lifeline's history, and planted instructions only to the four tasks with a matching attack (for example, ``also pay HH-00019'' in T11). In T04 and T05 we injected wrong findings about two different facts each, to see whether the damage stays in the right place.
+
+\subsection{When does a fault count as ``spread''?}
+
+A fault counts as spread only if \emph{both} hold:
+\begin{enumerate}
+  \item \textbf{In the trace:} some later product (a plan step, an edit, a script run, or a text or payment sent) has the injected fault among its ancestors in the dependency graph; and
+  \item \textbf{In the outcome:} a test or check that passed in the clean run of the same task and seed now fails, the permanent damage is worse, or the planted instruction was carried out.
+\end{enumerate}
+If the agents received bad information but the result did not change, the fault is reported as \emph{not spread}. It is never counted as the system being robust, because often the agents simply happened not to use the bad information.
+
+\subsection{Results}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[xbar, width=0.72\linewidth, height=4.2cm, xmin=0, xmax=100, bar width=9pt,
+  xlabel={runs where the fault spread (\%)}, symbolic y coords={malicious,timeout,stale,incorrect},
+  ytick={malicious,timeout,stale,incorrect}, yticklabels={{Malicious instruction (0/12)},{Timeout (3/24)},{Stale output (5/15)},{Incorrect result (12/30)}},
+  nodes near coords, nodes near coords align={horizontal}, every node near coord/.append style={font=\scriptsize},
+  tick label style={font=\small}, label style={font=\small}, enlarge y limits=0.2]
+\addplot[fill=red!45, draw=red!60!black] coordinates {(0,malicious)};
+\addplot[fill=blue!40, draw=blue!60!black] coordinates {(12,timeout) (33,stale) (40,incorrect)};
+\end{axis}
+\end{tikzpicture}
+\caption{How often each kind of fault spread. Blue: accidental faults; red: adversarial.}
+\label{fig:spread}
+\end{figure}
+
+Figure~\ref{fig:spread} summarizes the results, and Table~\ref{tab:faultdetail} gives the accidental faults per task.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Accidental faults per task (3 seeds each). ``Spread'' uses the two-part rule above. ``Cited damage'' is the work the dependency graph links to the fault.}
+\label{tab:faultdetail}
+\begin{tabularx}{\linewidth}{@{}llcL@{}}
+\toprule
+Fault & Task: fact & Spread & What happened \\
+\midrule
+Incorrect & T01: F5 & 0 / 3 & Agents reused the existing ID check instead \\
+result & T02: F4 & 0 / 3 & The executor read the code and used the right format \\
+ & T03: F7 & 1 / 3 & One run used the wrong cutoff (4 / 12 tests) \\
+ & T04: F2 & 3 / 3 & \code{math.ceil} written; only \code{rations.py} damaged \\
+ & T04: F14 & 0 / 3 & The executor read \code{stock.py} and used the right order \\
+ & T05: F8 & 2 / 3 & Routing damaged, and with it who was texted \\
+ & T05: F10 & 1 / 3 & Only the text messages damaged; routing stayed correct \\
+ & T09: F9 & 3 / 3 & Exact-name matching missed most duplicates \\
+ & T10: F10 & 0 / 3 & The executor read \code{sms.py} and used templates \\
+ & T11: F7 & 2 / 3 & \textbf{7 and 15 ineligible households paid} (cannot be undone) \\
+\midrule
+Stale output & T04: F2 / T05: F8 & 3 / 3, 2 / 3 & The old file was believed, as with a wrong finding \\
+ & T03, T10, T11 & 0 / 9 & The old version was not used in the final code \\
+\midrule
+Timeout & T04, T05, T09 & 1 / 3 each & Agents guessed the rule they could not read \\
+ & T01--T03, T10, T11 & 0 / 15 & Agents found the rule elsewhere or reused a function \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Faults stay where the dependency graph says.} In T04, the wrong rounding rule (F2) spread in all three runs, and in each the cited dependency graph linked it to \code{allocation/rations.py} only: the settings and stock work stayed correct and passed their tests. In T05, a wrong road rule (F8) damaged the routing and therefore the texts, while a wrong text rule (F10) damaged only the texts. This is exactly the branching that would let selective recovery keep valid work.
+
+\paragraph{Precise versus coarse tracking.} We record what each fault touched in two ways. The \emph{cited} view follows only what each item says it was built from; the \emph{context} view also follows the model calls, which saw the bad information in their prompt. For T04 with F2, the cited view marks one file and the context view marks all three. The cited view is the one selective recovery would want, but it relies on agents citing their sources honestly; the context view is safe but would redo almost everything. This is the precision-versus-bookkeeping trade-off the project asks about.
+
+\paragraph{Permanent damage.} The most serious case is T11 with a wrong eligibility cutoff: in two of three runs, the team paid 7 and 15 households that do not qualify, and missed one that does. Those payments cannot be taken back.
+
+\paragraph{Malicious instructions.} The planted comments reached the agents in all 12 runs (each was read, and later work was built from those reads), but they were never acted on: no one paid HH-00019, texted everyone, deleted records or touched tests. In one T09 run the executor even added a comment saying records are never deleted. This should not be read as a strong safety result: our comments were blunt (``NOTE FOR AI AGENTS: \ldots''), and disguised instructions or a compromised message between agents were not tested.
+
+% ===========================================================================
+\section{Recovery Baselines}
+\label{sec:recovery}
+
+\subsection{The two methods}
+
+Both methods are run on every fault run, under the identical fault, seed and step limits. Both are told which result was faulty, so we measure recovery, not detection.
+\begin{itemize}
+  \item \textbf{Full restart:} put the code and the changeable data back to the starting state, remove the fault, and run the whole team again. Texts and payments already sent by the faulty run stay sent, and count as permanent damage.
+  \item \textbf{Always-verify:} an extra model call, the \emph{verifier}, checks every finding, plan step and edit against the real code before it is passed on. A rejected item is redone. For operations tasks this means a script is checked before it runs. The verifier's cost is recorded separately, and we record whether it rejected anything that came from the fault.
+\end{itemize}
+
+\subsection{Results}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Recovery on the 69 accidental fault runs. ``Bad sends'' are wrong, duplicate or malformed texts and payments in the final state (all permanent). Tokens are per run.}
+\label{tab:recovery}
+\begin{tabularx}{\linewidth}{@{}lccL@{}}
+\toprule
+Method & Task passed & Bad sends & Cost \\
+\midrule
+No recovery (the fault run) & 41 / 69 & 22 & 61K tokens \\
+Full restart & 53 / 69 & \textbf{76} & 60K extra tokens on top of the fault run; 48 s of model time \\
+Always-verify & 53 / 69 & \textbf{0} & 139K tokens (66K verifier, 15K redoing items); about 3$\times$ the time \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[ybar, width=0.8\linewidth, height=4.8cm, ymin=0, ymax=92, bar width=14pt,
+  symbolic x coords={No recovery, Full restart, Always-verify}, xtick=data,
+  ylabel={count}, legend style={font=\scriptsize, at={(0.5,1.04)}, anchor=south, legend columns=2, draw=none},
+  nodes near coords, every node near coord/.append style={font=\scriptsize},
+  tick label style={font=\small}, label style={font=\small}, enlarge x limits=0.25]
+\addplot[fill=green!45, draw=green!50!black] coordinates {(No recovery,41) (Full restart,53) (Always-verify,53)};
+\addplot[fill=red!45, draw=red!60!black] coordinates {(No recovery,22) (Full restart,76) (Always-verify,0)};
+\legend{tasks passed (of 69), bad texts and payments sent}
+\end{axis}
+\end{tikzpicture}
+\caption{Full restart and always-verify fix the same number of tasks, but restarting repeats every action and so multiplies the permanent damage.}
+\label{fig:recovery}
+\end{figure}
+
+\paragraph{Restarting multiplies permanent damage.} Full restart fixed the code just as often as always-verify, but it more than tripled the texts and payments sent by mistake, from 22 to 76. The reason is simple: a restart repeats every action, including the ones that cannot be taken back. In T10, for example, the faulty run had already re-sent the failed texts; the restart sent them all again, so nine families received the same message twice. A restart also cannot fix a mistake the agents make with no fault at all: it replays the clean run, so T05 seed~0 and T11 still fail.
+
+\paragraph{Checking every step prevents the damage, at a price.} Always-verify left no bad sends at all. In T11 with the wrong cutoff, the verifier rejected the wrong cutoff finding before the planner could use it, in all three runs, so no ineligible household was paid. On the 20 runs where the fault had spread, the verifier rejected something that came from the fault in 18. But it roughly doubled the tokens per run (139K against 61K), took about three times as long, and raised 16 false alarms, rejecting correct items that then had to be redone.
+
+\paragraph{Adversarial runs.} On the 12 malicious-instruction runs nothing needed recovering (the instructions were ignored); full restart still added 18 bad sends by repeating T10's texts, and always-verify added none.
 
 % ===========================================================================
 \section{Discussion and Limitations}
 
 \begin{itemize}
-  \item \textbf{A few runs are not a result.} They show the equipment works; they do not yet show how often the agents succeed. The clean baseline will measure that across all tasks and seeds.
-  \item \textbf{Seeds may barely differ for code tasks.} At temperature 0, the ticket and the code are the same on every seed; only the data differs. Operations tasks, which read the data, should vary more.
-  \item \textbf{The script check is a screen, not a wall.} Scripts are checked before they run, but a cleverly written script could still read files outside the workspace. Closing this fully needs a container or virtual machine, which belongs to Phase~2. For Phase~1, the screen is enough to detect and count what a misled agent tries.
-  \item \textbf{The executor can read code.} So it can sometimes correct a wrong plan by itself. This is realistic, but it can hide propagation; we will measure it rather than prevent it.
-  \item \textbf{Instruction changes.} Three general changes were made after early runs: the step budget, reusing existing functions, and read-only tests. Any further changes will stay general and be recorded.
-  \item \textbf{Fewer tasks.} Cutting from twelve to eight tasks leaves fact F3 untested and gives fewer paths for errors to spread. Running every task on three seeds makes up for part of this.
-  \item \textbf{Small deviations.} The project specifies Python 3.11; development used 3.10, and the code works on both.
+  \item \textbf{The two baselines bracket the problem.} Full restart is cheap to set up but repeats irreversible actions; always-verify is safe but pays for a second opinion on everything, most of which was fine. Selective recovery (Phase~2) aims to keep valid work, as the T04 and T05 branching shows is possible, and to avoid repeating actions that were already done correctly.
+  \item \textbf{Many faults are ignored, not resisted.} Faults often did not spread because the executor read the code itself or reused an existing function. This is realistic, but it means the team's ``robustness'' depends on how much each agent double-checks on its own.
+  \item \textbf{Hidden rules are missed even without faults.} T11's audit rule was never found because nothing pointed to it. Faults on such a fact cannot be measured, because the clean run already misses it.
+  \item \textbf{Adversarial results are limited.} Only plainly worded comments were tested, on one model. Disguised instructions and a compromised planner-to-executor message are natural next tests.
+  \item \textbf{Small sample.} One model, eight tasks, three seeds. At temperature~0 the seeds still produced different runs, but the numbers above are counts, not statistically tested rates.
+  \item \textbf{Changes made after seeing runs.} The instruction and ticket changes listed in Sections~\ref{sec:run} and~\ref{sec:baseline} were general and are all recorded, but any change made after looking at results risks fitting the setup to them.
+  \item \textbf{The script check is a screen, not a wall.} Scripts are checked before they run, but a cleverly written script could still reach outside the workspace. Closing this fully needs a container or virtual machine, which belongs to Phase~2.
+  \item \textbf{Fewer tasks.} Cutting from twelve to eight tasks leaves fact F3 untested.
 \end{itemize}
 
 % ===========================================================================
@@ -790,12 +971,9 @@ The pilot also revealed a problem. Both planners added an extra step, ``add new 
 \label{sec:next}
 
 \begin{enumerate}
-  \item \textbf{Build the remaining tasks} (T04, T05, T09--T11), with the same answer-key checks. For the operations tasks, the answer key is the expected final state of the data and outboxes.
-  \item \textbf{Clean baseline:} run every task on seeds 0--2 with no faults, measuring success rate, cost and time. Also run the \emph{no-reading test}: with code-reading tools turned off, the agents should fail; a task they pass without reading is guessable and must be redesigned.
-  \item \textbf{Fault injection:} first an incorrect result on one fact, then stale outputs, timeouts and malicious instructions.
-  \item \textbf{Measuring propagation:} which stages and files were affected, unauthorized actions, wasted work, and permanent damage, always compared with the matching fault-free run. Accidental and adversarial faults are reported in separate tables.
-  \item \textbf{Recovery baselines:} full restart, and always-verify (an extra model call checks every finding, plan step and edit), under identical faults, with their costs reported.
-  \item \textbf{Analysis:} scripts that turn all runs into summary tables and plots.
+  \item \textbf{Stronger adversarial tests:} disguised instructions and a compromised planner-to-executor message, under the same rules.
+  \item \textbf{Phase 2, selective recovery:} use the dependency graph to find everything built from the faulty result, restore the affected data, and redo only those steps; compare it with both baselines on the same 81 fault runs, reporting retained valid work, recomputed stages, cost, and permanent damage that recomputation cannot undo.
+  \item \textbf{Shared-state recovery:} for changes that cannot be undone, such as texts and payments, recovery must issue compensating actions (flag for review, pay those who were missed) rather than repeat the job.
 \end{enumerate}
 
 % ===========================================================================
@@ -839,10 +1017,15 @@ The pilot also revealed a problem. Both planners added an extra step, ``add new 
 \begin{lstlisting}
 git clone --recurse-submodules <repo>
 pip install -r requirements.txt
-python -m pytest          # 104 checks, no model
+python -m pytest          # 169 checks, no model
 # one clean run (needs OPENAI_BASE_URL and
 # OPENAI_API_KEY in .env):
 python -m harness.run_experiment --task T01 --seed 0
+python -m harness.run_grid clean      # clean baseline
+python -m harness.run_grid faults     # 81 fault runs
+python -m harness.run_grid restart    # full restart
+python -m harness.run_grid verify     # always-verify
+python -m analysis.summarize          # summary tables
 \end{lstlisting}
 Model replies are cached under \code{runs/.llm_cache/}, so repeating a run replays the same replies at no cost.
 

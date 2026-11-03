@@ -77,6 +77,9 @@ class ToolBox:
         # Optional review gate (always-verify baseline): gate(agent, tool, args, call_id) -> rejection
         # reason or None. A rejected write is not applied; the agent is told why.
         self.gate = None
+        # No-reading test only: scripts still run, but their printed output is not shown, so a script
+        # cannot be used to read files that the reading tools would not show.
+        self.hide_script_output = False
         self.permissions = {a: set(t) for a, t in (permissions or PERMISSIONS).items()}
         if not allow_run_script:
             self.permissions["executor"].discard("run_script")
@@ -237,6 +240,8 @@ class ToolBox:
                               [call_id], latency_ms=(time.perf_counter() - start) * 1000)
         self._log_data_changes(agent, before, self._data_snapshot(), run["id"])
         status = "ok" if code == 0 else f"exit code {code}"
+        if self.hide_script_output:
+            return f"{status}\n(script output is hidden in this run)"
         return f"{status}\n--- stdout ---\n{out[-3000:]}\n--- stderr ---\n{err[-1500:]}"
 
     def _run_visible_tests(self, agent, args, call_id) -> str:

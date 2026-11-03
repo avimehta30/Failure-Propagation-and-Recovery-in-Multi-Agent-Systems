@@ -42,12 +42,12 @@ def run_name_for(task_id: str, seed: int, fault: dict | None = None) -> str:
 
 def run_task(task_id: str, seed: int = 0, *, cfg: dict | None = None, llm=None, run_name: str | None = None,
              runs_dir: Path = RUNS, force: bool = False, fault: dict | None = None, clean_dir: Path = CLEAN,
-             prepare=None, method: str = "none", verify: bool = False) -> dict:
+             prepare=None, method: str = "none", verify: bool = False, no_reading: bool = False) -> dict:
     """One run. `prepare(workspace)` may adjust the fresh workspace before the agents start (the
     recovery baselines use it to carry over what a faulty run already sent)."""
     cfg = cfg or yaml.safe_load(CONFIG.read_text())
     task = load_task(task_id)
-    run_name = run_name or run_name_for(task_id, seed, fault)
+    run_name = run_name or (f"{task_id}__noread__s{seed}" if no_reading else run_name_for(task_id, seed, fault))
     run_dir = Path(runs_dir) / run_name
     if (run_dir / "metrics.json").exists() and not force:
         return json.loads((run_dir / "metrics.json").read_text())
@@ -60,8 +60,12 @@ def run_task(task_id: str, seed: int = 0, *, cfg: dict | None = None, llm=None, 
         prepare(workspace)
     tracer = Tracer(run_name, run_dir / "trace.jsonl")
     injector = FaultInjector(fault, task_id, workspace) if fault else None
-    tools = ToolBox(workspace, tracer, injector=injector, allow_run_script=ops,
+    # No-reading test (design.md Section 9): agents may list folders but not read any file.
+    permissions = ({"researcher": {"list_dir"}, "planner": set(), "executor": {"list_dir", "write_file", "run_script"}}
+                   if no_reading else None)
+    tools = ToolBox(workspace, tracer, injector=injector, allow_run_script=ops, permissions=permissions,
                     allow_visible_tests=cfg.get("run_visible_tests", False))
+    tools.hide_script_output = no_reading
 
     start = time.perf_counter()
     result = Orchestrator(task_id, task.prompt, llm, tools, tracer, injector=injector,
@@ -75,7 +79,7 @@ def run_task(task_id: str, seed: int = 0, *, cfg: dict | None = None, llm=None, 
     wall_ms = (time.perf_counter() - start) * 1000
 
     m = metrics(task, seed, run_name, cfg, tracer, result, grade, wall_ms, getattr(llm, "model", None))
-    m["method"] = method
+    m["method"] = "no_reading" if no_reading else method
     if result.verification is not None:
         v = dict(result.verification)
         v["verifier_tokens"] = v["tokens_in"] + v["tokens_out"]
@@ -125,6 +129,7 @@ def main(argv=None) -> int:
     ap.add_argument("--runs-dir", type=Path, default=RUNS)
     ap.add_argument("--fault", help="TYPE:FACT, e.g. incorrect_result:F2")
     ap.add_argument("--clean-dir", type=Path, default=CLEAN, help="where the matching clean runs are")
+    ap.add_argument("--no-reading", action="store_true", help="the no-reading test: code-reading tools disabled")
     args = ap.parse_args(argv)
     cfg = yaml.safe_load(CONFIG.read_text())
     if args.model:
@@ -135,7 +140,7 @@ def main(argv=None) -> int:
         fault = {"type": ftype, "fact": fact}
     try:
         m = run_task(args.task, args.seed, cfg=cfg, runs_dir=args.runs_dir, force=args.force, fault=fault,
-                     clean_dir=args.clean_dir)
+                     clean_dir=args.clean_dir, no_reading=args.no_reading)
     except RateLimitExhausted as e:
         print(f"stopping: {e}. Rerun the same command later; finished model calls are cached.")
         return 2

@@ -378,7 +378,7 @@ For every task:
 
 1. **Reference passes:** the reference solution passes all hidden tests / matches the expected state.
 2. **Wrong-fact solution fails:** a solution built on each plausible wrong version (Section 4) fails. This proves the fact matters.
-3. **No-reading test:** with code-reading tools disabled, the agents should fail. If they still pass, the task is guessable from common sense, so redesign it.
+3. **No-reading test:** with code-reading tools disabled, the agents should fail. If they still pass, the task is guessable from common sense, so redesign it. As built (`--no-reading`), agents may only list folders, and the output of any script they run is hidden: otherwise an executor can read code by writing a script that prints it, which happened in the first attempt at T10.
 4. **Clean baseline:** with normal tools and no faults, the agents pass at a reasonable rate across several seeds. If not, simplify the task or prompts before running fault experiments.
 
 ---
