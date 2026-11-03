@@ -1,0 +1,2049 @@
+{
+  "households": [
+    {
+      "id": "HH-00019",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 78065565",
+      "members": [
+        {
+          "name": "Oskar Brandt",
+          "birth_date": "1987-02-14",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-15",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": false,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-10200",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 70303122",
+      "members": [
+        {
+          "name": "Amara Sato",
+          "birth_date": "1956-12-05",
+          "pregnant": false
+        },
+        {
+          "name": "Femi Sato",
+          "birth_date": "2026-02-28",
+          "pregnant": false
+        },
+        {
+          "name": "Oskar Sato",
+          "birth_date": "2026-01-21",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-13",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-10294",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 79894587",
+      "members": [
+        {
+          "name": "Rafael Silva",
+          "birth_date": "1973-03-27",
+          "pregnant": false
+        },
+        {
+          "name": "Galina Silva",
+          "birth_date": "2025-03-26",
+          "pregnant": false
+        },
+        {
+          "name": "Kenji Silva",
+          "birth_date": "2015-01-02",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-09",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": false,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-10413",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 72710014",
+      "members": [
+        {
+          "name": "Zainab Duarte",
+          "birth_date": "2001-10-31",
+          "pregnant": false
+        },
+        {
+          "name": "Umar Duarte",
+          "birth_date": "1983-04-04",
+          "pregnant": false
+        },
+        {
+          "name": "Umar Duarte",
+          "birth_date": "2022-04-05",
+          "pregnant": false
+        },
+        {
+          "name": "Femi Duarte",
+          "birth_date": "2022-10-14",
+          "pregnant": false
+        },
+        {
+          "name": "Elif Duarte",
+          "birth_date": "2019-12-09",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-28",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": false,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-10421",
+      "region": "NVL",
+      "site": "SITE-NVL-A",
+      "phone": "+999 79833818",
+      "members": [
+        {
+          "name": "Amara Okoro",
+          "birth_date": "1984-05-11",
+          "pregnant": false
+        },
+        {
+          "name": "Jomo Okoro",
+          "birth_date": "1982-09-30",
+          "pregnant": false
+        },
+        {
+          "name": "Ines Okoro",
+          "birth_date": "2005-01-19",
+          "pregnant": false
+        },
+        {
+          "name": "Femi Okoro",
+          "birth_date": "1958-07-02",
+          "pregnant": false
+        },
+        {
+          "name": "Sefa Okoro",
+          "birth_date": "2025-06-14",
+          "pregnant": false
+        },
+        {
+          "name": "Nadia Okoro",
+          "birth_date": "2024-11-03",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-28",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-10642",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 72832344",
+      "members": [
+        {
+          "name": "Elif Varga",
+          "birth_date": "1967-03-15",
+          "pregnant": false
+        },
+        {
+          "name": "Bilal Varga",
+          "birth_date": "1969-04-18",
+          "pregnant": false
+        },
+        {
+          "name": "Halima Varga",
+          "birth_date": "2023-03-29",
+          "pregnant": false
+        },
+        {
+          "name": "Rafael Varga",
+          "birth_date": "2021-08-24",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-11",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-10855",
+      "region": "HGL",
+      "site": "SITE-HGL-B",
+      "phone": "+999 75678731",
+      "members": [
+        {
+          "name": "Sefa Tanaka",
+          "birth_date": "1990-01-10",
+          "pregnant": false
+        },
+        {
+          "name": "Ines Tanaka",
+          "birth_date": "1984-01-30",
+          "pregnant": false
+        },
+        {
+          "name": "Xavi Tanaka",
+          "birth_date": "2020-06-01",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-14",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-11029",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 79741872",
+      "members": [
+        {
+          "name": "Xavi Novak",
+          "birth_date": "2005-02-23",
+          "pregnant": false
+        },
+        {
+          "name": "Bruno Novak",
+          "birth_date": "1995-12-11",
+          "pregnant": false
+        },
+        {
+          "name": "Oskar Novak",
+          "birth_date": "2025-05-18",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-18",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-11037",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 75609281",
+      "members": [
+        {
+          "name": "Farid Duarte",
+          "birth_date": "1959-09-14",
+          "pregnant": false
+        },
+        {
+          "name": "Farid Duarte",
+          "birth_date": "1998-04-12",
+          "pregnant": false
+        },
+        {
+          "name": "Chiara Duarte",
+          "birth_date": "2011-11-04",
+          "pregnant": false
+        },
+        {
+          "name": "Farid Duarte",
+          "birth_date": "2009-08-09",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-20",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-11185",
+      "region": "HGL",
+      "site": "SITE-HGL-B",
+      "phone": "+999 73032360",
+      "members": [
+        {
+          "name": "Galina Tanaka",
+          "birth_date": "1986-07-15",
+          "pregnant": false
+        },
+        {
+          "name": "Bilal Tanaka",
+          "birth_date": "2024-11-12",
+          "pregnant": false
+        },
+        {
+          "name": "Hamza Tanaka",
+          "birth_date": "2025-09-21",
+          "pregnant": false
+        },
+        {
+          "name": "Dawit Tanaka",
+          "birth_date": "2022-05-30",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-02",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-11266",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 75880756",
+      "members": [
+        {
+          "name": "Hamza Duarte",
+          "birth_date": "1969-10-26",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-24",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-11479",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 77031363",
+      "members": [
+        {
+          "name": "Tamar Novak",
+          "birth_date": "1969-06-21",
+          "pregnant": false
+        },
+        {
+          "name": "Farid Novak",
+          "birth_date": "2022-01-16",
+          "pregnant": false
+        },
+        {
+          "name": "Elif Novak",
+          "birth_date": "2019-02-24",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-28",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": false,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-11495",
+      "region": "HGL",
+      "site": "SITE-HGL-B",
+      "phone": "+999 77200796",
+      "members": [
+        {
+          "name": "Kenji Varga",
+          "birth_date": "1967-06-17",
+          "pregnant": false
+        },
+        {
+          "name": "Matteo Varga",
+          "birth_date": "2022-01-13",
+          "pregnant": false
+        },
+        {
+          "name": "Halima Varga",
+          "birth_date": "2023-04-19",
+          "pregnant": false
+        },
+        {
+          "name": "Zainab Varga",
+          "birth_date": "2014-06-10",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-08",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": false,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-11592",
+      "region": "HGL",
+      "site": "SITE-HGL-B",
+      "phone": "+999 74118811",
+      "members": [
+        {
+          "name": "Amara Bekele",
+          "birth_date": "1979-11-22",
+          "pregnant": false
+        },
+        {
+          "name": "Elif Bekele",
+          "birth_date": "1970-02-06",
+          "pregnant": false
+        },
+        {
+          "name": "Sefa Bekele",
+          "birth_date": "2024-08-13",
+          "pregnant": false
+        },
+        {
+          "name": "Dilnoza Bekele",
+          "birth_date": "2023-12-25",
+          "pregnant": false
+        },
+        {
+          "name": "Halima Bekele",
+          "birth_date": "2017-09-19",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-28",
+      "status": "inactive",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-11711",
+      "region": "NVL",
+      "site": "SITE-NVL-A",
+      "phone": "+999 75044737",
+      "members": [
+        {
+          "name": "Zainab Bekele",
+          "birth_date": "1980-11-09",
+          "pregnant": false
+        },
+        {
+          "name": "Kenji Bekele",
+          "birth_date": "1979-09-01",
+          "pregnant": false
+        },
+        {
+          "name": "Amara Bekele",
+          "birth_date": "2024-11-19",
+          "pregnant": false
+        },
+        {
+          "name": "Leyla Bekele",
+          "birth_date": "2025-03-05",
+          "pregnant": false
+        },
+        {
+          "name": "Ines Bekele",
+          "birth_date": "1947-10-12",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-22",
+      "status": "inactive",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-11878",
+      "region": "HGL",
+      "site": "SITE-HGL-B",
+      "phone": "+999 76467166",
+      "members": [
+        {
+          "name": "Nadia Ortiz",
+          "birth_date": "1963-07-05",
+          "pregnant": false
+        },
+        {
+          "name": "Halima Ortiz",
+          "birth_date": "1974-11-28",
+          "pregnant": false
+        },
+        {
+          "name": "Oskar Ortiz",
+          "birth_date": "2026-01-01",
+          "pregnant": false
+        },
+        {
+          "name": "Xavi Ortiz",
+          "birth_date": "2021-10-05",
+          "pregnant": false
+        },
+        {
+          "name": "Bruno Ortiz",
+          "birth_date": "2010-08-04",
+          "pregnant": false
+        },
+        {
+          "name": "Lucia Ortiz",
+          "birth_date": "2014-03-19",
+          "pregnant": false
+        },
+        {
+          "name": "Xavi Ortiz",
+          "birth_date": "1947-11-15",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-07",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-11959",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 71055581",
+      "members": [
+        {
+          "name": "Zainab Rahimi",
+          "birth_date": "2003-11-23",
+          "pregnant": false
+        },
+        {
+          "name": "Nadia Rahimi",
+          "birth_date": "2004-02-09",
+          "pregnant": true
+        },
+        {
+          "name": "Hamza Rahimi",
+          "birth_date": "2018-09-11",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-14",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-12084",
+      "region": "HGL",
+      "site": "SITE-HGL-A",
+      "phone": "+999 70730863",
+      "members": [
+        {
+          "name": "Farid Lindqvist",
+          "birth_date": "1956-05-08",
+          "pregnant": false
+        },
+        {
+          "name": "Matteo Lindqvist",
+          "birth_date": "1973-09-30",
+          "pregnant": false
+        },
+        {
+          "name": "Tamar Lindqvist",
+          "birth_date": "2024-07-28",
+          "pregnant": false
+        },
+        {
+          "name": "Ivo Lindqvist",
+          "birth_date": "2023-06-08",
+          "pregnant": false
+        },
+        {
+          "name": "Kenji Lindqvist",
+          "birth_date": "2010-03-18",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-05",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-12262",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 74416547",
+      "members": [
+        {
+          "name": "Wanjiru Lund",
+          "birth_date": "2000-07-08",
+          "pregnant": false
+        },
+        {
+          "name": "Ines Lund",
+          "birth_date": "1969-11-03",
+          "pregnant": false
+        },
+        {
+          "name": "Halima Lund",
+          "birth_date": "2012-11-11",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-20",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-12300",
+      "region": "HGL",
+      "site": "SITE-HGL-B",
+      "phone": "+999 74002793",
+      "members": [
+        {
+          "name": "Chiara Bekele",
+          "birth_date": "1971-03-19",
+          "pregnant": false
+        },
+        {
+          "name": "Amara Bekele",
+          "birth_date": "2022-01-12",
+          "pregnant": false
+        },
+        {
+          "name": "Bilal Bekele",
+          "birth_date": "2023-05-06",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-12",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": false,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-12491",
+      "region": "HGL",
+      "site": "SITE-HGL-B",
+      "phone": "+999 75944138",
+      "members": [
+        {
+          "name": "Elif Duarte",
+          "birth_date": "1985-02-06",
+          "pregnant": false
+        },
+        {
+          "name": "Lucia Duarte",
+          "birth_date": "1979-08-29",
+          "pregnant": false
+        },
+        {
+          "name": "Femi Duarte",
+          "birth_date": "2013-02-24",
+          "pregnant": false
+        },
+        {
+          "name": "Vesna Duarte",
+          "birth_date": "2014-07-20",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-05",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-12572",
+      "region": "NVL",
+      "site": "SITE-NVL-A",
+      "phone": "+999 70556426",
+      "members": [
+        {
+          "name": "Matteo Lindqvist",
+          "birth_date": "1989-06-20",
+          "pregnant": true
+        },
+        {
+          "name": "Bilal Lindqvist",
+          "birth_date": "1985-03-17",
+          "pregnant": false
+        },
+        {
+          "name": "Amara Lindqvist",
+          "birth_date": "2021-10-17",
+          "pregnant": false
+        },
+        {
+          "name": "Lucia Lindqvist",
+          "birth_date": "2011-07-29",
+          "pregnant": false
+        },
+        {
+          "name": "Kenji Lindqvist",
+          "birth_date": "2010-09-30",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-24",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": false,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-12580",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 74815949",
+      "members": [
+        {
+          "name": "Ines Bekele",
+          "birth_date": "1985-02-02",
+          "pregnant": false
+        },
+        {
+          "name": "Ivo Bekele",
+          "birth_date": "2005-10-01",
+          "pregnant": false
+        },
+        {
+          "name": "Kenji Bekele",
+          "birth_date": "2026-01-08",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-21",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-12653",
+      "region": "NVL",
+      "site": "SITE-NVL-A",
+      "phone": "+999 79642202",
+      "members": [
+        {
+          "name": "Farid Haddad",
+          "birth_date": "1985-07-05",
+          "pregnant": true
+        }
+      ],
+      "registered": "2026-02-10",
+      "status": "active",
+      "sms_ok": false,
+      "shelter_damaged": false,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-12793",
+      "region": "NVL",
+      "site": "SITE-NVL-A",
+      "phone": "+999 77225073",
+      "members": [
+        {
+          "name": "Farid Nakamura",
+          "birth_date": "1981-11-25",
+          "pregnant": false
+        },
+        {
+          "name": "Bilal Nakamura",
+          "birth_date": "1986-11-13",
+          "pregnant": false
+        },
+        {
+          "name": "Bilal Nakamura",
+          "birth_date": "2021-04-12",
+          "pregnant": false
+        },
+        {
+          "name": "Xavi Nakamura",
+          "birth_date": "2019-08-04",
+          "pregnant": false
+        },
+        {
+          "name": "Chiara Nakamura",
+          "birth_date": "1939-03-15",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-16",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-12882",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 70861362",
+      "members": [
+        {
+          "name": "Ines Quispe",
+          "birth_date": "2002-10-24",
+          "pregnant": false
+        },
+        {
+          "name": "Rafael Quispe",
+          "birth_date": "2024-05-23",
+          "pregnant": false
+        },
+        {
+          "name": "Matteo Quispe",
+          "birth_date": "2025-08-29",
+          "pregnant": false
+        },
+        {
+          "name": "Dilnoza Quispe",
+          "birth_date": "2018-10-07",
+          "pregnant": false
+        },
+        {
+          "name": "Umar Quispe",
+          "birth_date": "1958-07-01",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-15",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-12947",
+      "region": "HGL",
+      "site": "SITE-HGL-A",
+      "phone": "+999 70207252",
+      "members": [
+        {
+          "name": "Bruno Basu",
+          "birth_date": "1978-08-04",
+          "pregnant": false
+        },
+        {
+          "name": "Jomo Basu",
+          "birth_date": "2010-05-08",
+          "pregnant": false
+        },
+        {
+          "name": "Femi Basu",
+          "birth_date": "1951-02-27",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-20",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": false,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-13072",
+      "region": "NVL",
+      "site": "SITE-NVL-B",
+      "phone": "+999 71030831",
+      "members": [
+        {
+          "name": "Tamar Nakamura",
+          "birth_date": "1961-12-27",
+          "pregnant": false
+        },
+        {
+          "name": "Dilnoza Nakamura",
+          "birth_date": "2025-05-21",
+          "pregnant": false
+        },
+        {
+          "name": "Matteo Nakamura",
+          "birth_date": "1943-04-26",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-28",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": false,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-13137",
+      "region": "HGL",
+      "site": "SITE-HGL-A",
+      "phone": "+999 70791834",
+      "members": [
+        {
+          "name": "Oskar Moreau",
+          "birth_date": "1967-10-29",
+          "pregnant": false
+        },
+        {
+          "name": "Dilnoza Moreau",
+          "birth_date": "1971-01-25",
+          "pregnant": false
+        },
+        {
+          "name": "Kenji Moreau",
+          "birth_date": "2026-01-01",
+          "pregnant": false
+        },
+        {
+          "name": "Ines Moreau",
+          "birth_date": "2021-05-25",
+          "pregnant": false
+        },
+        {
+          "name": "Sefa Moreau",
+          "birth_date": "1943-01-22",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-27",
+      "status": "active",
+      "sms_ok": false,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-13161",
+      "region": "HGL",
+      "site": "SITE-HGL-A",
+      "phone": "+999 73877166",
+      "members": [
+        {
+          "name": "Halima Silva",
+          "birth_date": "1958-11-13",
+          "pregnant": false
+        },
+        {
+          "name": "Leyla Silva",
+          "birth_date": "1998-03-01",
+          "pregnant": false
+        },
+        {
+          "name": "Farid Silva",
+          "birth_date": "2024-07-19",
+          "pregnant": false
+        },
+        {
+          "name": "Ines Silva",
+          "birth_date": "2009-04-17",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-19",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": false,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-13218",
+      "region": "NVL",
+      "site": "SITE-NVL-B",
+      "phone": "+999 77283903",
+      "members": [
+        {
+          "name": "Kenji Dragan",
+          "birth_date": "1990-10-19",
+          "pregnant": true
+        },
+        {
+          "name": "Bruno Dragan",
+          "birth_date": "1977-03-23",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-16",
+      "status": "active",
+      "sms_ok": false,
+      "shelter_damaged": false,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-13412",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 77787815",
+      "members": [
+        {
+          "name": "Priya Duarte",
+          "birth_date": "1986-11-04",
+          "pregnant": false
+        },
+        {
+          "name": "Femi Duarte",
+          "birth_date": "1998-03-02",
+          "pregnant": false
+        },
+        {
+          "name": "Leyla Duarte",
+          "birth_date": "2025-07-05",
+          "pregnant": false
+        },
+        {
+          "name": "Leyla Duarte",
+          "birth_date": "2025-03-14",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-25",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-13617",
+      "region": "NVL",
+      "site": "SITE-NVL-A",
+      "phone": "+999 72844678",
+      "members": [
+        {
+          "name": "Priya Basu",
+          "birth_date": "1970-07-28",
+          "pregnant": false
+        },
+        {
+          "name": "Xavi Basu",
+          "birth_date": "1994-07-25",
+          "pregnant": false
+        },
+        {
+          "name": "Priya Basu",
+          "birth_date": "2021-07-21",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-04",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-13765",
+      "region": "NVL",
+      "site": "SITE-NVL-B",
+      "phone": "+999 70453812",
+      "members": [
+        {
+          "name": "Femi Basu",
+          "birth_date": "1978-03-10",
+          "pregnant": false
+        },
+        {
+          "name": "Rafael Basu",
+          "birth_date": "1985-10-31",
+          "pregnant": false
+        },
+        {
+          "name": "Lucia Basu",
+          "birth_date": "2019-10-26",
+          "pregnant": false
+        },
+        {
+          "name": "Sefa Basu",
+          "birth_date": "2017-11-24",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-22",
+      "status": "active",
+      "sms_ok": false,
+      "shelter_damaged": false,
+      "income_lost": true,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-13811",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 75147124",
+      "members": [
+        {
+          "name": "Amara Lindqvist",
+          "birth_date": "2004-11-21",
+          "pregnant": false
+        },
+        {
+          "name": "Xavi Lindqvist",
+          "birth_date": "1996-09-03",
+          "pregnant": false
+        },
+        {
+          "name": "Wanjiru Lindqvist",
+          "birth_date": "2025-05-06",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-20",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-13862",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 70049661",
+      "members": [
+        {
+          "name": "Kenji Castell",
+          "birth_date": "1971-03-09",
+          "pregnant": false
+        },
+        {
+          "name": "Bruno Castell",
+          "birth_date": "1977-11-22",
+          "pregnant": false
+        },
+        {
+          "name": "Umar Castell",
+          "birth_date": "2022-05-21",
+          "pregnant": false
+        },
+        {
+          "name": "Matteo Castell",
+          "birth_date": "2022-05-16",
+          "pregnant": false
+        },
+        {
+          "name": "Ivo Castell",
+          "birth_date": "2012-10-19",
+          "pregnant": false
+        },
+        {
+          "name": "Hamza Castell",
+          "birth_date": "2018-12-11",
+          "pregnant": false
+        },
+        {
+          "name": "Dilnoza Castell",
+          "birth_date": "1954-03-09",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-24",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-13870",
+      "region": "NVL",
+      "site": "SITE-NVL-B",
+      "phone": "+999 76993565",
+      "members": [
+        {
+          "name": "Hamza Varga",
+          "birth_date": "1985-06-26",
+          "pregnant": true
+        },
+        {
+          "name": "Rafael Varga",
+          "birth_date": "1980-06-11",
+          "pregnant": false
+        },
+        {
+          "name": "Chiara Varga",
+          "birth_date": "2022-05-02",
+          "pregnant": false
+        },
+        {
+          "name": "Elif Varga",
+          "birth_date": "2018-08-06",
+          "pregnant": false
+        },
+        {
+          "name": "Umar Varga",
+          "birth_date": "1947-07-21",
+          "pregnant": false
+        },
+        {
+          "name": "Farid Varga",
+          "birth_date": "1950-06-17",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-18",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-13889",
+      "region": "NVL",
+      "site": "SITE-NVL-B",
+      "phone": "+999 73176953",
+      "members": [
+        {
+          "name": "Elif Lund",
+          "birth_date": "1964-03-14",
+          "pregnant": false
+        },
+        {
+          "name": "Umar Lund",
+          "birth_date": "2021-07-07",
+          "pregnant": false
+        },
+        {
+          "name": "Femi Lund",
+          "birth_date": "2023-08-16",
+          "pregnant": false
+        },
+        {
+          "name": "Farid Lund",
+          "birth_date": "2018-09-07",
+          "pregnant": false
+        },
+        {
+          "name": "Chiara Lund",
+          "birth_date": "2013-08-28",
+          "pregnant": false
+        },
+        {
+          "name": "Bruno Lund",
+          "birth_date": "1957-11-01",
+          "pregnant": false
+        },
+        {
+          "name": "Tamar Lund",
+          "birth_date": "1943-03-09",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-08",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": false,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-13951",
+      "region": "NVL",
+      "site": "SITE-NVL-B",
+      "phone": "+999 71726076",
+      "members": [
+        {
+          "name": "Tamar Varga",
+          "birth_date": "2000-05-27",
+          "pregnant": false
+        },
+        {
+          "name": "Kenji Varga",
+          "birth_date": "1990-05-24",
+          "pregnant": false
+        },
+        {
+          "name": "Zainab Varga",
+          "birth_date": "2025-12-14",
+          "pregnant": false
+        },
+        {
+          "name": "Hamza Varga",
+          "birth_date": "2025-01-21",
+          "pregnant": false
+        },
+        {
+          "name": "Dawit Varga",
+          "birth_date": "2012-10-15",
+          "pregnant": false
+        },
+        {
+          "name": "Priya Varga",
+          "birth_date": "1951-08-23",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-12",
+      "status": "active",
+      "sms_ok": false,
+      "shelter_damaged": false,
+      "income_lost": false,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-14028",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 75765265",
+      "members": [
+        {
+          "name": "Dawit Abebe",
+          "birth_date": "1971-11-28",
+          "pregnant": false
+        },
+        {
+          "name": "Ivo Abebe",
+          "birth_date": "1984-10-25",
+          "pregnant": false
+        },
+        {
+          "name": "Jomo Abebe",
+          "birth_date": "2012-01-13",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-26",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": false,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-14087",
+      "region": "NVL",
+      "site": "SITE-NVL-B",
+      "phone": "+999 71610947",
+      "members": [
+        {
+          "name": "Zainab Lindqvist",
+          "birth_date": "1956-07-17",
+          "pregnant": false
+        },
+        {
+          "name": "Farid Lindqvist",
+          "birth_date": "1982-11-27",
+          "pregnant": true
+        },
+        {
+          "name": "Leyla Lindqvist",
+          "birth_date": "2018-04-18",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-05",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-14141",
+      "region": "NVL",
+      "site": "SITE-NVL-A",
+      "phone": "+999 73667273",
+      "members": [
+        {
+          "name": "Halima Lund",
+          "birth_date": "1988-10-18",
+          "pregnant": false
+        },
+        {
+          "name": "Ines Lund",
+          "birth_date": "2021-07-20",
+          "pregnant": false
+        },
+        {
+          "name": "Farid Lund",
+          "birth_date": "2012-05-18",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-22",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-14249",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 77253600",
+      "members": [
+        {
+          "name": "Galina Okafor",
+          "birth_date": "1972-03-24",
+          "pregnant": false
+        },
+        {
+          "name": "Femi Okafor",
+          "birth_date": "1973-04-07",
+          "pregnant": false
+        },
+        {
+          "name": "Elif Okafor",
+          "birth_date": "2025-05-03",
+          "pregnant": false
+        },
+        {
+          "name": "Leyla Okafor",
+          "birth_date": "2016-04-29",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-20",
+      "status": "inactive",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": false,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-14354",
+      "region": "NVL",
+      "site": "SITE-NVL-A",
+      "phone": "+999 76395056",
+      "members": [
+        {
+          "name": "Farid Dragan",
+          "birth_date": "2002-12-19",
+          "pregnant": true
+        },
+        {
+          "name": "Zainab Dragan",
+          "birth_date": "2021-06-02",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-24",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": true,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-14423",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 72203754",
+      "members": [
+        {
+          "name": "Kareem Odhiambo",
+          "birth_date": "1972-09-23",
+          "pregnant": false
+        },
+        {
+          "name": "Galina Odhiambo",
+          "birth_date": "2000-05-15",
+          "pregnant": true
+        },
+        {
+          "name": "Sefa Odhiambo",
+          "birth_date": "2025-12-07",
+          "pregnant": false
+        },
+        {
+          "name": "Jomo Odhiambo",
+          "birth_date": "2025-11-16",
+          "pregnant": false
+        },
+        {
+          "name": "Leyla Odhiambo",
+          "birth_date": "2022-06-27",
+          "pregnant": false
+        },
+        {
+          "name": "Sefa Odhiambo",
+          "birth_date": "2011-03-30",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-06",
+      "status": "merged",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": false,
+      "disability": true,
+      "merged_into": "HH-14605"
+    },
+    {
+      "id": "HH-14605",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 70136583",
+      "members": [
+        {
+          "name": "Karim Odiambo",
+          "birth_date": "1972-11-01",
+          "pregnant": false
+        },
+        {
+          "name": "Galina Odhiambo",
+          "birth_date": "2000-05-15",
+          "pregnant": true
+        },
+        {
+          "name": "Sefa Odhiambo",
+          "birth_date": "2025-12-07",
+          "pregnant": false
+        },
+        {
+          "name": "Jomo Odhiambo",
+          "birth_date": "2025-11-16",
+          "pregnant": false
+        },
+        {
+          "name": "Leyla Odhiambo",
+          "birth_date": "2022-06-27",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-13",
+      "status": "active",
+      "sms_ok": false,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-14826",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 70642407",
+      "members": [
+        {
+          "name": "Yusuf Mensah",
+          "birth_date": "1971-08-09",
+          "pregnant": false
+        },
+        {
+          "name": "Vesna Mensah",
+          "birth_date": "2018-06-02",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-07",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": false,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-15039",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 77528340",
+      "members": [
+        {
+          "name": "Yousef Mensa",
+          "birth_date": "1971-05-01",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-03-02",
+      "status": "merged",
+      "sms_ok": false,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": true,
+      "merged_into": "HH-14826"
+    },
+    {
+      "id": "HH-15108",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 76857046",
+      "members": [
+        {
+          "name": "Aisha Petrov",
+          "birth_date": "1993-10-21",
+          "pregnant": false
+        },
+        {
+          "name": "Chiara Petrov",
+          "birth_date": "1985-01-06",
+          "pregnant": false
+        },
+        {
+          "name": "Galina Petrov",
+          "birth_date": "2024-08-06",
+          "pregnant": false
+        },
+        {
+          "name": "Oskar Petrov",
+          "birth_date": "2026-01-25",
+          "pregnant": false
+        },
+        {
+          "name": "Dawit Petrov",
+          "birth_date": "2022-04-09",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-13",
+      "status": "merged",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": true,
+      "merged_into": "HH-15164"
+    },
+    {
+      "id": "HH-15164",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 76519827",
+      "members": [
+        {
+          "name": "Ayesha Petroff",
+          "birth_date": "1993-01-01",
+          "pregnant": false
+        },
+        {
+          "name": "Chiara Petrov",
+          "birth_date": "1985-01-06",
+          "pregnant": false
+        },
+        {
+          "name": "Galina Petrov",
+          "birth_date": "2024-08-06",
+          "pregnant": false
+        },
+        {
+          "name": "Oskar Petrov",
+          "birth_date": "2026-01-25",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-15",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": false,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-15393",
+      "region": "NVL",
+      "site": "SITE-NVL-A",
+      "phone": "+999 79489644",
+      "members": [
+        {
+          "name": "Teodor Achterberg",
+          "birth_date": "2001-07-11",
+          "pregnant": false
+        },
+        {
+          "name": "Amara Achterberg",
+          "birth_date": "2024-11-28",
+          "pregnant": false
+        },
+        {
+          "name": "Priya Achterberg",
+          "birth_date": "2023-12-19",
+          "pregnant": false
+        },
+        {
+          "name": "Amara Achterberg",
+          "birth_date": "2021-11-18",
+          "pregnant": false
+        },
+        {
+          "name": "Rafael Achterberg",
+          "birth_date": "2011-04-05",
+          "pregnant": false
+        },
+        {
+          "name": "Umar Achterberg",
+          "birth_date": "2016-03-21",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-20",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": true,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-15460",
+      "region": "NVL",
+      "site": "SITE-NVL-A",
+      "phone": "+999 74586169",
+      "members": [
+        {
+          "name": "Theodore Achterburg",
+          "birth_date": "2001-05-01",
+          "pregnant": false
+        },
+        {
+          "name": "Amara Achterberg",
+          "birth_date": "2024-11-28",
+          "pregnant": false
+        },
+        {
+          "name": "Priya Achterberg",
+          "birth_date": "2023-12-19",
+          "pregnant": false
+        },
+        {
+          "name": "Amara Achterberg",
+          "birth_date": "2021-11-18",
+          "pregnant": false
+        },
+        {
+          "name": "Rafael Achterberg",
+          "birth_date": "2011-04-05",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-15",
+      "status": "merged",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": true,
+      "disability": true,
+      "merged_into": "HH-15393"
+    },
+    {
+      "id": "HH-15595",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 77810321",
+      "members": [
+        {
+          "name": "Mohamed Kahle",
+          "birth_date": "1972-01-08",
+          "pregnant": false
+        },
+        {
+          "name": "Galina Kahle",
+          "birth_date": "1995-05-18",
+          "pregnant": false
+        },
+        {
+          "name": "Galina Kahle",
+          "birth_date": "2024-11-26",
+          "pregnant": false
+        },
+        {
+          "name": "Chiara Kahle",
+          "birth_date": "2025-10-07",
+          "pregnant": false
+        },
+        {
+          "name": "Vesna Kahle",
+          "birth_date": "2021-10-21",
+          "pregnant": false
+        },
+        {
+          "name": "Vesna Kahle",
+          "birth_date": "2012-05-02",
+          "pregnant": false
+        },
+        {
+          "name": "Farid Kahle",
+          "birth_date": "2016-10-10",
+          "pregnant": false
+        },
+        {
+          "name": "Farid Kahle",
+          "birth_date": "1944-10-10",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-23",
+      "status": "merged",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": "HH-15695"
+    },
+    {
+      "id": "HH-15695",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 79316415",
+      "members": [
+        {
+          "name": "Muhammad Kale",
+          "birth_date": "1972-09-01",
+          "pregnant": false
+        },
+        {
+          "name": "Galina Kahle",
+          "birth_date": "1995-05-18",
+          "pregnant": false
+        },
+        {
+          "name": "Galina Kahle",
+          "birth_date": "2024-11-26",
+          "pregnant": false
+        },
+        {
+          "name": "Chiara Kahle",
+          "birth_date": "2025-10-07",
+          "pregnant": false
+        },
+        {
+          "name": "Vesna Kahle",
+          "birth_date": "2021-10-21",
+          "pregnant": false
+        },
+        {
+          "name": "Vesna Kahle",
+          "birth_date": "2012-05-02",
+          "pregnant": false
+        },
+        {
+          "name": "Farid Kahle",
+          "birth_date": "2016-10-10",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-18",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": true,
+      "merged_into": null
+    },
+    {
+      "id": "HH-15709",
+      "region": "CPL",
+      "site": "SITE-CPL-A",
+      "phone": "+999 73289653",
+      "members": [
+        {
+          "name": "Selin Ward",
+          "birth_date": "1982-12-07",
+          "pregnant": false
+        },
+        {
+          "name": "Halima Ward",
+          "birth_date": "1967-04-13",
+          "pregnant": false
+        },
+        {
+          "name": "Vesna Ward",
+          "birth_date": "2023-09-15",
+          "pregnant": false
+        },
+        {
+          "name": "Femi Ward",
+          "birth_date": "2023-07-15",
+          "pregnant": false
+        },
+        {
+          "name": "Dawit Ward",
+          "birth_date": "1940-08-28",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-20",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-15825",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 74373422",
+      "members": [
+        {
+          "name": "Selin Ward",
+          "birth_date": "1982-03-01",
+          "pregnant": false
+        },
+        {
+          "name": "Halima Ward",
+          "birth_date": "1967-04-13",
+          "pregnant": false
+        },
+        {
+          "name": "Vesna Ward",
+          "birth_date": "2023-09-15",
+          "pregnant": false
+        },
+        {
+          "name": "Femi Ward",
+          "birth_date": "2023-07-15",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-15",
+      "status": "merged",
+      "sms_ok": true,
+      "shelter_damaged": false,
+      "income_lost": false,
+      "disability": false,
+      "merged_into": "HH-15709"
+    },
+    {
+      "id": "HH-15962",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 76887612",
+      "members": [
+        {
+          "name": "Marta Quill",
+          "birth_date": "1979-03-03",
+          "pregnant": false
+        },
+        {
+          "name": "Farid Quill",
+          "birth_date": "2023-12-20",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-01-27",
+      "status": "active",
+      "sms_ok": true,
+      "shelter_damaged": true,
+      "income_lost": true,
+      "disability": false,
+      "merged_into": null
+    },
+    {
+      "id": "HH-16020",
+      "region": "CPL",
+      "site": "SITE-CPL-B",
+      "phone": "+999 71809517",
+      "members": [
+        {
+          "name": "Martha Quil",
+          "birth_date": "1986-08-21",
+          "pregnant": true
+        },
+        {
+          "name": "Chiara Quil",
+          "birth_date": "2024-11-17",
+          "pregnant": false
+        },
+        {
+          "name": "Bruno Quil",
+          "birth_date": "2022-10-23",
+          "pregnant": false
+        },
+        {
+          "name": "Dawit Quil",
+          "birth_date": "2019-04-24",
+          "pregnant": false
+        },
+        {
+          "name": "Vesna Quil",
+          "birth_date": "2012-08-26",
+          "pregnant": false
+        }
+      ],
+      "registered": "2026-02-01",
+      "status": "active",
+      "sms_ok": false,
+      "shelter_damaged": false,
+      "income_lost": false,
+      "disability": true,
+      "merged_into": null
+    }
+  ]
+}

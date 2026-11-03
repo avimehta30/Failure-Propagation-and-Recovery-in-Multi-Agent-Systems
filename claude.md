@@ -77,7 +77,7 @@ A simple, widely used pipeline: **researcher → planner → executor**, acting 
   - Tools: `read_file`, `list_dir`, `write_file` (workspace only), `run_script` (ops tickets only). `run_visible_tests` is OFF by default and can be enabled by config, because self-testing lets the executor self-correct and can hide propagation.
 
 Agent rules:
-- Each agent is a model inside a small tool-use loop with a maximum step limit (configurable, default 10).
+- Each agent is a model inside a small tool-use loop with a maximum step limit (configurable, default 10; `phase1.yaml` uses 15, because three-file tasks such as T04 need about 8 executor steps).
 - Agents communicate only through messages sent by the orchestrator. There are no direct side channels.
 - Findings, plan steps, and edits must stay **separate, individually traced items** (see `design.md` Section 6). This is what makes the dependency graph branch. Do not merge them into one blob.
 - Agent code contains **no fault logic**. Faults are injected by the harness only.
@@ -112,7 +112,7 @@ The environment is a sandbox the agents work in. It exists so that we control ex
 The 8 tickets are defined in `design.md` Section 5 (Tier 1: T01–T03, Tier 2: T04–T05, Tier 3: T09–T11). The original design had 12; T06, T07, T08 and T12 were dropped because each overlapped with a kept task (see `design.md` Section 5). The kept tasks keep their original IDs. Each task folder contains:
 - `prompt.txt`: the ticket, written like a real issue.
 - `starter.json`: which Lifeline commit (in `env/lifeline/`'s own Git repo) and which seed data the workspace starts from.
-- `hidden_tests/` (code tasks T01–T05) or `expected_state/` (ops tasks T09–T11). Agents never see these.
+- `hidden_tests/` (code tasks T01–T05) or `expected_state/seed<N>/` (ops tasks T09–T11; one expected final state per seed, built from the reference solution with `python -m harness.ops build <task>`). Agents never see these.
 - `reference_solution/`: a known-correct solution.
 - `meta.json`: the facts the task depends on, **which file each fact affects**, and the tier.
 
@@ -229,7 +229,7 @@ multiagent-recovery/
 ### Working conventions
 
 - Python 3.11, `pytest` for tests, dependencies in `requirements.txt`. Ask before adding a new dependency.
-- `agents/llm.py` uses an OpenAI-compatible client with a configurable `base_url`, API key (from an environment variable), and model name, so we can switch between Groq, a local Ollama server, or another provider. Never hard-code keys. Cache responses keyed by (model, prompt, seed). Use temperature 0.
+- `agents/llm.py` uses an OpenAI-compatible client with a configurable `base_url`, API key (from an environment variable), and model name, so we can switch between providers (currently the UCSD TritonAI gateway, model `api-glm-5.3-flash`; previously Groq). Never hard-code keys. Cache responses keyed by (model, prompt, seed). Use temperature 0.
 - Make small changes. After each working step, run the tests and suggest a git commit.
 - If a requirement here or in `design.md` is ambiguous, ask instead of guessing.
 - Do not build Phase 2 recovery (selective invalidation, snapshots, containers, compensating actions) until asked.
