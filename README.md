@@ -189,7 +189,6 @@ A new model cannot reuse our saved answers, so those runs spend real money. Keep
 
 | Folder | What's in it |
 |---|---|
-| `report/` | The Phase 1 report (`main.pdf`) and its LaTeX source (`main.tex`) |
 | `results/` | The result tables |
 | `env/lifeline/` | Lifeline, the made-up program the agents work on |
 | `env/tasks/` | The 8 jobs. `prompt.txt` is the ticket the agents see. The rest of each folder is the answer key, which they never see |
