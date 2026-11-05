@@ -7,6 +7,7 @@ replays from the response cache). For every run it:
 
   regrades    the saved workspace from scratch with the hidden tests or the expected final state,
               and compares every check (and the outbox damage) with what the run recorded;
+  traces      each file the agents wrote: its last edit in the trace must be the saved file;
   recomputes  whether each fault spread, from the trace and the matching clean run;
   matches     tokens, model calls and the grade in metrics.json against trace.jsonl, the model
               against the config, and no agent session longer than max_steps;
@@ -75,8 +76,20 @@ def sessions(events: list[dict], agent: str) -> list[int]:
     return out + ([current] if current else [])
 
 
-def check_run(rep: Report, m: dict, events: list[dict], cfg: dict) -> None:
+def edits_match_workspace(d: Path, events: list[dict]) -> bool:
+    """Each file's last recorded edit in the trace must be what is in the saved workspace."""
+    last = {e["content"]["path"]: e["content"].get("after") for e in events if e["type"] == "file_edit"}
+    for path, after in last.items():
+        f = d / "workspace" / path
+        if after is not None and (not f.exists() or f.read_text() != after):
+            return False
+    return True
+
+
+def check_run(rep: Report, d: Path, m: dict, events: list[dict], cfg: dict) -> None:
     name = m["run_name"]
+    if (d / "workspace").exists() and not edits_match_workspace(d, events):
+        rep.flag(name, "workspace files differ from the edits in the trace")
     calls = [e for e in events if e["type"] == "llm_call"]
     if m.get("model") != cfg["llm"]["model"]:
         rep.flag(name, f"model {m.get('model')} is not the configured {cfg['llm']['model']}")
@@ -150,12 +163,12 @@ def main() -> int:
     clean_by = {(m["task_id"], m["seed"]): m for _, m, _ in clean}
     fault_by = {m["run_name"]: m for _, m, _ in faults}
 
-    for _, m, events in clean:
-        check_run(rep, m, events, cfg)
+    for d, m, events in clean:
+        check_run(rep, d, m, events, cfg)
         if any(e["type"] == "fault_injected" for e in events):
             rep.flag(m["run_name"], "clean run contains an injected fault")
-    for _, m, events in faults:
-        check_run(rep, m, events, cfg)
+    for d, m, events in faults:
+        check_run(rep, d, m, events, cfg)
         c = clean_by.get((m["task_id"], m["seed"]))
         if c is None:
             rep.flag(m["run_name"], "no matching clean run")
@@ -166,8 +179,8 @@ def main() -> int:
             rep.flag(m["run_name"], "injected-fault record differs from the trace")
         if analyze(m["task_id"], m["fault"], events, m, c)["fault_propagated"] != m["fault_propagated"]:
             rep.flag(m["run_name"], "spread verdict differs when recomputed")
-    for _, m, events in recovery:
-        check_run(rep, m, events, cfg)
+    for d, m, events in recovery:
+        check_run(rep, d, m, events, cfg)
         r, f = m["recovery"], fault_by.get(m["recovery"]["faulty_run"])
         if f is None:
             rep.flag(m["run_name"], "its fault run is missing")

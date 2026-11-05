@@ -134,6 +134,7 @@ python -m analysis.verify_runs
 For every one of the 267 runs, it:
 
 - grades the code or data the agents left behind again, from scratch, and checks the grade matches what was recorded;
+- checks that every file the agents left behind is exactly what the step-by-step record says they wrote;
 - works out again from the step-by-step record whether each fault spread;
 - checks that the tokens, model calls and grade in `metrics.json` match `trace.jsonl`;
 - checks that each fault run matches its clean run, and each recovery run matches its fault run.
