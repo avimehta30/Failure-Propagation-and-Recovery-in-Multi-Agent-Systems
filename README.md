@@ -86,7 +86,7 @@ pip install -r requirements.txt
 
 ### 3. Run the checks
 
-This runs 170 automatic checks. None of them call an AI model.
+This runs 175 automatic checks. None of them call an AI model.
 
 ```bash
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest
@@ -120,6 +120,41 @@ python -m analysis.summarize          # write the tables in results/
 The tables match `results/`, except the timing columns. A replay finishes in about a second, which is much faster than a live model call, so the recorded times differ.
 
 If you want the original records instead of a replay, download them from the [GitHub release](https://github.com/avimehta30/Failure-Propagation-and-Recovery-in-Multi-Agent-Systems/releases).
+
+## Checking the results yourself
+
+There are three levels of checking. Each one goes further than the last.
+
+**1. Check that the results follow from the runs (free, about a minute).** Rebuild the runs (step 5 above), then run:
+
+```bash
+python -m analysis.verify_runs
+```
+
+For every one of the 267 runs, it:
+
+- grades the code or data the agents left behind again, from scratch, and checks the grade matches what was recorded;
+- works out again from the step-by-step record whether each fault spread;
+- checks that the tokens, model calls and grade in `metrics.json` match `trace.jsonl`;
+- checks that each fault run matches its clean run, and each recovery run matches its fault run.
+
+It also checks that the tables in `results/` are exactly what the runs produce. It ends with "Everything is consistent." or a list of problems.
+
+**2. Read the runs.** Each run's `trace.jsonl` records every step: what each agent read, what it said, what it changed, and where a fault was injected. The [GitHub release](https://github.com/avimehta30/Failure-Propagation-and-Recovery-in-Multi-Agent-Systems/releases) has the original records of every run.
+
+**3. Check the model itself (costs money).** Levels 1 and 2 show the results follow from the saved model answers. They cannot show those answers are genuine. To test that, move the saved answers aside so every answer comes from a live model call with your own key (see "Using an API key" below):
+
+```bash
+mv runs/.llm_cache runs/.llm_cache_original
+python -m harness.run_experiment --task T04 --seed 0 --fault incorrect_result:F2 --runs-dir runs/recheck
+```
+
+Live answers vary a little from run to run, even with fixed settings, so expect the same pattern rather than identical numbers. All of Phase 1 cost about $2.40 to run. When you are done, put the saved answers back. The live run made a new cache folder, so rename that one first:
+
+```bash
+mv runs/.llm_cache runs/.llm_cache_live
+mv runs/.llm_cache_original runs/.llm_cache
+```
 
 ## Using an API key
 
@@ -155,8 +190,8 @@ A new model cannot reuse our saved answers, so those runs spend real money. Keep
 | `agents/` | The researcher, the planner, the executor, and the verifier used when every step is checked |
 | `harness/` | The referee. It sets up each run, injects faults, grades the result, and runs the two recovery methods |
 | `tracing/` | Records every event and what it was built from, so a mistake can be followed through the team |
-| `analysis/` | Turns the runs into the tables in `results/` |
-| `tests/` | The 170 automatic checks |
+| `analysis/` | Turns the runs into the tables in `results/`, and checks the runs are consistent (`verify_runs.py`) |
+| `tests/` | The 175 automatic checks |
 | `runs/` | Output from your own runs. This folder is not uploaded to GitHub, except the saved model answers |
 
 ## Ground rules
