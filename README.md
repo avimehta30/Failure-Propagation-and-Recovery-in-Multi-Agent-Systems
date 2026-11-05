@@ -121,25 +121,29 @@ The tables match `results/`, except the timing columns. A replay finishes in abo
 
 If you want the original records instead of a replay, download them from the [GitHub release](https://github.com/avimehta30/Failure-Propagation-and-Recovery-in-Multi-Agent-Systems/releases).
 
+## The 267 runs
+
+These are four batches of the same 8 tickets, run by the researcher, planner, and executor.
+
+- **24 clean runs (the baseline).** Each ticket is run once on each of 3 data seeds, with no mistake introduced: 8 × 3 = 24. This shows how often the team gets the ticket right on its own.
+- **81 fault runs.** The same tickets are run again, but this time the harness feeds the team one wrong piece of information: a bad finding, an old version of a file, a read that times out, or a malicious instruction. There are 27 of those setups, and each is run on all 3 seeds: 27 × 3 = 81. This measures whether the mistake spreads into the final result.
+- **162 recovery runs.** Every one of those 81 faulty runs is tried again in two ways:
+  - **81 full restarts:** throw out the work, remove the fault, and do the whole ticket over.
+  - **81 always-verify runs:** run the ticket again with the same fault, but check every finding, plan step, and edit before the next agent uses it.
+
+  81 + 81 = 162. This measures whether either method gets the ticket right, and what that costs.
+
 ## Checking the results yourself
 
 There are three levels of checking. Each one goes further than the last.
 
-**1. Check that the results follow from the runs (free, about a minute).** Rebuild the runs (step 5 above), then run:
+**1. Double-check everything (free, about a minute).** Rebuild the runs (step 5 above), then run:
 
 ```bash
 python -m analysis.verify_runs
 ```
 
-For every one of the 267 runs, it:
-
-- grades the code or data the agents left behind again, from scratch, and checks the grade matches what was recorded;
-- checks that every file the agents left behind is exactly what the step-by-step record says they wrote;
-- works out again from the step-by-step record whether each fault spread;
-- checks that the tokens, model calls and grade in `metrics.json` match `trace.jsonl`;
-- checks that each fault run matches its clean run, and each recovery run matches its fault run.
-
-It also checks that the tables in `results/` are exactly what the runs produce. It ends with "Everything is consistent." or a list of problems.
+This command double-checks all 267 runs and the tables in `results/`. It ends with "Everything is consistent." or a list of anything that doesn't match.
 
 **2. Read the runs.** Each run's `trace.jsonl` records every step: what each agent read, what it said, what it changed, and where a fault was injected. The [GitHub release](https://github.com/avimehta30/Failure-Propagation-and-Recovery-in-Multi-Agent-Systems/releases) has the original records of every run.
 
