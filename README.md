@@ -201,17 +201,6 @@ A new model cannot reuse our saved answers, so those runs spend real money. Keep
 | `tests/` | The 175 automatic checks |
 | `runs/` | Output from your own runs. This folder is not uploaded to GitHub, except the saved model answers |
 
-## Ground rules
-
-1. **Leave the answer keys and tests alone.** The same grading has to apply to every run. Changing a test so a run passes makes the comparison meaningless. Agents are also blocked from editing tests.
-2. **Only the harness injects faults.** Faults are not written into the agents, and they do not edit files on disk. The harness changes only the text an agent is shown.
-3. **Record every action.** Each action is logged together with the earlier events it was based on.
-4. **Keep results repeatable.** The same settings must produce the same result. If you change a prompt, say so in the pull request, because that change requires new model calls.
-5. **Keep secrets out of Git.**
-6. **Ask the team before adding a package, and before starting Phase 2.**
-
-To contribute: make a small change, run the checks in step 3, and open a pull request against `main`.
-
 ## Words used in this project
 
 | Word | Meaning |
