@@ -136,7 +136,7 @@ def _registry(rng: random.Random) -> list[dict]:
     keys = {name_key(n) for n in used_names}
     households = []
 
-    # design.md example: 4 adults + 2 infants -> ration size 5 -> 2 kits.
+    # Example: 4 adults + 2 infants -> ration size 5 -> 2 kits.
     ex_members = [{"name": "Amara Okoro", "birth_date": "1984-05-11", "pregnant": False},
                   {"name": "Jomo Okoro", "birth_date": "1982-09-30", "pregnant": False},
                   {"name": "Ines Okoro", "birth_date": "2005-01-19", "pregnant": False},

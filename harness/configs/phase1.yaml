@@ -1,4 +1,4 @@
-# Phase 1 experiment settings. Only the clean single-task run (build step 4) uses this so far.
+# Phase 1 experiment settings.
 llm:
   model: api-glm-5.3-flash           # UCSD TritonAI gateway (OpenAI-compatible)
   base_url_env: [OPENAI_BASE_URL]    # read from the environment or .env
@@ -10,7 +10,7 @@ max_steps: 15            # per agent (10 was too few for three-file tasks such a
 keep_full_results: null  # null: never shorten old tool results (shortening was only for Groq's token limit)
 run_visible_tests: false # executor self-testing is off by default (it can hide propagation)
 
-# Fault experiments (build steps 6-7). Each entry runs on every seed; each fault run is compared
+# Fault experiments. Each entry runs on every seed; each fault run is compared
 # with the clean run of the same task and seed in runs/baseline/.
 #   python -m harness.run_grid faults
 seeds: [0, 1, 2]

@@ -1,5 +1,5 @@
-"""Phase 1 recovery baselines (CLAUDE.md "Recovery baselines"). Both are given the identity of the
-faulty result (the fault_injected event IDs in the faulty run's trace): we measure recovery, not
+"""Phase 1 recovery baselines. Both are given the identity of the faulty result
+(the fault_injected event IDs in the faulty run's trace): we measure recovery, not
 detection.
 
     python -m harness.recovery full_restart runs/faults/T04__incorrect_result-F2__s0

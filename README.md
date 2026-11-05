@@ -159,11 +159,6 @@ A new model cannot reuse our saved answers, so those runs spend real money. Keep
 | `tests/` | The 170 automatic checks |
 | `runs/` | Output from your own runs. This folder is not uploaded to GitHub, except the saved model answers |
 
-Two longer documents sit next to this one:
-
-- [`CLAUDE.md`](CLAUDE.md) explains how the experiment is built and the rules it follows.
-- [`design.md`](design.md) describes Lifeline, its hidden rules, and the 8 jobs.
-
 ## Ground rules
 
 1. **Leave the answer keys and tests alone.** The same grading has to apply to every run. Changing a test so a run passes makes the comparison meaningless. Agents are also blocked from editing tests.
