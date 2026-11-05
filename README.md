@@ -8,18 +8,6 @@ The question we ask is:
 
 > If one agent is wrong, how far does that mistake travel, and what does it cost to repair the damage?
 
-## A concrete picture
-
-Imagine three new employees on their first day.
-
-1. The first employee reads the company handbook and writes a briefing.
-2. The second employee turns that briefing into a to-do list.
-3. The third employee does the work on the list.
-
-If the briefing contains one wrong rule, the to-do list copies it, and the finished work follows it. Some of that work cannot be undone. If the third employee already mailed cheques, doing the whole day over does not un-mail them.
-
-We built that situation with AI agents, then measured it.
-
 ## How the experiment is set up
 
 **The team** is three agents, in a fixed order:
