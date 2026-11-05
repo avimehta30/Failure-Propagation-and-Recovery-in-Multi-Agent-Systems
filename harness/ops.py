@@ -94,6 +94,9 @@ def _compare_outbox(name, start, expected, actual) -> dict:
     key = KEYS[name]
     exp_c, act_c = Counter(map(key, exp_new)), Counter(map(key, act_new))
     per_household = Counter(k[0] for k in act_c.elements() if k[0] is not None)
+    # "wrong" counts every sent record that should not have been sent, including extra copies
+    # and malformed records. "duplicate" and "malformed" are subsets of it, kept as their own
+    # checks; add only "wrong" when totalling damage, or those records are counted twice.
     return {
         "prefix_intact": intact,
         "expected": len(exp_new), "sent": len(act_new),
