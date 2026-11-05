@@ -86,7 +86,7 @@ pip install -r requirements.txt
 
 ### 3. Run the checks
 
-This runs 170 automatic checks. None of them call an AI model.
+This runs 175 automatic checks. None of them call an AI model.
 
 ```bash
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest
@@ -120,6 +120,46 @@ python -m analysis.summarize          # write the tables in results/
 The tables match `results/`, except the timing columns. A replay finishes in about a second, which is much faster than a live model call, so the recorded times differ.
 
 If you want the original records instead of a replay, download them from the [GitHub release](https://github.com/avimehta30/Failure-Propagation-and-Recovery-in-Multi-Agent-Systems/releases).
+
+## The 267 runs
+
+These are four batches of the same 8 tickets, run by the researcher, planner, and executor.
+
+- **24 clean runs (the baseline).** Each ticket is run once on each of 3 data seeds, with no mistake introduced: 8 × 3 = 24. This shows how often the team gets the ticket right on its own.
+- **81 fault runs.** The same tickets are run again, but this time the harness feeds the team one wrong piece of information: a bad finding, an old version of a file, a read that times out, or a malicious instruction. There are 27 of those setups, and each is run on all 3 seeds: 27 × 3 = 81. This measures whether the mistake spreads into the final result.
+- **162 recovery runs.** Every one of those 81 faulty runs is tried again in two ways:
+  - **81 full restarts:** throw out the work, remove the fault, and do the whole ticket over.
+  - **81 always-verify runs:** run the ticket again with the same fault, but check every finding, plan step, and edit before the next agent uses it.
+
+  81 + 81 = 162. This measures whether either method gets the ticket right, and what that costs.
+
+## Checking the results yourself
+
+There are three levels of checking. Each one goes further than the last.
+
+**1. Double-check everything (free, about a minute).** Rebuild the runs (step 5 above), then run:
+
+```bash
+python -m analysis.verify_runs
+```
+
+This command double-checks all 267 runs and the tables in `results/`. It ends with "Everything is consistent." or a list of anything that doesn't match.
+
+**2. Read the runs.** Each run's `trace.jsonl` records every step: what each agent read, what it said, what it changed, and where a fault was injected. The [GitHub release](https://github.com/avimehta30/Failure-Propagation-and-Recovery-in-Multi-Agent-Systems/releases) has the original records of every run.
+
+**3. Check the model itself (costs money).** Levels 1 and 2 show the results follow from the saved model answers. They cannot show those answers are genuine. To test that, move the saved answers aside so every answer comes from a live model call with your own key (see "Using an API key" below):
+
+```bash
+mv runs/.llm_cache runs/.llm_cache_original
+python -m harness.run_experiment --task T04 --seed 0 --fault incorrect_result:F2 --runs-dir runs/recheck
+```
+
+Live answers vary a little from run to run, even with fixed settings, so expect the same pattern rather than identical numbers. All of Phase 1 cost about $2.40 to run. When you are done, put the saved answers back. The live run made a new cache folder, so rename that one first:
+
+```bash
+mv runs/.llm_cache runs/.llm_cache_live
+mv runs/.llm_cache_original runs/.llm_cache
+```
 
 ## Using an API key
 
@@ -155,8 +195,8 @@ A new model cannot reuse our saved answers, so those runs spend real money. Keep
 | `agents/` | The researcher, the planner, the executor, and the verifier used when every step is checked |
 | `harness/` | The referee. It sets up each run, injects faults, grades the result, and runs the two recovery methods |
 | `tracing/` | Records every event and what it was built from, so a mistake can be followed through the team |
-| `analysis/` | Turns the runs into the tables in `results/` |
-| `tests/` | The 170 automatic checks |
+| `analysis/` | Turns the runs into the tables in `results/`, and checks the runs are consistent (`verify_runs.py`) |
+| `tests/` | The 175 automatic checks |
 | `runs/` | Output from your own runs. This folder is not uploaded to GitHub, except the saved model answers |
 
 ## Ground rules
