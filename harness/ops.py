@@ -24,6 +24,7 @@ from collections import Counter
 from pathlib import Path
 
 from env.seed_data import generate
+from harness.outbox_keys import KEYS
 from harness.tasks import Task, load_task, make_workspace, overlay
 
 SEEDS = (0, 1, 2)
@@ -85,17 +86,6 @@ def _start(seed: int, name: str):
 
 
 # --------------------------------------------------------------------------- comparisons
-
-def _sms_key(m: dict):
-    return (m.get("household_id"), m.get("template_id"), json.dumps(m.get("params"), sort_keys=True))
-
-
-def _payment_key(p: dict):
-    return (p.get("household_id"), p.get("amount"), p.get("key"))
-
-
-KEYS = {"outbox/sms.jsonl": _sms_key, "outbox/payments.jsonl": _payment_key}
-
 
 def _compare_outbox(name, start, expected, actual) -> dict:
     n0 = len(start)
