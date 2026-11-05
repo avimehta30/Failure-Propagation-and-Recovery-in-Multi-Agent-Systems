@@ -33,10 +33,17 @@ def _sd(xs):
 
 
 def _damage(m: dict) -> int:
+    """All outbox damage: sends that are missing, sent wrongly, or not audited. Duplicate and
+    malformed records are already counted in "wrong" (harness/ops.py), so they are not added."""
     total = 0
     for d in (m.get("irreversible_damage") or {}).values():
-        total += sum(d.get(k, 0) for k in ("missing", "wrong", "duplicate", "malformed", "unaudited_payments"))
+        total += sum(d.get(k, 0) for k in ("missing", "wrong", "unaudited_payments"))
     return total
+
+
+def _bad_sends(m: dict) -> int:
+    """Texts and payments sent that should not have been (wrong, extra copies, malformed)."""
+    return sum(d.get("wrong", 0) for d in (m.get("irreversible_damage") or {}).values())
 
 
 def clean_table(clean: list[dict]) -> list[dict]:
@@ -81,6 +88,7 @@ def fault_table(faults: list[dict], category: str) -> list[dict]:
             "affected_stages": sorted({s for p in injected for s in p.get("affected_stages", [])}),
             "wasted_tokens_mean": _mean([p["wasted_work"]["tokens"] for p in injected]),
             "unauthorized": sum(m["unauthorized_actions"]["count"] for m in ms),
+            "bad_sends": sum(_bad_sends(m) for m in ms),
             "irreversible_damage": sum(_damage(m) for m in ms),
             "attack_followed": (f"{sum(bool(p.get('attack') and p['attack']['followed']) for p in injected)}/{len(ms)}"
                                 if ftype == "malicious_instruction" else ""),
@@ -100,6 +108,7 @@ def fault_type_table(faults: list[dict]) -> list[dict]:
                      "propagation_rate": f"{100 * sum(m['fault_propagated'] for m in ms) / len(ms):.0f}%",
                      "task_success": f"{sum(m['task_success'] for m in ms)}/{len(ms)}",
                      "unauthorized": sum(m["unauthorized_actions"]["count"] for m in ms),
+                     "bad_sends": sum(_bad_sends(m) for m in ms),
                      "irreversible_damage": sum(_damage(m) for m in ms)})
     return rows
 
@@ -118,6 +127,7 @@ def recovery_table(recovery: list[dict], method: str = "full_restart") -> list[d
                      "recomputed_stages": 3, "retained_items": 0,
                      "recovery_tokens_mean": _mean([r["recovery_tokens"] for r in rs]),
                      "recovery_latency_s_mean": _mean([r["recovery_latency_ms"] / 1000 for r in rs]),
+                     "bad_sends": sum(_bad_sends(m) for m in ms),
                      "damage_left_after_recovery": sum(_damage(m) for m in ms)})
         if method == "always_verify":
             row = rows[-1]
@@ -129,6 +139,28 @@ def recovery_table(recovery: list[dict], method: str = "full_restart") -> list[d
                         "checked_mean": _mean([r["items_checked"] for r in rs]),
                         "verifier_tokens_mean": _mean([r["verifier_tokens"] for r in rs]),
                         "verifier_latency_s_mean": _mean([r["verifier_latency_ms"] / 1000 for r in rs])})
+    return rows
+
+
+def recovery_overview(faults: list[dict], recovery: list[dict]) -> list[dict]:
+    """One row per policy and fault category, over the same fault cases (report Table 1)."""
+    rows = []
+    clean_ok = {m["run_name"]: bool(m.get("clean_success")) for m in faults}
+    for cat in ("accidental", "adversarial"):
+        base = [m for m in faults if m["fault"]["category"] == cat]
+        rows.append({"category": cat, "policy": "no_recovery", "cases": len(base),
+                     "passed": f"{sum(m['task_success'] for m in base)}/{len(base)}",
+                     "passable_cleanly": sum(bool(m.get("clean_success")) for m in base),
+                     "bad_sends": sum(_bad_sends(m) for m in base),
+                     "tokens_mean": _mean([m["total_tokens"] for m in base])})
+        for method in ("full_restart", "always_verify"):
+            ms = [m for m in recovery if m["recovery"]["method"] == method and m["fault"]["category"] == cat]
+            rows.append({"category": cat, "policy": method, "cases": len(ms),
+                         "passed": f"{sum(m['recovery']['recovered_success'] for m in ms)}/{len(ms)}",
+                         "passable_cleanly": sum(clean_ok.get(m["run_name"].rsplit("__", 1)[0], False) for m in ms),
+                         "bad_sends": sum(_bad_sends(m) for m in ms),
+                         # restart: tokens on top of the faulty run; always-verify: the whole rerun
+                         "tokens_mean": _mean([m["recovery"]["recovery_tokens"] for m in ms])})
     return rows
 
 
@@ -160,6 +192,8 @@ def main() -> int:
         "adversarial": ("Adversarial faults", fault_table(faults, "adversarial")),
         "full_restart": ("Full restart (recovery baseline)", recovery_table(recovery, "full_restart")),
         "always_verify": ("Always-verify (verification baseline, same faults)", recovery_table(recovery, "always_verify")),
+        "recovery_overview": ("Recovery overview (bad_sends: texts and payments sent that should not have been)",
+                              recovery_overview(faults, recovery)),
     }
     out = ["# Phase 1 results", "",
            f"{len(clean)} clean runs, {len(faults)} fault runs, {len(recovery)} recovery runs.", ""]

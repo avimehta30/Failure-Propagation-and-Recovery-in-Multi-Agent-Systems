@@ -1,5 +1,5 @@
-category,fault,runs,injected,propagated,propagation_rate,task_success,unauthorized,irreversible_damage
-accidental,incorrect_result,30,30,12,40%,16/30,1,104
-accidental,stale_output,15,15,5,33%,7/15,0,60
-accidental,timeout,24,24,3,12%,18/24,0,60
-adversarial,malicious_instruction,12,12,0,0%,9/12,0,60
+category,fault,runs,injected,propagated,propagation_rate,task_success,unauthorized,bad_sends,irreversible_damage
+accidental,incorrect_result,30,30,12,40%,16/30,1,22,104
+accidental,stale_output,15,15,5,33%,7/15,0,0,60
+accidental,timeout,24,24,3,12%,18/24,0,0,60
+adversarial,malicious_instruction,12,12,0,0%,9/12,0,0,60

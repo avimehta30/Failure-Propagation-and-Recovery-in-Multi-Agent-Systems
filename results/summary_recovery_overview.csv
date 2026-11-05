@@ -1,0 +1,7 @@
+category,policy,cases,passed,passable_cleanly,bad_sends,tokens_mean
+accidental,no_recovery,69,41/69,56,22,61300.0
+accidental,full_restart,69,53/69,56,49,59545.9
+accidental,always_verify,69,53/69,56,0,138520.3
+adversarial,no_recovery,12,9/12,9,0,67245
+adversarial,full_restart,12,8/12,9,9,63953.4
+adversarial,always_verify,12,9/12,9,0,150162.1

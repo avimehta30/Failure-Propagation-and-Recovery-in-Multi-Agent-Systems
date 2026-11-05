@@ -56,7 +56,8 @@ def _touched(events: list[dict], ids: set[str]) -> dict:
 def _damage_total(metrics: dict) -> int:
     total = 0
     for name, d in (metrics.get("irreversible_damage") or {}).items():
-        total += sum(d.get(k, 0) for k in ("missing", "wrong", "duplicate", "malformed", "unaudited_payments"))
+        # duplicate and malformed records are already in "wrong" (harness/ops.py)
+        total += sum(d.get(k, 0) for k in ("missing", "wrong", "unaudited_payments"))
         total += 0 if d.get("prefix_intact", True) else 1
     return total
 
