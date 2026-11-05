@@ -7,7 +7,7 @@
 
 Each run writes runs/<run_name>/{workspace/, trace.jsonl, metrics.json}. A fault run is compared
 with the clean run of the same task and seed (in --clean-dir) to decide whether the fault
-propagated (harness/propagation.py). The recovery baselines plug in here in a later build step.
+propagated (harness/propagation.py). The recovery baselines are in harness/recovery.py.
 """
 
 from __future__ import annotations
@@ -60,7 +60,7 @@ def run_task(task_id: str, seed: int = 0, *, cfg: dict | None = None, llm=None, 
         prepare(workspace)
     tracer = Tracer(run_name, run_dir / "trace.jsonl")
     injector = FaultInjector(fault, task_id, workspace) if fault else None
-    # No-reading test (design.md Section 9): agents may list folders but not read any file.
+    # No-reading test: agents may list folders but not read any file.
     permissions = ({"researcher": {"list_dir"}, "planner": set(), "executor": {"list_dir", "write_file", "run_script"}}
                    if no_reading else None)
     tools = ToolBox(workspace, tracer, injector=injector, allow_run_script=ops, permissions=permissions,

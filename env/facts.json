@@ -1,5 +1,5 @@
 {
-  "_about": "Ground truth for every non-obvious rule in Lifeline (design.md Section 4). Harness-only: agents can never read this file. `marker` is a regex for the fact's single source of truth; it appears in exactly one Lifeline file at the task start commit. `tasks` maps each task to the files that depend on the fact (ops tasks point at scripts/). `stale` names the Lifeline commit that still holds the old (wrong) version (`old_commit`, matched by `old_marker`) and the commit that changed it (`change_commit`).",
+  "_about": "Ground truth for every non-obvious rule in Lifeline. Harness-only: agents can never read this file. `marker` is a regex for the fact's single source of truth; it appears in exactly one Lifeline file at the task start commit. `tasks` maps each task to the files that depend on the fact (ops tasks point at scripts/). `stale` names the Lifeline commit that still holds the old (wrong) version (`old_commit`, matched by `old_marker`) and the commit that changed it (`change_commit`).",
   "facts": {
     "F1": {
       "topic": "rations",

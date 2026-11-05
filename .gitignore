@@ -232,3 +232,7 @@ __pycache__/
 report/*.zip
 report/*.pdf
 !report/main.pdf
+
+# Internal working notes, kept locally only
+CLAUDE.md
+design.md

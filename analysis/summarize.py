@@ -1,4 +1,4 @@
-"""Aggregate runs/ into summary tables (build step 9).
+"""Aggregate runs/ into summary tables.
 
     python -m analysis.summarize            # writes results/summary.md and results/summary_*.csv
 

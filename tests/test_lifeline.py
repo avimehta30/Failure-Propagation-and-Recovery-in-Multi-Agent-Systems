@@ -1,4 +1,4 @@
-"""Checks on the Lifeline environment itself (design.md Sections 3, 4 and 10). No LLM involved."""
+"""Checks on the Lifeline environment itself. No LLM involved."""
 
 import ast
 import json
@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 LIFELINE = ROOT / "env" / "lifeline"
 FACTS = json.loads((ROOT / "env" / "facts.json").read_text())["facts"]
 
-# Which top-level Lifeline packages each package may import (design.md Section 3).
+# Which top-level Lifeline packages each package may import.
 BASE = {"core", "config"}
 ALLOWED = {
     "config": set(), "core": {"config"},

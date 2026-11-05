@@ -1,4 +1,4 @@
-"""Task sanity checks from design.md Section 9 that need no LLM:
+"""Task sanity checks that need no LLM:
 
 1. the reference solution passes the hidden tests,
 2. a solution built on each wrong fact the task depends on fails,
