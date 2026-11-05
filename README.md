@@ -34,16 +34,16 @@ They talk only through messages passed by a program called the orchestrator. The
 
 **The jobs** are 8 tickets, written like ordinary bug reports. Each ticket has a hidden answer key. After a run, we grade the agents' work against that key. The agents never see the key.
 
-| # | Task | The ticket asks the team to… | Hidden rule(s) the agents must find in the code |
-|---|---|---|---|
-| 1 | T01 | Reject mistyped household IDs when a family registers | What makes an ID valid (it ends in a check digit) |
-| 2 | T02 | Reject stock reservations with badly written warehouse codes | The warehouse code format |
-| 3 | T03 | Flag families within 5 points of qualifying for aid | The cutoff: a score of 60, or 45 if someone is pregnant |
-| 4 | T04 | Give winter kits to families in cold regions (changes 3 files) | How cold regions are marked; babies count as half a person; kits round down; how to reserve stock |
-| 5 | T05 | Route deliveries around blocked roads and text the families affected (changes 3 files) | Road code "R" means light vehicles only, not closed; texts must use approved templates |
-| 6 | T09 | Merge households that were registered twice | Duplicates are names that *sound* alike with the same birth year; valid IDs |
-| 7 | T10 | Re-send text messages that failed to deliver (**sent texts can't be undone**) | Texts must use approved templates |
-| 8 | T11 | Pay this cycle's cash assistance (**payments can't be undone**) | Who is eligible; every payment needs a "don't pay twice" key; every payment must be logged |
+| # | Task | The ticket asks the team to… |
+|---|---|---|
+| 1 | T01 | Reject mistyped household IDs when a family registers |
+| 2 | T02 | Reject stock reservations with badly written warehouse codes |
+| 3 | T03 | Flag families within 5 points of qualifying for aid |
+| 4 | T04 | Give winter kits to families in cold regions (changes 3 files) |
+| 5 | T05 | Route deliveries around blocked roads and text the families affected (changes 3 files) |
+| 6 | T09 | Merge households that were registered twice |
+| 7 | T10 | Re-send text messages that failed to deliver (**sent texts can't be undone**) |
+| 8 | T11 | Pay this cycle's cash assistance (**payments can't be undone**) |
 
 Tasks 1–3 are warm-ups that change one file. Tasks 4–5 change several files, and each file depends on a different rule. Tasks 6–8 are operations: the agents write and run a script that changes the data, and in tasks 7–8 it sends texts or payments.
 
